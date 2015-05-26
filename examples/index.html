@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gridy — TypeScript grid library</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css" type="text/css"/>
+    <link rel="stylesheet" href="./diagram.css" type="text/css"/>
+    <style>
+        body {
+            padding: 20px 40px 40px 40px;
+            margin: 0;
+            font-size: 1.15rem;
+            background-color: #fff;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        a {
+            color: #308dde;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2 {
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        h1 small, h3 small {
+            color: rgba(0, 0, 0, 0.46);
+            font-size: 74%;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-weight: 300;
+            margin-right: 20px;
+        }
+
+        h2:after {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            content: '';
+            display: block;
+            width: 100%;
+        }
+
+        h3 {
+            min-height: 40px;
+        }
+
+        .right {
+            float: right;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .block {
+            margin: 20px;
+            border: 1px solid rgba(0, 0, 0, .12);
+            background-color: rgba(0, 0, 0, .01);
+            border-radius: 16px;
+            padding: 0 20px 20px 20px;
+            min-height: 100px;
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: top;
+            zoom: 1;
+            *display: inline;
+            _height: 100px;
+            width: 340px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .fnc {
+            margin-top: 20px;
+            max-width: 340px;
+            width: 340px;
+            font-size: 0.85rem;
+            font-family: Consolas, Menlo, Monaco, monospace;
+            color: rgba(0, 0, 0, .67);
+        }
+
+        .wide {
+            width: 760px;
+        }
+
+        .wide .fnc {
+            max-width: 760px;
+            width: 760px;
+        }
+
+        label {
+            margin-right: 20px;
+        }
+
+        label.range-label {
+            margin-top: 0.2rem;
+            /*margin-bottom: 10px;*/
+            display: block;
+            float: left;
+        }
+
+        fieldset {
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            padding-top: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        fieldset legend {
+            color: rgba(0, 0, 0, 0.36);
+        }
+
+        input[type=range] {
+            margin-left: 0.2rem;
+            margin-top: 0.3rem;
+            margin-bottom: 26px;
+        }
+
+        .topcoat-checkbox, .topcoat-radio-button {
+            margin-bottom: 10px;
+        }
+
+        #svg-wrap {
+            margin-right: 40px;
+            width: 480px;
+            margin-top: 11px;
+            padding: 0;
+            float: left;
+        }
+
+        #svg-wrap svg {
+            display: block;
+            border-radius: 16px;
+        }
+
+        .form {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        #status {
+            text-align: right;
+            margin-top: 25px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="left">Gridy
+    <small>&mdash; TypeScript grid library</small>
+</h1>
+
+<div class="right"><a href="../doc/index.html">Documentation</a>, <a href="https://github.com/darosh/gridy">GitHub</a></div>
+
+<div class="clear"></div>
+
+<h2>Sandbox</h2>
+
+<div id="svg-wrap" class="block">
+    <svg width="480" height="480"></svg>
+</div>
+
+<div class="form">
+    <div>
+        <fieldset>
+            <legend>Grid</legend>
+
+            <label class="topcoat-radio-button" for="i3">
+                <input checked onclick="gridUpdated()" type="radio" id="i3" name="grid" value="HexagonalGrid"/>
+
+                <div class="topcoat-radio-button__checkmark"></div>
+                Hexagonal
+            </label>
+
+            <label class="topcoat-radio-button" for="i2">
+                <input onclick="gridUpdated()" type="radio" id="i2" name="grid" value="BrickGrid"/>
+
+                <div class="topcoat-radio-button__checkmark"></div>
+                Brick
+            </label>
+
+            <label class="topcoat-radio-button" for="i4">
+                <input onclick="gridUpdated()" type="radio" id="i4" name="grid" value="RectangularGrid"/>
+
+                <div class="topcoat-radio-button__checkmark"></div>
+                Rectangular
+            </label>
+
+            <label class="topcoat-radio-button" for="i1">
+                <input onclick="gridUpdated()" type="radio" id="i1" name="grid" value="TriangularGrid"/>
+
+                <div class="topcoat-radio-button__checkmark"></div>
+                Triangular
+            </label>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Shape</legend>
+            <div id="shapes"></div>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Properties</legend>
+            <label for="size" class="range-label">
+                Size
+                <input id="size" value="50" type="range" min="5" class="topcoat-range" onchange="sizeUpdated()">
+            </label>
+
+            <label for="X" class="range-label">
+                X
+                <input id="X" value="9" type="range" min="1" max="20" class="topcoat-range" onchange="sizeUpdated()">
+            </label>
+
+            <label for="Y" class="range-label">
+                Y
+                <input id="Y" value="9" type="range" min="1" max="20" class="topcoat-range" onchange="sizeUpdated()">
+            </label>
+            <label class="topcoat-checkbox" for="or">
+                <input id="or" type="checkbox" onclick="orientationUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Orientation
+            </label>
+            <label class="topcoat-checkbox" for="an">
+                <input checked id="an" type="checkbox" onclick="animationUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Animation
+            </label>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Show</legend>
+
+            <label class="topcoat-checkbox" for="show1">
+                <input checked id="show1" type="checkbox" onclick="showUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Polygons
+            </label>
+            <label class="topcoat-checkbox" for="show2">
+                <input id="show2" type="checkbox" onclick="showUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Centers
+            </label>
+            <label class="topcoat-checkbox" for="show3">
+                <input id="show3" type="checkbox" onclick="showUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Circles
+            </label>
+            <label class="topcoat-checkbox" for="show4">
+                <input id="show4" type="checkbox" onclick="showUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Coordinates
+            </label>
+            <label class="topcoat-checkbox" for="show5">
+                <input id="show5" type="checkbox" onclick="showUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Tile coordinates
+            </label>
+            <label class="topcoat-checkbox" for="show6">
+                <input id="show6" type="checkbox" onclick="pathUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Path
+            </label>
+            <label class="topcoat-checkbox" for="show7">
+                <input id="show7" type="checkbox" onclick="pathUpdated()"/>
+
+                <div class="topcoat-checkbox__checkmark"></div>
+                Search
+            </label>
+        </fieldset>
+    </div>
+    <div id="status"></div>
+</div>
+
+<div class="clear"></div>
+
+<div id="demos"></div>
+
+<h2>Server side output</h2>
+
+<div class="block">
+    <p>
+        <a href="./output/triangular.svg">triangular.svg</a>
+    </p>
+    <img src="./output/triangular.svg">
+</div>
+
+<div class="block">
+    <p>
+        <a href="./output/hexagonal.svg">hexagonal.svg</a>
+    </p>
+    <img src="./output/hexagonal.svg">
+</div>
+
+<div class="block">
+    <p>
+        <a href="./output/trapezoidal.svg">trapezoidal.svg</a>
+    </p>
+    <img src="./output/trapezoidal.svg">
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="../dist/browser/gridy.js"></script>
+<script src="../dist/browser/diagramy.js"></script>
+<script src="./sandbox.js"></script>
+<script src="./demos.js"></script>
+
+</body>
+</html>
