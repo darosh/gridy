@@ -40,7 +40,7 @@ make(340, 240, false, true, true, false, false, false, new Gridy.HexagonalGrid(4
     'examples/output/triangular.svg');
 
 make(230, 230, false, true, false, true, false, false, new Gridy.TriangularGrid(30, false, Gridy.GridShape.Rhombus, 5, 6),
-        'examples/output/demo2.svg');
+        'examples/output/demo3.svg');
 
 function maze() {
     var grid = new Gridy.HexagonalGrid(15, true, Gridy.GridShape.Hexagonal, 9);
@@ -54,7 +54,7 @@ function maze() {
         .concat(((t = Gridy.Path.spiral(new Gridy.HexagonalTile(), 11, false)).splice(22, 1), t));
 
     make(230, 230, true, false, false, false, blocked, false, grid,
-        'examples/output/demo1.svg');
+        'examples/output/demo2.svg');
 }
 
 maze();
@@ -65,7 +65,7 @@ function pyramid() {
     var path = Gridy.Path.spiral(new Gridy.HexagonalTile(2, -6, 4), 2, true);
 
     make(230, 230, true, false, false, false, false, path, grid,
-        'examples/output/demo3.svg');
+        'examples/output/demo1.svg');
 }
 
 pyramid();
