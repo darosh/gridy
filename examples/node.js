@@ -43,7 +43,7 @@ make(230, 230, false, true, false, true, false, false, new Gridy.TriangularGrid(
         'examples/output/demo2.svg');
 
 function maze() {
-    var grid = new Gridy.HexagonalGrid(16, true, Gridy.GridShape.Hexagonal, 9);
+    var grid = new Gridy.HexagonalGrid(15, true, Gridy.GridShape.Hexagonal, 9);
 
     var t, blocked = []
         .concat(((t = Gridy.Path.spiral(new Gridy.HexagonalTile(), 1, false)).splice(5, 1), t))
