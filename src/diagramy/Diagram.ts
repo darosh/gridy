@@ -134,6 +134,11 @@ module Diagramy {
             return this;
         }
 
+        /**
+         * Show/hide tile center points
+         * @param show
+         * @returns {Diagramy.Diagram}
+         */
         centers(show:boolean|any = true):Diagram {
             var tiles:D3._Selection<any>;
 
@@ -258,6 +263,12 @@ module Diagramy {
             return this;
         }
 
+        /**
+         * Highlight selected tiles
+         * @param tiles Array of selected tiles
+         * @param classed Optional highlight class
+         * @returns {Diagramy.Diagram} For chain call
+         */
         highlight(tiles:Array<Gridy.ITile<any>>, classed:string = 'highlight'):Diagram {
             var tileSet:D3.Set<Gridy.ITile<any>> = d3.set(tiles);
 
