@@ -2,9 +2,9 @@
 
 TypeScript grid library for server and browser 
 
-![](//rawgit.com/darosh/gridy/master/examples/output/demo1.svg)
-![](//rawgit.com/darosh/gridy/master/examples/output/demo2.svg)
-![](//rawgit.com/darosh/gridy/master/examples/output/demo3.svg)
+![](https://rawgit.com/darosh/gridy/master/examples/output/demo1.svg)
+![](https://rawgit.com/darosh/gridy/master/examples/output/demo2.svg)
+![](https://rawgit.com/darosh/gridy/master/examples/output/demo3.svg)
 
 Based on [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/) 
 and [Amit’s Thoughts on Grids](http://www-cs-students.stanford.edu/~amitp/game-programming/grids/)
