@@ -18,4 +18,4 @@ Current version: ```0.1.0-pre-alpha``` has unstable API and unfinished implement
 
 ## Documentation
 
-[./doc/index.html](//rawgit.com/darosh/gridy/master/examples/index.html)
+[./doc/index.html](//rawgit.com/darosh/gridy/master/doc/index.html)
