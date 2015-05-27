@@ -4,7 +4,7 @@
 module Gridy {
     'use strict';
 
-    interface IGridConstructable {
+    export interface IGridConstructable {
         new(scale:Float, orientation:boolean, shape:GridShape, x:Integer, y:Integer):IGrid<any>;
     }
 
