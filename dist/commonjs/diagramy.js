@@ -293,6 +293,11 @@ var Diagramy;
             this.transition(polygons).attr('transform', 'rotate(' + (this.grid.orientation * this.grid.angle) + ')');
             return this;
         };
+        /**
+         * Show/hide tile center points
+         * @param show
+         * @returns {Diagramy.Diagram}
+         */
         Diagram.prototype.centers = function (show) {
             if (show === void 0) { show = true; }
             var tiles;
@@ -406,6 +411,12 @@ var Diagramy;
             }
             return this;
         };
+        /**
+         * Highlight selected tiles
+         * @param tiles Array of selected tiles
+         * @param classed Optional highlight class
+         * @returns {Diagramy.Diagram} For chain call
+         */
         Diagram.prototype.highlight = function (tiles, classed) {
             var _this = this;
             if (classed === void 0) { classed = 'highlight'; }
