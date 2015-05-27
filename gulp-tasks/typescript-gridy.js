@@ -1,12 +1,19 @@
+var merge = require('merge2');
+
 module.exports = function (gulp, plugins, conf) {
     return function () {
-        return gulp.src('src/gridy/*.ts')
+        var result = gulp.src('src/gridy/*.ts')
             .pipe(plugins.typescript({
+                module: 'commonjs',
+                target: 'ES5',
                 noImplicitAny: true,
-                out: 'gridy.js',
-                declarations: true
-            }))
-            .js
-            .pipe(gulp.dest('dist/commonjs'));
+                declarationFiles: true,
+                out: 'gridy.js'
+            }));
+
+        return merge([
+            result.js.pipe(gulp.dest('dist/commonjs')),
+            result.dts.pipe(gulp.dest('.'))
+        ]);
     };
 };
