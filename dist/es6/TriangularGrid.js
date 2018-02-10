@@ -5,8 +5,11 @@ import { GridShape } from "./GridShape";
 import { Position } from "./Position";
 import { TileType } from "./TileType";
 import { TriangularTile } from "./TriangularTile";
+/**
+ * ![](../../examples/output/triangular-grid.svg)
+ */
 export class TriangularGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = GridShape.Triangular, x = 1, y = 1) {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;

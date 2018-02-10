@@ -1,4 +1,7 @@
 import { Integer2 } from "./Integer2";
+/**
+ * ![](../../examples/output/rectangular-tile.svg)
+ */
 export class RectangularTile extends Integer2 {
     shift() {
         return new RectangularTile(-1, 1);

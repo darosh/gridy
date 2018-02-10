@@ -36,6 +36,22 @@ function make(x, y, a, b, c, d, h, p, grid, fileName) {
     fs.writeFileSync(fileName, el.outerHTML, 'utf8');
 }
 
+make(100, 100, true, false, false, false, false, false, new Gridy.HexagonalGrid(80),
+    'examples/output/hexagonal-tile.svg');
+make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid(70),
+    'examples/output/triangular-tile.svg');
+make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(80),
+    'examples/output/rectangular-tile.svg');
+
+make(100, 100, true, false, false, false, false, false, new Gridy.HexagonalGrid(15, false, Gridy.GridShape.Hexagonal, 4),
+    'examples/output/hexagonal-grid.svg');
+make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid(15, false, Gridy.GridShape.Triangular, 5),
+    'examples/output/triangular-grid.svg');
+make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(15, false, Gridy.GridShape.TrapezoidalEven, 5 , 5),
+    'examples/output/rectangular-grid.svg');
+make(100, 100, true, false, false, false, false, false, new Gridy.BrickGrid(15, true, Gridy.GridShape.TrapezoidalOdd, 7, 7),
+    'examples/output/brick-grid.svg');
+
 make(340, 240, true, false, true, false, false, false, new Gridy.HexagonalGrid(45, true, Gridy.GridShape.TrapezoidalEven, 5, 5),
     'examples/output/trapezoidal.svg');
 make(340, 240, false, true, false, true, false, false, new Gridy.HexagonalGrid(45, false, Gridy.GridShape.Hexagonal, 3),

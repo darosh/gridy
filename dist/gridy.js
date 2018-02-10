@@ -169,6 +169,9 @@ class Integer3 {
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Cube.hx
+/**
+ * ![](../../examples/output/hexagonal-tile.svg)
+ */
 class HexagonalTile extends Integer3 {
     shift() {
         return HexagonalTile.directions[4][1];
@@ -218,8 +221,11 @@ var TileType;
 // Copyright 2012 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Grid.hx
+/**
+ * ![](../../examples/output/hexagonal-grid.svg)
+ */
 class HexagonalGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = exports.GridShape.Hexagonal, x = 1, y) {
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -456,6 +462,9 @@ class HexagonalGrid {
     }
 }
 
+/**
+ * ![](../../examples/output/brick-grid.svg)
+ */
 class BrickGrid extends HexagonalGrid {
     constructor(scale, orientation, shape, x, y) {
         super(scale, orientation, shape, x, y);
@@ -484,6 +493,9 @@ class BrickGrid extends HexagonalGrid {
     }
 }
 
+/**
+ * ![](../../examples/output/triangular-tile.svg)
+ */
 class TriangularTile extends Integer2 {
     constructor(x = 0, y = 0, s = false) {
         super(x, y);
@@ -529,8 +541,11 @@ TriangularTile.directions2 = [
     [3, new TriangularTile(0, 1, false)],
 ];
 
+/**
+ * ![](../../examples/output/triangular-grid.svg)
+ */
 class TriangularGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = exports.GridShape.Triangular, x = 1, y = 1) {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
@@ -621,6 +636,9 @@ class TriangularGrid {
     }
 }
 
+/**
+ * ![](../../examples/output/rectangular-tile.svg)
+ */
 class RectangularTile extends Integer2 {
     shift() {
         return new RectangularTile(-1, 1);
@@ -654,8 +672,11 @@ RectangularTile.directions = [
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+/**
+ * ![](../../examples/output/rectangular-grid.svg)
+ */
 class RectangularGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = exports.GridShape.TrapezoidalEven, x = 1, y = 1) {
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;

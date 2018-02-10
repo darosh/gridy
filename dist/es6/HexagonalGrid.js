@@ -9,8 +9,11 @@ import { TileType } from "./TileType";
 // Copyright 2012 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Grid.hx
+/**
+ * ![](../../examples/output/hexagonal-grid.svg)
+ */
 export class HexagonalGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = GridShape.Hexagonal, x = 1, y) {
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;

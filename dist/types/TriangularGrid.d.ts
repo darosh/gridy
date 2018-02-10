@@ -7,6 +7,9 @@ import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { TileType } from "./TileType";
 import { TriangularTile } from "./TriangularTile";
+/**
+ * ![](../../examples/output/triangular-grid.svg)
+ */
 export declare class TriangularGrid implements IGrid<TriangularTile> {
     tiles: TriangularTile[];
     orientation: boolean;
@@ -17,7 +20,7 @@ export declare class TriangularGrid implements IGrid<TriangularTile> {
     toPoint: (tile: TriangularTile) => Position;
     radius: Float;
     tileTypes: TileType;
-    constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y: Integer);
+    constructor(scale: Float, orientation?: boolean, shape?: GridShape, x?: Integer, y?: Integer);
     bounds(): Rectangle;
     center(tile: TriangularTile): Float2;
     vertices(orientation?: boolean, scale?: Float, tileType?: Integer): Float2[];

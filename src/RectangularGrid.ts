@@ -14,6 +14,9 @@ import { TileType } from "./TileType";
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 
+/**
+ * ![](../../examples/output/rectangular-grid.svg)
+ */
 export class RectangularGrid implements IGrid<RectangularTile> {
   public tiles: RectangularTile[];
   public orientation: boolean;
@@ -26,7 +29,11 @@ export class RectangularGrid implements IGrid<RectangularTile> {
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
 
-  constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y: Integer) {
+  constructor(scale: Float,
+              orientation: boolean = false,
+              shape: GridShape = GridShape.TrapezoidalEven,
+              x: Integer = 1,
+              y: Integer = 1) {
     this.scale = scale;
     this.radius = scale / 2;
     this.orientation = orientation;

@@ -3,6 +3,9 @@ import { Integer } from "./Integer";
 import { Integer2 } from "./Integer2";
 import { ITile } from "./ITile";
 
+/**
+ * ![](../../examples/output/rectangular-tile.svg)
+ */
 export class RectangularTile extends Integer2 implements ITile<Integer2> {
   public static directions: Directions<RectangularTile> = [
     [1, new RectangularTile(0, -1)],

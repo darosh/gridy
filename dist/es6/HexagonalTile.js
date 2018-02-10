@@ -3,6 +3,9 @@ import { Integer3 } from "./Integer3";
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Cube.hx
+/**
+ * ![](../../examples/output/hexagonal-tile.svg)
+ */
 export class HexagonalTile extends Integer3 {
     shift() {
         return HexagonalTile.directions[4][1];

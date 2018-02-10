@@ -1,0 +1,56 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100"><style>text {
+  font-size: 14px;
+  text-anchor: middle;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tile polygon {
+  fill: hsl(60, 10%, 95%);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
+}
+
+.path {
+  fill: none;
+  stroke: hsl(60, 20%, 15%);
+  stroke-width: 12px;
+  stroke-opacity: 0.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.q {
+  fill: hsl(90, 100%, 35%);
+}
+
+.r {
+  fill: hsl(200, 100%, 45%);
+}
+
+.s {
+  fill: hsl(300, 80%, 50%);
+}
+
+.highlight polygon {
+  fill: hsl(200, 50%, 80%);
+}
+
+.highlight-dark polygon {
+  fill: hsl(200, 10%, 35%);
+}
+
+.marker {
+  fill: #308dde;
+}
+
+.center {
+  fill: hsl(160, 85%, 75%);
+}
+
+.circle {
+  fill: hsla(240, 5%, 75%, 0.12);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
+  stroke-opacity: 0.95;
+}
+</style><g transform="translate(50,50)"><g class="tile" style="opacity: 1;" transform="translate(0,0)"><g class="polygon"><polygon points="-40.000,-40.000 -40.000,40.000 40.000,40.000 40.000,-40.000" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g></g><g transform="translate(50,50)"></g></svg>

@@ -1,0 +1,56 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100" height="100"><style>text {
+  font-size: 14px;
+  text-anchor: middle;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tile polygon {
+  fill: hsl(60, 10%, 95%);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
+}
+
+.path {
+  fill: none;
+  stroke: hsl(60, 20%, 15%);
+  stroke-width: 12px;
+  stroke-opacity: 0.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.q {
+  fill: hsl(90, 100%, 35%);
+}
+
+.r {
+  fill: hsl(200, 100%, 45%);
+}
+
+.s {
+  fill: hsl(300, 80%, 50%);
+}
+
+.highlight polygon {
+  fill: hsl(200, 50%, 80%);
+}
+
+.highlight-dark polygon {
+  fill: hsl(200, 10%, 35%);
+}
+
+.marker {
+  fill: #308dde;
+}
+
+.center {
+  fill: hsl(160, 85%, 75%);
+}
+
+.circle {
+  fill: hsla(240, 5%, 75%, 0.12);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
+  stroke-opacity: 0.95;
+}
+</style><g transform="translate(20,30.514428414850133)"><g class="tile" style="opacity: 1;" transform="translate(0,-4.330127018922193)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(7.5,0)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(15,-4.330127018922193)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(22.5,0)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(30,-4.330127018922193)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(37.5,0)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(45,-4.330127018922193)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(52.5,0)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(60,-4.330127018922193)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(7.5,8.660254037844386)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(15,12.990381056766578)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(22.5,8.660254037844386)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(30,12.990381056766578)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(37.5,8.660254037844386)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(45,12.990381056766578)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(52.5,8.660254037844386)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(15,21.650635094610966)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(22.5,25.980762113533157)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(30,21.650635094610966)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(37.5,25.980762113533157)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(45,21.650635094610966)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(22.5,34.64101615137754)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(30,38.97114317029974)"><g class="polygon"><polygon points="0.000,-8.660 -7.500,4.330 7.500,4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(37.5,34.64101615137754)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g><g class="tile" style="opacity: 1;" transform="translate(30,47.63139720814412)"><g class="polygon"><polygon points="0.000,8.660 -7.500,-4.330 7.500,-4.330" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g></g><g transform="translate(20,30.514428414850133)"></g></svg>

@@ -6,6 +6,9 @@ import { HexagonalGrid } from "./HexagonalGrid";
 import { HexagonalTile } from "./HexagonalTile";
 import { Integer } from "./Integer";
 
+/**
+ * ![](../../examples/output/brick-grid.svg)
+ */
 export class BrickGrid extends HexagonalGrid {
   public angle: Float = 0;
 

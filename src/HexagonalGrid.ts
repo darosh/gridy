@@ -15,6 +15,9 @@ import { TileType } from "./TileType";
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Grid.hx
 
+/**
+ * ![](../../examples/output/hexagonal-grid.svg)
+ */
 export class HexagonalGrid implements IGrid<HexagonalTile> {
   public static twoAxisToCube(position: Position): HexagonalTile {
     return new HexagonalTile(position.x, -position.y - position.x, position.y);
@@ -218,7 +221,11 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
 
   public shape: GridShape;
 
-  constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y?: Integer) {
+  constructor(scale: Float,
+              orientation: boolean = false,
+              shape: GridShape = GridShape.Hexagonal,
+              x: Integer = 1,
+              y?: Integer) {
     this.scale = scale;
     this.radius = SQRT_3_2 * scale / 2;
     this.orientation = orientation;
@@ -255,14 +262,14 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
       this.toTile = HexagonalGrid.twoAxisToCube;
       this.toPoint = HexagonalGrid.cubeToTwoAxis;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    // } else if (shape === GridShape.RhombusEven) {
-    //   this.toTile = HexagonalGrid.twoAxisToCubeEven;
-    //   this.toPoint = HexagonalGrid.cubeToTwoAxisEven;
-    //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    // } else if (shape === GridShape.RhombusOdd) {
-    //   this.toTile = HexagonalGrid.twoAxisToCubeOdd;
-    //   this.toPoint = HexagonalGrid.cubeToTwoAxisOdd;
-    //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+      // } else if (shape === GridShape.RhombusEven) {
+      //   this.toTile = HexagonalGrid.twoAxisToCubeEven;
+      //   this.toPoint = HexagonalGrid.cubeToTwoAxisEven;
+      //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+      // } else if (shape === GridShape.RhombusOdd) {
+      //   this.toTile = HexagonalGrid.twoAxisToCubeOdd;
+      //   this.toPoint = HexagonalGrid.cubeToTwoAxisOdd;
+      //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
     } else {
       this.tiles = [];
       this.toPoint = () => new Position();

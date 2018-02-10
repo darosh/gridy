@@ -1,6 +1,9 @@
 import { SQRT_2, SQRT_2_2, SQRT_2_4 } from "./Constants";
 import { Float2 } from "./Float2";
 import { HexagonalGrid } from "./HexagonalGrid";
+/**
+ * ![](../../examples/output/brick-grid.svg)
+ */
 export class BrickGrid extends HexagonalGrid {
     constructor(scale, orientation, shape, x, y) {
         super(scale, orientation, shape, x, y);

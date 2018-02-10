@@ -7,6 +7,9 @@ import { Integer } from "./Integer";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { TileType } from "./TileType";
+/**
+ * ![](../../examples/output/hexagonal-grid.svg)
+ */
 export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     static twoAxisToCube(position: Position): HexagonalTile;
     static cubeToTwoAxis(tile: HexagonalTile): Position;
@@ -33,7 +36,7 @@ export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     radius: Float;
     tileTypes: TileType;
     shape: GridShape;
-    constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y?: Integer);
+    constructor(scale: Float, orientation?: boolean, shape?: GridShape, x?: Integer, y?: Integer);
     bounds(): Rectangle;
     vertices(orientation?: boolean, scale?: Float): Float2[];
     center(tile: HexagonalTile): Float2;

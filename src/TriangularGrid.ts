@@ -10,6 +10,9 @@ import { Rectangle } from "./Rectangle";
 import { TileType } from "./TileType";
 import { TriangularTile } from "./TriangularTile";
 
+/**
+ * ![](../../examples/output/triangular-grid.svg)
+ */
 export class TriangularGrid implements IGrid<TriangularTile> {
   public tiles: TriangularTile[];
   public orientation: boolean;
@@ -22,7 +25,11 @@ export class TriangularGrid implements IGrid<TriangularTile> {
   public radius: Float;
   public tileTypes: TileType = TileType.Variable;
 
-  constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y: Integer) {
+  constructor(scale: Float,
+              orientation: boolean = false,
+              shape: GridShape = GridShape.Triangular,
+              x: Integer = 1,
+              y: Integer = 1) {
     this.scale = scale;
     this.radius = SQRT_3_6 * scale;
     this.orientation = orientation;

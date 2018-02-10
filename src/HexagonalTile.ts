@@ -8,6 +8,9 @@ import { ITile } from "./ITile";
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/Cube.hx
 
+/**
+ * ![](../../examples/output/hexagonal-tile.svg)
+ */
 export class HexagonalTile extends Integer3 implements ITile<Integer3> {
   public static directions: Directions<HexagonalTile> = [
     [1, new HexagonalTile(1, -1, 0)],

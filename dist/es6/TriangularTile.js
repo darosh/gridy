@@ -1,4 +1,7 @@
 import { Integer2 } from "./Integer2";
+/**
+ * ![](../../examples/output/triangular-tile.svg)
+ */
 export class TriangularTile extends Integer2 {
     constructor(x = 0, y = 0, s = false) {
         super(x, y);
