@@ -11,7 +11,7 @@ TypeScript grid library for server and browser.
 
 ## Grids
 
-|[Rectangular](./classes/rectangulargrid.html)|[Brick](./classes/brickgrid.html)|[Hexagonal](./classes/hexagonalgrid.html)|[Triangular](./doc/classes/triangulargrid.html)|
+|[Rectangular](./classes/rectangulargrid.html)|[Brick](./classes/brickgrid.html)|[Hexagonal](./classes/hexagonalgrid.html)|[Triangular](./classes/triangulargrid.html)|
 |-|-|-|-|
 |![](../examples/output/rectangular-grid.svg)|![](../examples/output/brick-grid.svg)|![](../examples/output/hexagonal-grid.svg)|![](../examples/output/triangular-grid.svg)|
 
