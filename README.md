@@ -10,7 +10,7 @@ Current version has unstable API and unfinished implementation of features.
 
 ## Demo
 
-[./examples/output/index.html](//darosh.github.io/gridy/examples/index.html)
+Sandbox, examples and usage: [./examples/index.html](//darosh.github.io/gridy/examples/index.html)
 
 ## Documentation
 
