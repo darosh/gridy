@@ -16,7 +16,7 @@ Current version has unstable API and unfinished implementation of features.
 
 [./doc/index.html](//darosh.github.io/gridy/doc/index.html)
 
-###Grids
+### Grids
 
 |[Rectangular](https://darosh.github.io/gridy/doc/classes/rectangulargrid.html)|[Brick](https://darosh.github.io/gridy/doc/classes/brickgrid.html)|[Hexagonal](https://darosh.github.io/gridy/doc/classes/hexagonalgrid.html)|[Triangular](https://darosh.github.io/gridy/doc/classes/triangulargrid.html)|
 |-|-|-|-|
