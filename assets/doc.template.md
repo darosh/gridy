@@ -17,9 +17,3 @@ TypeScript grid library for server and browser.
 This library would not be possible without following articles
 * [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/) 
 * [Amit’s Thoughts on Grids](http://www-cs-students.stanford.edu/~amitp/game-programming/grids/)
-
-
-## Namespacing
-
-* **Gridy** comes from [&hellip;](https://translate.google.com/#cs/en/gridy)
-* **Diagramy** comes from [&hellip;](https://translate.google.com/#cs/en/diagramy)

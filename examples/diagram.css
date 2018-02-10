@@ -1,55 +1,55 @@
 text {
-    font-size: 14px;
-    text-anchor: middle;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-anchor: middle;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .tile polygon {
-    fill: hsl(60, 10%, 95%);
-    stroke: hsl(0, 0%, 70%);
-    stroke-width: 0.5;
+  fill: hsl(60, 10%, 95%);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
 }
 
 .path {
-    fill: none;
-    stroke: hsl(60, 20%, 30%);
-    stroke-width: 12px;
-    stroke-opacity: 0.3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  fill: none;
+  stroke: hsl(60, 20%, 15%);
+  stroke-width: 12px;
+  stroke-opacity: 0.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .q {
-    fill: hsl(90, 100%, 35%);
+  fill: hsl(90, 100%, 35%);
 }
 
 .r {
-    fill: hsl(200, 100%, 45%);
+  fill: hsl(200, 100%, 45%);
 }
 
 .s {
-    fill: hsl(300, 80%, 50%);
+  fill: hsl(300, 80%, 50%);
 }
 
 .highlight polygon {
-    fill: hsl(200, 50%, 80%);
+  fill: hsl(200, 50%, 80%);
 }
 
 .highlight-dark polygon {
-    fill: hsl(200, 50%, 66%);
+  fill: hsl(200, 10%, 35%);
 }
 
 .marker {
-    fill: #308dde;
+  fill: #308dde;
 }
 
 .center {
-    fill: hsl(160, 85%, 75%);
+  fill: hsl(160, 85%, 75%);
 }
 
 .circle {
-    fill: hsla(240, 5%, 75%, 0.12);
-    stroke: hsl(0, 0%, 70%);
-    stroke-width: 0.5;
-    stroke-opacity: 0.95;
+  fill: hsla(240, 5%, 75%, 0.12);
+  stroke: hsl(0, 0%, 70%);
+  stroke-width: 0.5;
+  stroke-opacity: 0.95;
 }

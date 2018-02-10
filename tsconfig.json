@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "strict": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "lib": [ "dom","es5","es6"],
+    "removeComments": false,
+    "noLib": false
+  },
+  "files": [
+    "src/index.ts",
+    "src/Diagram.ts"
+  ]
+}
