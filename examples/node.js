@@ -43,9 +43,9 @@ make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid
 make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(80),
     'examples/output/rectangular-tile.svg');
 
-make(100, 100, true, false, false, false, false, false, new Gridy.HexagonalGrid(15, false, Gridy.GridShape.Hexagonal, 4),
+make(100, 100, true, false, false, false, false, false, new Gridy.HexagonalGrid(14, false, Gridy.GridShape.Hexagonal, 4),
     'examples/output/hexagonal-grid.svg');
-make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid(15, false, Gridy.GridShape.Triangular, 5),
+make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid(16, false, Gridy.GridShape.Triangular, 5),
     'examples/output/triangular-grid.svg');
 make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(15, false, Gridy.GridShape.TrapezoidalEven, 5 , 5),
     'examples/output/rectangular-grid.svg');
