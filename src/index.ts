@@ -17,5 +17,5 @@ export { Integer3 } from "./Integer3";
 
 export { Search } from "./Search";
 
-export { enumerate, look, instance, neighbors, map } from "./Utils";
+export { enumerate, look, instance, neighbors, map, connections } from "./Utils";
 export { axes, intersect, spiral } from "./Path";

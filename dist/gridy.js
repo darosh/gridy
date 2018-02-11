@@ -879,7 +879,8 @@ function neighbors(tiles) {
     }
     const values = look(tiles, true);
     tiles.forEach((t) => {
-        t._neighbors_data = t.neighbors().map((n) => values[n[1]]).filter((n) => n !== undefined);
+        t._neighbors_data = t.neighbors().filter((n) => values[n[1]] !== undefined)
+            .map((n) => [n[0], values[n[1]]]);
         t._neighbors = _neighbors;
         t.neighbors = _neighbors;
     });
@@ -892,6 +893,23 @@ function map(tiles) {
         t._map = t.map;
         t.map = _map;
     });
+}
+function connections(tiles) {
+    const c = [];
+    for (const t of tiles) {
+        const m = t.map();
+        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(-k));
+        for (const k of s) {
+            const l = [];
+            let i = t;
+            while (i) {
+                l.push(i);
+                i = i.map().get(k);
+            }
+            c.push(l);
+        }
+    }
+    return c;
 }
 
 function spiral(start, N, isSpiral) {
@@ -953,6 +971,7 @@ exports.look = look;
 exports.instance = instance;
 exports.neighbors = neighbors;
 exports.map = map;
+exports.connections = connections;
 exports.axes = axes;
 exports.intersect = intersect;
 exports.spiral = spiral;

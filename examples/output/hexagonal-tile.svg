@@ -53,4 +53,4 @@
   stroke-width: 0.5;
   stroke-opacity: 0.95;
 }
-</style><g transform="translate(50,49.999999999999986)"><g class="tile" style="opacity: 1;" transform="translate(0,0)"><g class="polygon"><polygon points="40.000,0.000 20.000,34.641 -20.000,34.641 -40.000,0.000 -20.000,-34.641 20.000,-34.641" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g></g><g transform="translate(50,49.999999999999986)"></g></svg>
+</style><g transform="translate(50,49.999999999999986)"><g class="tile" style="opacity: 1;" transform="translate(0,0)"><g class="polygon"><polygon points="40.000,0.000 20.000,34.641 -20.000,34.641 -40.000,0.000 -20.000,-34.641 20.000,-34.641" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tiles"></g><g class="values"></g></g></g><g transform="translate(50,49.999999999999986)"></g></svg>

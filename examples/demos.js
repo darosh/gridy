@@ -664,7 +664,7 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, Position, neighbors, map } = Gridy
+        const { Shape, HexagonalGrid, Position, neighbors, map, connections } = Gridy
 
         const size = 11
 
@@ -678,13 +678,15 @@
           ends.push(grid.toTile(new Position(size - 1, i)))
         }
 
-        const blocked = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
+        const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
 
-        neighbors(grid.tiles) // Optional
-        map(grid.tiles) // Optional
+        neighbors(active)
+        map(active) // Optional
+        const lines = connections(active).filter((l) => l.length === 5)
 
         new Diagram(svg, grid)
-          .highlight(blocked)
+          .highlight(active)
+          .lines(lines)
       }
     }]
   }, {

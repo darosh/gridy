@@ -53,4 +53,4 @@
   stroke-width: 0.5;
   stroke-opacity: 0.95;
 }
-</style><g transform="translate(50,80.31088913245534)"><g class="tile" style="opacity: 1;" transform="translate(0,-20.207259421636902)"><g class="polygon"><polygon points="0.000,40.415 -35.000,-20.207 35.000,-20.207" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tile-coordinates"></g><g class="values"></g></g></g><g transform="translate(50,80.31088913245534)"></g></svg>
+</style><g transform="translate(50,80.31088913245534)"><g class="tile" style="opacity: 1;" transform="translate(0,-20.207259421636902)"><g class="polygon"><polygon points="0.000,40.415 -35.000,-20.207 35.000,-20.207" transform="rotate(0)"></polygon></g><g class="center"></g><g class="circle"></g><g class="axes"></g><g class="coordinates"></g><g class="tiles"></g><g class="values"></g></g></g><g transform="translate(50,80.31088913245534)"></g></svg>

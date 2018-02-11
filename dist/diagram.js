@@ -266,17 +266,17 @@ class Diagram {
     tileCoordinates(show = true) {
         let tiles;
         if (show === false) {
-            this.all.selectAll("g.tile-coordinates").selectAll("text").remove();
+            this.all.selectAll("g.tiles").selectAll("text").remove();
             this.showTiles = false;
             return this;
         }
         else if (show === true && !this.showTiles) {
-            tiles = this.all.selectAll("g.tile-coordinates").append("text");
+            tiles = this.all.selectAll("g.tiles").append("text");
             this.showTiles = true;
         }
         else if (show !== true) {
-            this.tilesEnter.selectAll("g.tile-coordinates").append("text");
-            tiles = this.all.selectAll("g.tile-coordinates").selectAll("text");
+            this.tilesEnter.selectAll("g.tiles").append("text");
+            tiles = this.all.selectAll("g.tiles").selectAll("text");
             this.showTiles = true;
         }
         else {
@@ -303,13 +303,13 @@ class Diagram {
         });
         if (this.grid.tileTypes === 1) {
             const o = this.grid.vertices(this.grid.orientation, this.grid.scale - this.fontSize * 1.5);
-            this.all.select(".q").attr("x", o[0].x).attr("y", o[0].y + this.fontSize * 0.4);
-            this.all.select(".s").attr("x", o[2].x).attr("y", o[2].y + this.fontSize * 0.4);
+            this.all.select(".tiles .q").attr("x", o[0].x).attr("y", o[0].y + this.fontSize * 0.4);
+            this.all.select(".tiles .s").attr("x", o[2].x).attr("y", o[2].y + this.fontSize * 0.4);
             if (o.length > 4) {
-                this.all.select(".r").attr("x", o[4].x).attr("y", o[4].y + this.fontSize * 0.4);
+                this.all.select(".tiles .r").attr("x", o[4].x).attr("y", o[4].y + this.fontSize * 0.4);
             }
             else if (o.length >= 3) {
-                this.all.select(".r").attr("x", o[1].x).attr("y", o[1].y + this.fontSize * 0.4);
+                this.all.select(".tiles .r").attr("x", o[1].x).attr("y", o[1].y + this.fontSize * 0.4);
             }
         }
         return this;
@@ -342,6 +342,25 @@ class Diagram {
             d.push(this.grid.center(tiles[i]).toString());
         }
         path.attr("d", d.join(" "));
+        return this;
+    }
+    lines(tiles, color, width = 5) {
+        this.paths.selectAll("*").remove();
+        if (!tiles || !tiles.length) {
+            return this;
+        }
+        const path = this.paths.selectAll("path").data(tiles).enter().append("path")
+            .attr("d", "M 0 0")
+            .attr("class", "path")
+            .attr("style", `stroke: ${color}; stroke-width: ${width}px;`);
+        path.attr("d", (t) => {
+            const d = [];
+            for (let i = 0; i < t.length; i++) {
+                d.push(i === 0 ? "M" : "L");
+                d.push(this.grid.center(t[i]).toString());
+            }
+            return d.join(" ");
+        });
         return this;
     }
     search(search, from = "hsl(90, 80%, 80%)", to = "hsl(200, 80%, 80%)") {
@@ -402,7 +421,7 @@ class Diagram {
         tilesEnter.append("g").attr("class", "circle");
         tilesEnter.append("g").attr("class", "axes");
         tilesEnter.append("g").attr("class", "coordinates");
-        tilesEnter.append("g").attr("class", "tile-coordinates");
+        tilesEnter.append("g").attr("class", "tiles");
         tilesEnter.append("g").attr("class", "values");
         this.transition(this.tiles.merge(tilesEnter)).attr("transform", (node) => {
             const center = this.grid.center(this.data[node].tile);

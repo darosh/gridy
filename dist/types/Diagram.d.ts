@@ -46,6 +46,7 @@ export default class Diagram {
      */
     highlight(tiles: ITile<any>[], classed?: string): Diagram;
     path(tiles: ITile<any>[], color?: string, width?: number): Diagram;
+    lines(tiles: ITile<any>[][], color?: string, width?: number): Diagram;
     search(search?: Search, from?: string, to?: string): Diagram;
     point(xy: number[]): Diagram;
     mousePoint(): Diagram;

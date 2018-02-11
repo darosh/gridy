@@ -25,7 +25,8 @@ export function neighbors(tiles) {
     }
     const values = look(tiles, true);
     tiles.forEach((t) => {
-        t._neighbors_data = t.neighbors().map((n) => values[n[1]]).filter((n) => n !== undefined);
+        t._neighbors_data = t.neighbors().filter((n) => values[n[1]] !== undefined)
+            .map((n) => [n[0], values[n[1]]]);
         t._neighbors = _neighbors;
         t.neighbors = _neighbors;
     });

@@ -12,5 +12,5 @@ export { Float3 } from "./Float3";
 export { Integer2 } from "./Integer2";
 export { Integer3 } from "./Integer3";
 export { Search } from "./Search";
-export { enumerate, look, instance, neighbors, map } from "./Utils";
+export { enumerate, look, instance, neighbors, map, connections } from "./Utils";
 export { axes, intersect, spiral } from "./Path";
