@@ -787,7 +787,7 @@
     link.appendChild(header)
     item.features.forEach(function (v, i) {
       setTimeout(function () {
-        feature(v, element, i)
+        feature(v, element, i + 1)
       })
     })
 
