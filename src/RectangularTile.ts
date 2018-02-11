@@ -41,4 +41,8 @@ export class RectangularTile extends Integer2 implements ITile<Integer2> {
 
     return results;
   }
+
+  public map(): Map<number, RectangularTile> {
+    return new Map(this.neighbors());
+  }
 }

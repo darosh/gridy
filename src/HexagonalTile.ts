@@ -59,4 +59,8 @@ export class HexagonalTile extends Integer3 implements ITile<Integer3> {
 
     return results;
   }
+
+  public map(): Map<number, HexagonalTile> {
+    return new Map(this.neighbors());
+  }
 }

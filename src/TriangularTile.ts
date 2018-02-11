@@ -62,4 +62,8 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
 
     return results;
   }
+
+  public map(): Map<number, TriangularTile> {
+    return new Map(this.neighbors());
+  }
 }
