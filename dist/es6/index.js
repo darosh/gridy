@@ -6,6 +6,7 @@ export { RectangularGrid } from "./RectangularGrid";
 export { Position } from "./Position";
 export { HexagonalTile } from "./HexagonalTile";
 export { RectangularTile } from "./RectangularTile";
+export { RectangularSimpleTile } from "./RectangularSimpleTile";
 export { TriangularTile } from "./TriangularTile";
 export { Float2 } from "./Float2";
 export { Float3 } from "./Float3";

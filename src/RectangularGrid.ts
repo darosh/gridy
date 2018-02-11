@@ -4,8 +4,10 @@ import { Float } from "./Float";
 import { Float2 } from "./Float2";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
+import { ITile, ITileConstructable } from "./ITile";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
+import { RectangularSimpleTile } from "./RectangularSimpleTile";
 import { RectangularTile } from "./RectangularTile";
 import { Shape } from "./Shape";
 import { TileType } from "./TileType";
@@ -17,40 +19,44 @@ import { TileType } from "./TileType";
 /**
  * ![](../../examples/output/rectangular-grid.svg)
  */
-export class RectangularGrid implements IGrid<RectangularTile> {
-  public tiles: RectangularTile[];
+export class RectangularGrid implements IGrid<RectangularTile|RectangularSimpleTile> {
+  public tiles: RectangularTile[]|RectangularSimpleTile[];
   public orientation: boolean;
   public scale: Float;
   public angle: Float = -45;
   public x: Integer;
   public y: Integer;
-  public toTile: (point: Position) => RectangularTile;
-  public toPoint: (tile: RectangularTile) => Position;
+  public toTile: (point: Position) => RectangularTile|RectangularSimpleTile;
+  public toPoint: (tile: RectangularTile|RectangularSimpleTile) => Position;
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
+  public tile: ITileConstructable<RectangularTile|RectangularSimpleTile>;
 
   constructor(scale: Float,
               orientation: boolean = false,
               shape: Shape = Shape.TrapezoidalEven,
               x: Integer = 1,
-              y: Integer = 1) {
+              y: Integer = 1,
+              sidesOnly: boolean = false,
+              tile: ITileConstructable<RectangularTile|RectangularSimpleTile> = RectangularTile) {
     this.scale = scale;
     this.radius = scale / 2;
     this.orientation = orientation;
     this.x = x;
     this.y = y;
+    this.tile = tile;
 
-    const results: RectangularTile[] = [];
+    const results: RectangularTile|RectangularSimpleTile[] = [];
 
     for (let px: Integer = 0; px < x; px++) {
       for (let py: Integer = 0; py < y; py++) {
-        results.push(new RectangularTile(px, py));
+        results.push(new tile(px, py));
       }
     }
 
     this.tiles = results;
-    this.toTile = (p: Position): RectangularTile => new RectangularTile(p.x, p.y);
-    this.toPoint = (p: RectangularTile): Position => new Position(p.x, p.y);
+    this.toTile = (p: Position): RectangularTile|RectangularSimpleTile => new this.tile(p.x, p.y);
+    this.toPoint = (p: RectangularTile|RectangularSimpleTile): Position => new Position(p.x, p.y);
   }
 
   /*
@@ -72,7 +78,7 @@ export class RectangularGrid implements IGrid<RectangularTile> {
     return bounds(this);
   }
 
-  public center(tile: RectangularTile): Float2 {
+  public center(tile: RectangularTile|RectangularSimpleTile): Float2 {
     if (this.orientation) {
       return new Float2(
         tile.x * this.scale / SQRT_2 + tile.y * this.scale / SQRT_2,
@@ -105,7 +111,7 @@ export class RectangularGrid implements IGrid<RectangularTile> {
     return points;
   }
 
-  public position(p: Float2): RectangularTile {
-    return new RectangularTile(Math.round(p.x), Math.round(p.y));
+  public position(p: Float2): RectangularTile|RectangularSimpleTile {
+    return new this.tile(Math.round(p.x), Math.round(p.y));
   }
 }

@@ -9,6 +9,9 @@ export class RectangularTile extends Integer2 {
     directions() {
         return RectangularTile.directions;
     }
+    sides() {
+        return RectangularTile.sides;
+    }
     add(a) {
         const r = super.add(a);
         return new RectangularTile(r.x, r.y);
@@ -17,9 +20,9 @@ export class RectangularTile extends Integer2 {
         const r = super.scale(a);
         return new RectangularTile(r.x, r.y);
     }
-    neighbors() {
+    neighbors(directions = RectangularTile.directions) {
         const results = [];
-        for (const dir of RectangularTile.directions) {
+        for (const dir of directions) {
             results.push([dir[0], this.add(dir[1])]);
         }
         return results;
@@ -31,6 +34,16 @@ export class RectangularTile extends Integer2 {
 RectangularTile.directions = [
     [1, new RectangularTile(0, -1)],
     [2, new RectangularTile(1, 0)],
+    [3, new RectangularTile(-1, -1)],
+    [4, new RectangularTile(1, -1)],
     [-1, new RectangularTile(0, 1)],
     [-2, new RectangularTile(-1, 0)],
+    [-3, new RectangularTile(1, 1)],
+    [-4, new RectangularTile(-1, 1)],
+];
+RectangularTile.sides = [
+    RectangularTile.directions[0],
+    RectangularTile.directions[1],
+    RectangularTile.directions[4],
+    RectangularTile.directions[5],
 ];

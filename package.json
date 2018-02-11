@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
+    "watch": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup dist/es6/index.js -w --o dist/gridy.js --f umd --name Gridy\" \"rollup dist/es6/Diagram.js -w --o dist/diagram.js --f umd --name Diagram\"",
     "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
     "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme assets/doc.template.md",
     "test": "del-cli examples/output && node examples/node.js",
@@ -17,6 +18,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "d3": "4.13.0",
     "del-cli": "^1.1.0",
     "eslint": "^4.17.0",
@@ -29,7 +31,7 @@
     "rollup": "^0.55.3",
     "tslint": "^5.9.1",
     "typedoc": "^0.10.0",
-    "typedoc-plugin-internal-external": "^1.0.10",    
+    "typedoc-plugin-internal-external": "^1.0.10",
     "typescript": "^2.7.1"
   }
 }

@@ -12,7 +12,7 @@ import { TileType } from "./TileType";
  * ![](../../examples/output/rectangular-grid.svg)
  */
 export class RectangularGrid {
-    constructor(scale, orientation = false, shape = Shape.TrapezoidalEven, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = Shape.TrapezoidalEven, x = 1, y = 1, sidesOnly = false, tile = RectangularTile) {
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -20,14 +20,15 @@ export class RectangularGrid {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
+        this.tile = tile;
         const results = [];
         for (let px = 0; px < x; px++) {
             for (let py = 0; py < y; py++) {
-                results.push(new RectangularTile(px, py));
+                results.push(new tile(px, py));
             }
         }
         this.tiles = results;
-        this.toTile = (p) => new RectangularTile(p.x, p.y);
+        this.toTile = (p) => new this.tile(p.x, p.y);
         this.toPoint = (p) => new Position(p.x, p.y);
     }
     /*
@@ -75,6 +76,6 @@ export class RectangularGrid {
         return points;
     }
     position(p) {
-        return new RectangularTile(Math.round(p.x), Math.round(p.y));
+        return new this.tile(Math.round(p.x), Math.round(p.y));
     }
 }

@@ -101,10 +101,6 @@ class Rectangle {
     }
 }
 
-// From http://www.redblobgames.com/grids/hexagons/
-// Copyright 2012 Red Blob Games <redblobgames@gmail.com>
-// License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
-// Original source: http://www.redblobgames.com/grids/hexagons/Grid.hx
 function boundsOfPoints(points) {
     const rectangle = new Rectangle(Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY);
     for (const p of points) {
@@ -165,13 +161,6 @@ class Integer3 {
     }
 }
 
-// From http://www.redblobgames.com/grids/hexagons/
-// Copyright 2013 Red Blob Games <redblobgames@gmail.com>
-// License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
-// Original source: http://www.redblobgames.com/grids/hexagons/Cube.hx
-/**
- * ![](../../examples/output/hexagonal-tile.svg)
- */
 class HexagonalTile extends Integer3 {
     shift() {
         return HexagonalTile.directions[4][1];
@@ -220,13 +209,6 @@ var TileType;
     TileType[TileType["Variable"] = 2] = "Variable";
 })(TileType || (TileType = {}));
 
-// From http://www.redblobgames.com/grids/hexagons/
-// Copyright 2012 Red Blob Games <redblobgames@gmail.com>
-// License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
-// Original source: http://www.redblobgames.com/grids/hexagons/Grid.hx
-/**
- * ![](../../examples/output/hexagonal-grid.svg)
- */
 class HexagonalGrid {
     constructor(scale, orientation = false, shape = exports.Shape.Hexagonal, x = 1, y) {
         this.angle = -30;
@@ -465,9 +447,6 @@ class HexagonalGrid {
     }
 }
 
-/**
- * ![](../../examples/output/brick-grid.svg)
- */
 class BrickGrid extends HexagonalGrid {
     constructor(scale, orientation, shape, x, y) {
         super(scale, orientation, shape, x, y);
@@ -496,9 +475,6 @@ class BrickGrid extends HexagonalGrid {
     }
 }
 
-/**
- * ![](../../examples/output/triangular-tile.svg)
- */
 class TriangularTile extends Integer2 {
     constructor(x = 0, y = 0, s = false) {
         super(x, y);
@@ -547,9 +523,6 @@ TriangularTile.directions2 = [
     [3, new TriangularTile(0, 1, false)],
 ];
 
-/**
- * ![](../../examples/output/triangular-grid.svg)
- */
 class TriangularGrid {
     constructor(scale, orientation = false, shape = exports.Shape.Triangular, x = 1, y = 1) {
         this.angle = -60;
@@ -642,15 +615,15 @@ class TriangularGrid {
     }
 }
 
-/**
- * ![](../../examples/output/rectangular-tile.svg)
- */
 class RectangularTile extends Integer2 {
     shift() {
         return new RectangularTile(-1, 1);
     }
     directions() {
         return RectangularTile.directions;
+    }
+    sides() {
+        return RectangularTile.sides;
     }
     add(a) {
         const r = super.add(a);
@@ -660,9 +633,9 @@ class RectangularTile extends Integer2 {
         const r = super.scale(a);
         return new RectangularTile(r.x, r.y);
     }
-    neighbors() {
+    neighbors(directions = RectangularTile.directions) {
         const results = [];
-        for (const dir of RectangularTile.directions) {
+        for (const dir of directions) {
             results.push([dir[0], this.add(dir[1])]);
         }
         return results;
@@ -674,8 +647,18 @@ class RectangularTile extends Integer2 {
 RectangularTile.directions = [
     [1, new RectangularTile(0, -1)],
     [2, new RectangularTile(1, 0)],
+    [3, new RectangularTile(-1, -1)],
+    [4, new RectangularTile(1, -1)],
     [-1, new RectangularTile(0, 1)],
     [-2, new RectangularTile(-1, 0)],
+    [-3, new RectangularTile(1, 1)],
+    [-4, new RectangularTile(-1, 1)],
+];
+RectangularTile.sides = [
+    RectangularTile.directions[0],
+    RectangularTile.directions[1],
+    RectangularTile.directions[4],
+    RectangularTile.directions[5],
 ];
 
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
@@ -685,7 +668,7 @@ RectangularTile.directions = [
  * ![](../../examples/output/rectangular-grid.svg)
  */
 class RectangularGrid {
-    constructor(scale, orientation = false, shape = exports.Shape.TrapezoidalEven, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = exports.Shape.TrapezoidalEven, x = 1, y = 1, sidesOnly = false, tile = RectangularTile) {
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -693,14 +676,15 @@ class RectangularGrid {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
+        this.tile = tile;
         const results = [];
         for (let px = 0; px < x; px++) {
             for (let py = 0; py < y; py++) {
-                results.push(new RectangularTile(px, py));
+                results.push(new tile(px, py));
             }
         }
         this.tiles = results;
-        this.toTile = (p) => new RectangularTile(p.x, p.y);
+        this.toTile = (p) => new this.tile(p.x, p.y);
         this.toPoint = (p) => new Integer2(p.x, p.y);
     }
     /*
@@ -748,9 +732,42 @@ class RectangularGrid {
         return points;
     }
     position(p) {
-        return new RectangularTile(Math.round(p.x), Math.round(p.y));
+        return new this.tile(Math.round(p.x), Math.round(p.y));
     }
 }
+
+class RectangularSimpleTile extends Integer2 {
+    shift() {
+        return new RectangularSimpleTile(-1, 1);
+    }
+    directions() {
+        return RectangularSimpleTile.directions;
+    }
+    add(a) {
+        const r = super.add(a);
+        return new RectangularSimpleTile(r.x, r.y);
+    }
+    scale(a) {
+        const r = super.scale(a);
+        return new RectangularSimpleTile(r.x, r.y);
+    }
+    neighbors(directions = RectangularSimpleTile.directions) {
+        const results = [];
+        for (const dir of directions) {
+            results.push([dir[0], this.add(dir[1])]);
+        }
+        return results;
+    }
+    map() {
+        return new Map(this.neighbors());
+    }
+}
+RectangularSimpleTile.directions = [
+    [1, new RectangularSimpleTile(0, -1)],
+    [2, new RectangularSimpleTile(1, 0)],
+    [-1, new RectangularSimpleTile(0, 1)],
+    [-2, new RectangularSimpleTile(-1, 0)],
+];
 
 class Float3 {
     static round(h) {
@@ -917,14 +934,14 @@ function spiral(start, N, isSpiral) {
     if (isSpiral) {
         results.push(start.add(instance(start)));
     }
-    const neighbors$$1 = start.neighbors();
+    const neighbors$$1 = start.neighbors(start.sides ? start.sides() : undefined);
     const c = (neighbors$$1.length === 6) ? 1 : 2;
     for (let k = isSpiral ? 1 : N; k <= N; k++) {
         let H = start.shift().scale(k);
         for (let i = 0; i < neighbors$$1.length; i++) {
             for (let j = 0; j < k * c; j++) {
                 results.push(H.add(start));
-                H = H.neighbors()[i][1];
+                H = H.neighbors(H.sides ? H.sides() : undefined)[i][1];
             }
         }
     }
@@ -960,6 +977,7 @@ exports.RectangularGrid = RectangularGrid;
 exports.Position = Integer2;
 exports.HexagonalTile = HexagonalTile;
 exports.RectangularTile = RectangularTile;
+exports.RectangularSimpleTile = RectangularSimpleTile;
 exports.TriangularTile = TriangularTile;
 exports.Float2 = Float2;
 exports.Float3 = Float3;

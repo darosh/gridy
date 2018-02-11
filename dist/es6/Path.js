@@ -4,14 +4,14 @@ export function spiral(start, N, isSpiral) {
     if (isSpiral) {
         results.push(start.add(instance(start)));
     }
-    const neighbors = start.neighbors();
+    const neighbors = start.neighbors(start.sides ? start.sides() : undefined);
     const c = (neighbors.length === 6) ? 1 : 2;
     for (let k = isSpiral ? 1 : N; k <= N; k++) {
         let H = start.shift().scale(k);
         for (let i = 0; i < neighbors.length; i++) {
             for (let j = 0; j < k * c; j++) {
                 results.push(H.add(start));
-                H = H.neighbors()[i][1];
+                H = H.neighbors(H.sides ? H.sides() : undefined)[i][1];
             }
         }
     }

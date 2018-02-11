@@ -553,11 +553,11 @@
         ['Search maze', 'demo']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, RectangularTile, Search, look, Position } = Gridy
+        const { Shape, RectangularGrid, RectangularSimpleTile, Search, look, Position } = Gridy
 
         const size = 24
 
-        const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size)
+        const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size, RectangularSimpleTile)
 
         const blocked = []
 
@@ -569,7 +569,7 @@
         }
 
         const search = new Search(
-          new RectangularTile(),
+          new RectangularSimpleTile(),
           Infinity,
           100,
           look(blocked),
@@ -669,6 +669,35 @@
         const size = 11
 
         const grid = new HexagonalGrid(24, true, Shape.Rhombus, size, size)
+
+        const starts = []
+        const ends = []
+
+        for (let i = 0; i < size; i++) {
+          starts.push(grid.toTile(new Position(0, i)))
+          ends.push(grid.toTile(new Position(size - 1, i)))
+        }
+
+        const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
+
+        neighbors(active)
+        map(active) // Optional
+        const lines = connections(active).filter((l) => l.length === 5)
+
+        new Diagram(svg, grid)
+          .highlight(active)
+          .lines(lines)
+      }
+    }, {
+      title: [
+        ['Connections', 'demo']
+      ],
+      script: function (svg) {
+        const { Shape, RectangularGrid, Position, neighbors, map, connections } = Gridy
+
+        const size = 11
+
+        const grid = new RectangularGrid(24, false, Shape.Rhombus, size, size)
 
         const starts = []
         const ends = []

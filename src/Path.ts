@@ -10,7 +10,7 @@ export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<
     results.push(start.add(instance(start)));
   }
 
-  const neighbors: Directions<any> = start.neighbors();
+  const neighbors: Directions<any> = start.neighbors(start.sides ? start.sides() : undefined);
   const c: Integer = (neighbors.length === 6) ? 1 : 2;
 
   for (let k: Integer = isSpiral ? 1 : N; k <= N; k++) {
@@ -19,7 +19,7 @@ export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<
     for (let i: Integer = 0; i < neighbors.length; i++) {
       for (let j: Integer = 0; j < k * c; j++) {
         results.push(H.add(start));
-        H = H.neighbors()[i][1];
+        H = H.neighbors(H.sides ? H.sides() : undefined)[i][1];
       }
     }
   }
