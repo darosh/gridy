@@ -4,5 +4,6 @@ export declare function enumerate(obj: any): any;
 export declare function look(items: any[], values?: boolean): {
     [key: string]: any;
 };
-export declare function neighbors(tiles: Array<ITile<any>>): void;
-export declare function connections(tiles: Array<ITile<any>>): Array<Array<ITile<any>>>;
+export declare function neighbors(tiles: ITile<any>[]): void;
+export declare function map(tiles: ITile<any>[]): void;
+export declare function connections(tiles: ITile<any>[]): ITile<any>[][];

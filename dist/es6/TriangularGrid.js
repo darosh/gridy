@@ -1,15 +1,15 @@
 import { bounds } from "./Bounds";
 import { SQRT_3_2, SQRT_3_3, SQRT_3_6 } from "./Constants";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { Position } from "./Position";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 import { TriangularTile } from "./TriangularTile";
 /**
  * ![](../../examples/output/triangular-grid.svg)
  */
 export class TriangularGrid {
-    constructor(scale, orientation = false, shape = GridShape.Triangular, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = Shape.Triangular, x = 1, y = 1) {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
@@ -17,11 +17,11 @@ export class TriangularGrid {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
-        if (shape === GridShape.Rhombus) {
+        if (shape === Shape.Rhombus) {
             this.tiles = this.rhombus();
             this.orientation = false;
         }
-        else if (shape === GridShape.Hexagonal) {
+        else if (shape === Shape.Hexagonal) {
             this.tiles = this.hexagonalShape(x);
             this.orientation = false;
         }

@@ -2,12 +2,12 @@ import { bounds } from "./Bounds";
 import { SQRT_2 } from "./Constants";
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { RectangularTile } from "./RectangularTile";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
@@ -31,7 +31,7 @@ export class RectangularGrid implements IGrid<RectangularTile> {
 
   constructor(scale: Float,
               orientation: boolean = false,
-              shape: GridShape = GridShape.TrapezoidalEven,
+              shape: Shape = Shape.TrapezoidalEven,
               x: Integer = 1,
               y: Integer = 1) {
     this.scale = scale;

@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
-    "lint": "tslint -p tsconfig.json --fix",
+    "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
     "doc": "del-cli doc && typedoc --mode file --out doc src/index.ts --name Gridy --readme assets/doc.template.md",
     "test": "del-cli examples/output && node examples/node.js",
     "clean": "del-cli doc dist examples/output"
@@ -19,6 +19,12 @@
   "devDependencies": {
     "d3": "4.13.0",
     "del-cli": "^1.1.0",
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jsdom": "10",
     "rollup": "^0.55.3",
     "tslint": "^5.9.1",

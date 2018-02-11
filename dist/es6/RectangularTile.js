@@ -24,6 +24,9 @@ export class RectangularTile extends Integer2 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 RectangularTile.directions = [
     [1, new RectangularTile(0, -1)],

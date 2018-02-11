@@ -1,11 +1,11 @@
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { HexagonalTile } from "./HexagonalTile";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 /**
  * ![](../../examples/output/hexagonal-grid.svg)
@@ -35,8 +35,8 @@ export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     toPoint: (tile: HexagonalTile) => Position;
     radius: Float;
     tileTypes: TileType;
-    shape: GridShape;
-    constructor(scale: Float, orientation?: boolean, shape?: GridShape, x?: Integer, y?: Integer);
+    shape: Shape;
+    constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer);
     bounds(): Rectangle;
     vertices(orientation?: boolean, scale?: Float): Float2[];
     center(tile: HexagonalTile): Float2;

@@ -1,10 +1,10 @@
 import { SQRT_2, SQRT_2_2, SQRT_2_4 } from "./Constants";
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { HexagonalGrid } from "./HexagonalGrid";
 import { HexagonalTile } from "./HexagonalTile";
 import { Integer } from "./Integer";
+import { Shape } from "./Shape";
 
 /**
  * ![](../../examples/output/brick-grid.svg)
@@ -12,7 +12,7 @@ import { Integer } from "./Integer";
 export class BrickGrid extends HexagonalGrid {
   public angle: Float = 0;
 
-  constructor(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y?: Integer) {
+  constructor(scale: Float, orientation: boolean, shape: Shape, x: Integer, y?: Integer) {
     super(scale, orientation, shape, x, y);
     this.radius = SQRT_2_4 * scale;
   }

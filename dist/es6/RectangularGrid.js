@@ -1,9 +1,9 @@
 import { bounds } from "./Bounds";
 import { SQRT_2 } from "./Constants";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { Position } from "./Position";
 import { RectangularTile } from "./RectangularTile";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
@@ -12,7 +12,7 @@ import { TileType } from "./TileType";
  * ![](../../examples/output/rectangular-grid.svg)
  */
 export class RectangularGrid {
-    constructor(scale, orientation = false, shape = GridShape.TrapezoidalEven, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = Shape.TrapezoidalEven, x = 1, y = 1) {
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;

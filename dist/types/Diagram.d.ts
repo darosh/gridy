@@ -44,8 +44,8 @@ export default class Diagram {
      * @param classed Optional highlight class
      * @returns {Diagramy.Diagram} For chain call
      */
-    highlight(tiles: Array<ITile<any>>, classed?: string): Diagram;
-    path(tiles: Array<ITile<any>>, color?: string, width?: number): Diagram;
+    highlight(tiles: ITile<any>[], classed?: string): Diagram;
+    path(tiles: ITile<any>[], color?: string, width?: number): Diagram;
     search(search?: Search, from?: string, to?: string): Diagram;
     point(xy: number[]): Diagram;
     mousePoint(): Diagram;

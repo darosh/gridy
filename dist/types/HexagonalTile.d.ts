@@ -12,4 +12,5 @@ export declare class HexagonalTile extends Integer3 implements ITile<Integer3> {
     add(a: HexagonalTile): HexagonalTile;
     scale(a: Integer): HexagonalTile;
     neighbors(): Directions<HexagonalTile>;
+    map(): Map<number, HexagonalTile>;
 }

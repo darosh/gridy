@@ -2,11 +2,11 @@ import { bounds } from "./Bounds";
 import { SQRT_3_2, SQRT_3_3, SQRT_3_6 } from "./Constants";
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 import { TriangularTile } from "./TriangularTile";
 
@@ -27,7 +27,7 @@ export class TriangularGrid implements IGrid<TriangularTile> {
 
   constructor(scale: Float,
               orientation: boolean = false,
-              shape: GridShape = GridShape.Triangular,
+              shape: Shape = Shape.Triangular,
               x: Integer = 1,
               y: Integer = 1) {
     this.scale = scale;
@@ -36,10 +36,10 @@ export class TriangularGrid implements IGrid<TriangularTile> {
     this.x = x;
     this.y = y;
 
-    if (shape === GridShape.Rhombus) {
+    if (shape === Shape.Rhombus) {
       this.tiles = this.rhombus();
       this.orientation = false;
-    } else if (shape === GridShape.Hexagonal) {
+    } else if (shape === Shape.Hexagonal) {
       this.tiles = this.hexagonalShape(x);
       this.orientation = false;
     } else {

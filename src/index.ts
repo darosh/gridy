@@ -1,4 +1,4 @@
-export { GridShape } from "./GridShape";
+export { Shape } from "./Shape";
 
 export { BrickGrid } from "./BrickGrid";
 export { HexagonalGrid } from "./HexagonalGrid";
@@ -17,5 +17,5 @@ export { Integer3 } from "./Integer3";
 
 export { Search } from "./Search";
 
-export { enumerate, look, instance, neighbors } from "./Utils";
+export { enumerate, look, instance, neighbors, map } from "./Utils";
 export { axes, intersect, spiral } from "./Path";

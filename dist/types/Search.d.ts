@@ -9,10 +9,10 @@ export declare class Search {
     };
     start: ITile<any>;
     max: Integer;
-    constructor(start: ITile<any> | Array<ITile<any>>, maxMovement: number, maxMagnitude: number, blocked: {
+    constructor(start: ITile<any> | ITile<any>[], maxMovement: number, maxMagnitude: number, blocked: {
         [key: string]: boolean;
     }, available?: {
         [key: string]: boolean;
     });
-    path(end: ITile<any> | Array<ITile<any>>, max?: boolean): Array<ITile<any>>;
+    path(end: ITile<any> | ITile<any>[], max?: boolean): ITile<any>[];
 }

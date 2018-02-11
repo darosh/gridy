@@ -2,6 +2,7 @@ import { Directions } from "./Directions";
 import { Integer } from "./Integer";
 export interface ITile<T> {
     neighbors(): Directions<T>;
+    map(): Map<number, T>;
     directions(): Directions<T>;
     shift(): T;
     cubeLength(): number;

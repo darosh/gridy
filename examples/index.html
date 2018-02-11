@@ -4,10 +4,18 @@
 <head>
   <meta charset="utf-8">
   <title>Gridy — TypeScript grid library</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css" type="text/css"
-  />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-mobile-light.min.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css" type="text/css" />
   <link rel="stylesheet" href="./diagram.css" type="text/css" />
   <style>
+
+    .hljs {
+      overflow-x: hidden;
+      padding: 0;
+      background: transparent;
+      white-space: pre-wrap;
+    }
+
     body {
       padding: 20px 40px 40px 40px;
       margin: 0;
@@ -342,6 +350,8 @@
   </div>
 
   <script src="//unpkg.com/d3@4.13.0/build/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
   <script src="../dist/gridy.js"></script>
   <script src="../dist/diagram.js"></script>
   <script src="./sandbox.js"></script>

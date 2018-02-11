@@ -30,7 +30,29 @@ export function neighbors(tiles) {
         t.neighbors = _neighbors;
     });
 }
+export function map(tiles) {
+    function _map() {
+        return this._map_data || (this._map_data = this._map());
+    }
+    tiles.forEach((t) => {
+        t._map = t.map;
+        t.map = _map;
+    });
+}
 export function connections(tiles) {
     const c = [];
+    for (const t of tiles) {
+        const m = t.map();
+        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(-k));
+        for (const k of s) {
+            const l = [];
+            let i = t;
+            while (i) {
+                l.push(i);
+                i = i.map().get(k);
+            }
+            c.push(l);
+        }
+    }
     return c;
 }

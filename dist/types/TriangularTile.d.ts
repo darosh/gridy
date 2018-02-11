@@ -17,4 +17,5 @@ export declare class TriangularTile extends Integer2 implements ITile<Integer2> 
     add(a: TriangularTile): TriangularTile;
     scale(a: Integer): TriangularTile;
     neighbors(): Directions<TriangularTile>;
+    map(): Map<number, TriangularTile>;
 }

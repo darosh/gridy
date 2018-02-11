@@ -35,6 +35,9 @@ export class TriangularTile extends Integer2 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 TriangularTile.directions1 = [
     [1, new TriangularTile(0, 0, true)],

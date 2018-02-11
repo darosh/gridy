@@ -4,15 +4,15 @@
 	(factory((global.Gridy = {})));
 }(this, (function (exports) { 'use strict';
 
-(function (GridShape) {
-    GridShape[GridShape["TrapezoidalEven"] = 0] = "TrapezoidalEven";
-    GridShape[GridShape["TrapezoidalOdd"] = 1] = "TrapezoidalOdd";
-    GridShape[GridShape["Hexagonal"] = 2] = "Hexagonal";
-    GridShape[GridShape["Triangular"] = 3] = "Triangular";
-    GridShape[GridShape["Rhombus"] = 4] = "Rhombus";
+(function (Shape) {
+    Shape[Shape["TrapezoidalEven"] = 0] = "TrapezoidalEven";
+    Shape[Shape["TrapezoidalOdd"] = 1] = "TrapezoidalOdd";
+    Shape[Shape["Hexagonal"] = 2] = "Hexagonal";
+    Shape[Shape["Triangular"] = 3] = "Triangular";
+    Shape[Shape["Rhombus"] = 4] = "Rhombus";
     // RhombusEven,
     // RhombusOdd,
-})(exports.GridShape || (exports.GridShape = {}));
+})(exports.Shape || (exports.Shape = {}));
 
 const SQRT_3 = Math.sqrt(3);
 const SQRT_3_2 = Math.sqrt(3) / 2;
@@ -201,6 +201,9 @@ class HexagonalTile extends Integer3 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 HexagonalTile.directions = [
     [1, new HexagonalTile(1, -1, 0)],
@@ -225,7 +228,7 @@ var TileType;
  * ![](../../examples/output/hexagonal-grid.svg)
  */
 class HexagonalGrid {
-    constructor(scale, orientation = false, shape = exports.GridShape.Hexagonal, x = 1, y) {
+    constructor(scale, orientation = false, shape = exports.Shape.Hexagonal, x = 1, y) {
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -235,45 +238,45 @@ class HexagonalGrid {
         this.x = x;
         this.y = y;
         this.shape = shape;
-        if (shape === exports.GridShape.TrapezoidalEven && orientation === false) {
+        if (shape === exports.Shape.TrapezoidalEven && orientation === false) {
             this.toTile = HexagonalGrid.evenQToCube;
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         }
-        else if (shape === exports.GridShape.TrapezoidalEven && orientation === true) {
+        else if (shape === exports.Shape.TrapezoidalEven && orientation === true) {
             this.toTile = HexagonalGrid.evenRToCube;
             this.toPoint = HexagonalGrid.cubeToEvenR;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         }
-        else if (shape === exports.GridShape.TrapezoidalOdd && orientation === false) {
+        else if (shape === exports.Shape.TrapezoidalOdd && orientation === false) {
             this.toTile = HexagonalGrid.oddQToCube;
             this.toPoint = HexagonalGrid.cubeToOddQ;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         }
-        else if (shape === exports.GridShape.TrapezoidalOdd && orientation === true) {
+        else if (shape === exports.Shape.TrapezoidalOdd && orientation === true) {
             this.toTile = HexagonalGrid.oddRToCube;
             this.toPoint = HexagonalGrid.cubeToOddR;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         }
-        else if (shape === exports.GridShape.Hexagonal) {
+        else if (shape === exports.Shape.Hexagonal) {
             this.toTile = HexagonalGrid.evenQToCube;
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.hexagonalShape(x);
         }
-        else if (shape === exports.GridShape.Triangular) {
+        else if (shape === exports.Shape.Triangular) {
             this.toTile = HexagonalGrid.evenQToCube;
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.triangularShape(x);
         }
-        else if (shape === exports.GridShape.Rhombus) {
+        else if (shape === exports.Shape.Rhombus) {
             this.toTile = HexagonalGrid.twoAxisToCube;
             this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-            // } else if (shape === GridShape.RhombusEven) {
+            // } else if (shape === Shape.RhombusEven) {
             //   this.toTile = HexagonalGrid.twoAxisToCubeEven;
             //   this.toPoint = HexagonalGrid.cubeToTwoAxisEven;
             //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-            // } else if (shape === GridShape.RhombusOdd) {
+            // } else if (shape === Shape.RhombusOdd) {
             //   this.toTile = HexagonalGrid.twoAxisToCubeOdd;
             //   this.toPoint = HexagonalGrid.cubeToTwoAxisOdd;
             //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
@@ -529,6 +532,9 @@ class TriangularTile extends Integer2 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 TriangularTile.directions1 = [
     [1, new TriangularTile(0, 0, true)],
@@ -545,7 +551,7 @@ TriangularTile.directions2 = [
  * ![](../../examples/output/triangular-grid.svg)
  */
 class TriangularGrid {
-    constructor(scale, orientation = false, shape = exports.GridShape.Triangular, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = exports.Shape.Triangular, x = 1, y = 1) {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
@@ -553,11 +559,11 @@ class TriangularGrid {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
-        if (shape === exports.GridShape.Rhombus) {
+        if (shape === exports.Shape.Rhombus) {
             this.tiles = this.rhombus();
             this.orientation = false;
         }
-        else if (shape === exports.GridShape.Hexagonal) {
+        else if (shape === exports.Shape.Hexagonal) {
             this.tiles = this.hexagonalShape(x);
             this.orientation = false;
         }
@@ -661,6 +667,9 @@ class RectangularTile extends Integer2 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 RectangularTile.directions = [
     [1, new RectangularTile(0, -1)],
@@ -676,7 +685,7 @@ RectangularTile.directions = [
  * ![](../../examples/output/rectangular-grid.svg)
  */
 class RectangularGrid {
-    constructor(scale, orientation = false, shape = exports.GridShape.TrapezoidalEven, x = 1, y = 1) {
+    constructor(scale, orientation = false, shape = exports.Shape.TrapezoidalEven, x = 1, y = 1) {
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -875,6 +884,15 @@ function neighbors(tiles) {
         t.neighbors = _neighbors;
     });
 }
+function map(tiles) {
+    function _map() {
+        return this._map_data || (this._map_data = this._map());
+    }
+    tiles.forEach((t) => {
+        t._map = t.map;
+        t.map = _map;
+    });
+}
 
 function spiral(start, N, isSpiral) {
     const results = [];
@@ -934,6 +952,7 @@ exports.enumerate = enumerate;
 exports.look = look;
 exports.instance = instance;
 exports.neighbors = neighbors;
+exports.map = map;
 exports.axes = axes;
 exports.intersect = intersect;
 exports.spiral = spiral;

@@ -2,12 +2,12 @@ import { bounds } from "./Bounds";
 import { SQRT_3, SQRT_3_2, SQRT_3_3 } from "./Constants";
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
-import { GridShape } from "./GridShape";
 import { HexagonalTile } from "./HexagonalTile";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
+import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 
 // From http://www.redblobgames.com/grids/hexagons/
@@ -219,11 +219,11 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
 
-  public shape: GridShape;
+  public shape: Shape;
 
   constructor(scale: Float,
               orientation: boolean = false,
-              shape: GridShape = GridShape.Hexagonal,
+              shape: Shape = Shape.Hexagonal,
               x: Integer = 1,
               y?: Integer) {
     this.scale = scale;
@@ -234,39 +234,39 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     this.y = y;
     this.shape = shape;
 
-    if (shape === GridShape.TrapezoidalEven && orientation === false) {
+    if (shape === Shape.TrapezoidalEven && orientation === false) {
       this.toTile = HexagonalGrid.evenQToCube;
       this.toPoint = HexagonalGrid.cubeToEvenQ;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === GridShape.TrapezoidalEven && orientation === true) {
+    } else if (shape === Shape.TrapezoidalEven && orientation === true) {
       this.toTile = HexagonalGrid.evenRToCube;
       this.toPoint = HexagonalGrid.cubeToEvenR;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === GridShape.TrapezoidalOdd && orientation === false) {
+    } else if (shape === Shape.TrapezoidalOdd && orientation === false) {
       this.toTile = HexagonalGrid.oddQToCube;
       this.toPoint = HexagonalGrid.cubeToOddQ;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === GridShape.TrapezoidalOdd && orientation === true) {
+    } else if (shape === Shape.TrapezoidalOdd && orientation === true) {
       this.toTile = HexagonalGrid.oddRToCube;
       this.toPoint = HexagonalGrid.cubeToOddR;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === GridShape.Hexagonal) {
+    } else if (shape === Shape.Hexagonal) {
       this.toTile = HexagonalGrid.evenQToCube;
       this.toPoint = HexagonalGrid.cubeToEvenQ;
       this.tiles = HexagonalGrid.hexagonalShape(x);
-    } else if (shape === GridShape.Triangular) {
+    } else if (shape === Shape.Triangular) {
       this.toTile = HexagonalGrid.evenQToCube;
       this.toPoint = HexagonalGrid.cubeToEvenQ;
       this.tiles = HexagonalGrid.triangularShape(x);
-    } else if (shape === GridShape.Rhombus) {
+    } else if (shape === Shape.Rhombus) {
       this.toTile = HexagonalGrid.twoAxisToCube;
       this.toPoint = HexagonalGrid.cubeToTwoAxis;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-      // } else if (shape === GridShape.RhombusEven) {
+      // } else if (shape === Shape.RhombusEven) {
       //   this.toTile = HexagonalGrid.twoAxisToCubeEven;
       //   this.toPoint = HexagonalGrid.cubeToTwoAxisEven;
       //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-      // } else if (shape === GridShape.RhombusOdd) {
+      // } else if (shape === Shape.RhombusOdd) {
       //   this.toTile = HexagonalGrid.twoAxisToCubeOdd;
       //   this.toPoint = HexagonalGrid.cubeToTwoAxisOdd;
       //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);

@@ -35,6 +35,9 @@ export class HexagonalTile extends Integer3 {
         }
         return results;
     }
+    map() {
+        return new Map(this.neighbors());
+    }
 }
 HexagonalTile.directions = [
     [1, new HexagonalTile(1, -1, 0)],

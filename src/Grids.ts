@@ -1,8 +1,8 @@
-import { Float } from "./Float";
-import { GridShape } from "./GridShape";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
+import { Float } from './Float';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { Shape } from './Shape';
 
 export interface IGridConstructable {
-  new(scale: Float, orientation: boolean, shape: GridShape, x: Integer, y: Integer): IGrid<any>;
+  new(scale: Float, orientation: boolean, shape: Shape, x: Integer, y: Integer): IGrid<any>;
 }

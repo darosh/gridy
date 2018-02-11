@@ -12,4 +12,5 @@ export declare class RectangularTile extends Integer2 implements ITile<Integer2>
     add(a: RectangularTile): RectangularTile;
     scale(a: Integer): RectangularTile;
     neighbors(): Directions<RectangularTile>;
+    map(): Map<number, RectangularTile>;
 }
