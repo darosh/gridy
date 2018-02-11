@@ -14,10 +14,23 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
   ];
 
   public static directions2: Directions<TriangularTile> = [
-    [1, new TriangularTile(0, 0, false)],
-    [2, new TriangularTile(1, 0, false)],
-    [3, new TriangularTile(0, 1, false)],
+    [1, new TriangularTile(0, 1, false)],
+    [2, new TriangularTile(0, 0, false)],
+    [3, new TriangularTile(1, 0, false)],
   ];
+
+  public static oposites: any = {
+    false: {
+      1: 3,
+      2: 1,
+      3: 2,
+    },
+    true: {
+      1: 2,
+      2: 3,
+      3: 1,
+    },
+  };
 
   public s: boolean;
 
@@ -34,12 +47,20 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
     return this.v().join(",");
   }
 
+  public equals(p: TriangularTile): boolean {
+    return (this.s === p.s) && super.equals(p);
+  }
+
   public shift(): TriangularTile {
     return TriangularTile.directions1[0][1];
   }
 
   public directions(): Directions<TriangularTile> {
     return TriangularTile.directions1;
+  }
+
+  public oposite(n: number): number {
+    return TriangularTile.oposites[this.s.toString()][n];
   }
 
   public add(a: TriangularTile): TriangularTile {
@@ -57,7 +78,7 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
 
     for (let dir: Integer = 0; dir < 3; dir++) {
       results.push([TriangularTile.directions1[dir][0],
-        this.add(this.s ? TriangularTile.directions2[dir][1] : TriangularTile.directions1[dir][1])]);
+      this.add(this.s ? TriangularTile.directions2[dir][1] : TriangularTile.directions1[dir][1])]);
     }
 
     return results;

@@ -6,7 +6,7 @@ TypeScript grid library for server and browser.
 
 ## Demo
 
-[../examples/index.html](../examples/index.html)
+Sandbox, examples and usage: [../examples/index.html](../examples/index.html)
 
 
 ## Grids

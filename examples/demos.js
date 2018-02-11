@@ -664,19 +664,11 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, Position, neighbors, map, connections } = Gridy
+        const { Shape, HexagonalGrid, neighbors, map, connections } = Gridy
 
         const size = 11
 
         const grid = new HexagonalGrid(24, true, Shape.Rhombus, size, size)
-
-        const starts = []
-        const ends = []
-
-        for (let i = 0; i < size; i++) {
-          starts.push(grid.toTile(new Position(0, i)))
-          ends.push(grid.toTile(new Position(size - 1, i)))
-        }
 
         const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
 
@@ -693,25 +685,38 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, Position, neighbors, map, connections } = Gridy
+        const { Shape, RectangularGrid, neighbors, map, connections } = Gridy
 
         const size = 11
 
         const grid = new RectangularGrid(24, false, Shape.Rhombus, size, size)
-
-        const starts = []
-        const ends = []
-
-        for (let i = 0; i < size; i++) {
-          starts.push(grid.toTile(new Position(0, i)))
-          ends.push(grid.toTile(new Position(size - 1, i)))
-        }
 
         const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
 
         neighbors(active)
         map(active) // Optional
         const lines = connections(active).filter((l) => l.length === 5)
+
+        new Diagram(svg, grid)
+          .highlight(active)
+          .lines(lines)
+      }
+    }, {
+      title: [
+        ['Connections', 'demo']
+      ],
+      script: function (svg) {
+        const { Shape, TriangularGrid, neighbors, map, connections } = Gridy
+
+        const size = 11
+
+        const grid = new TriangularGrid(24, false, Shape.Triangular, size, size)
+
+        const active = grid.tiles.filter((s, i) => [13, 50, 98].indexOf(i) === -1)
+
+        neighbors(active)
+        map(active) // Optional
+        const lines = connections(active).filter((l) => l.length <= 7 && l.length >= 3)
 
         new Diagram(svg, grid)
           .highlight(active)
@@ -750,37 +755,58 @@
     root.appendChild(element)
   }
 
-  function feature (item, root) {
+  function feature (item, root, index) {
     const element = document.createElement('div')
+    element.id = root.id + '-' + index
     root.appendChild(element)
     element.className = 'block' + (item.class ? (' ' + item.class) : '')
+    const link = document.createElement('a')
+    link.className = 'head'
+    link.href = '#' + element.id
     const header = document.createElement('h3')
     header.innerHTML = item.title.map(function (v) {
       return v[0] + ' <small>' + v[1] + '</small>'
     }).join(', ')
-    // console.log(header.innerText)
-    element.appendChild(header)
+    link.appendChild(header)
+    element.appendChild(link)
     const svg = d3.select(element).append('svg').attr('width', item.width || 340).attr('height', item.height || 340)
     code(item.script, element)
     item.script(svg)
   }
 
-  function group (item, root) {
+  function group (item, root, done) {
     const element = document.createElement('div')
+    element.id = item.group.toLowerCase().replace(/ /g, '-')
     root.appendChild(element)
+    const link = document.createElement('a')
+    link.className = 'head'
+    link.href = '#' + element.id
     const header = document.createElement('h2')
     header.innerText = item.group
-    element.appendChild(header)
-    item.features.forEach(function (v) {
+    element.appendChild(link)
+    link.appendChild(header)
+    item.features.forEach(function (v, i) {
       setTimeout(function () {
-        feature(v, element)
+        feature(v, element, i)
       })
     })
+
+    setTimeout(done)
+  }
+
+  function done () {
+    if (window.location.hash) {
+      const el = document.querySelector(window.location.hash)
+
+      if (el) {
+        el.scrollIntoView()
+      }
+    }
   }
 
   function demos (element) {
     DEMOS.forEach(function (v) {
-      group(v, element)
+      group(v, element, done)
     })
   }
 

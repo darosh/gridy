@@ -475,6 +475,9 @@ class BrickGrid extends HexagonalGrid {
     }
 }
 
+/**
+ * ![](../../examples/output/triangular-tile.svg)
+ */
 class TriangularTile extends Integer2 {
     constructor(x = 0, y = 0, s = false) {
         super(x, y);
@@ -486,11 +489,17 @@ class TriangularTile extends Integer2 {
     toString() {
         return this.v().join(",");
     }
+    equals(p) {
+        return (this.s === p.s) && super.equals(p);
+    }
     shift() {
         return TriangularTile.directions1[0][1];
     }
     directions() {
         return TriangularTile.directions1;
+    }
+    oposite(n) {
+        return TriangularTile.oposites[this.s.toString()][n];
     }
     add(a) {
         const r = super.add(a);
@@ -518,10 +527,22 @@ TriangularTile.directions1 = [
     [3, new TriangularTile(0, -1, true)],
 ];
 TriangularTile.directions2 = [
-    [1, new TriangularTile(0, 0, false)],
-    [2, new TriangularTile(1, 0, false)],
-    [3, new TriangularTile(0, 1, false)],
+    [1, new TriangularTile(0, 1, false)],
+    [2, new TriangularTile(0, 0, false)],
+    [3, new TriangularTile(1, 0, false)],
 ];
+TriangularTile.oposites = {
+    false: {
+        1: 3,
+        2: 1,
+        3: 2,
+    },
+    true: {
+        1: 2,
+        2: 3,
+        3: 1,
+    },
+};
 
 class TriangularGrid {
     constructor(scale, orientation = false, shape = exports.Shape.Triangular, x = 1, y = 1) {
@@ -661,12 +682,6 @@ RectangularTile.sides = [
     RectangularTile.directions[5],
 ];
 
-// TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
-// Copyright 2013 Red Blob Games <redblobgames@gmail.com>
-// License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
-/**
- * ![](../../examples/output/rectangular-grid.svg)
- */
 class RectangularGrid {
     constructor(scale, orientation = false, shape = exports.Shape.TrapezoidalEven, x = 1, y = 1, sidesOnly = false, tile = RectangularTile) {
         this.angle = -45;
@@ -915,7 +930,7 @@ function connections(tiles) {
     const c = [];
     for (const t of tiles) {
         const m = t.map();
-        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(-k));
+        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.oposite ? t.oposite(k) : -k));
         for (const k of s) {
             const l = [];
             let i = t;

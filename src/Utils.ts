@@ -61,7 +61,7 @@ export function connections(tiles: ITile<any>[]): ITile<any>[][] {
 
   for (const t of tiles) {
     const m = t.map();
-    const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(-k));
+    const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.oposite ? t.oposite(k) : -k));
 
     for (const k of s) {
       const l = [];

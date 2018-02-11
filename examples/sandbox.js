@@ -50,6 +50,8 @@
       )
     }
 
+    console.log(grid)
+
     if (doPath) {
       path = search.path(grid.tiles[grid.tiles.length - 1])
       diagram.path(path)

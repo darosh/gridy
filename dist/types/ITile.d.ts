@@ -5,6 +5,7 @@ export interface ITile<T> {
     map(): Map<number, T>;
     directions(): Directions<T>;
     sides?(): Directions<T>;
+    oposite?(n: number): number;
     shift(): T;
     cubeLength(): number;
     equals(h: T): boolean;
