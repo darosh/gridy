@@ -318,7 +318,7 @@ export default class Diagram {
    * @param classed Optional highlight class
    * @returns {Diagramy.Diagram} For chain call
    */
-  public highlight(tiles: Array<ITile<any>>, classed: string = "highlight"): Diagram {
+  public highlight(tiles: ITile<any>[], classed: string = "highlight"): Diagram {
     const tileSet: any = d3.set(tiles);
 
     this.all.classed(classed, (node: string): boolean => {
@@ -328,7 +328,7 @@ export default class Diagram {
     return this;
   }
 
-  public path(tiles: Array<ITile<any>>, color?: string, width: number = 5): Diagram {
+  public path(tiles: ITile<any>[], color?: string, width: number = 5): Diagram {
     this.paths.selectAll("*").remove();
 
     if (!tiles || !tiles.length) {

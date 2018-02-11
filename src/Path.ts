@@ -3,8 +3,8 @@ import { Integer } from "./Integer";
 import { ITile } from "./ITile";
 import { instance } from "./Utils";
 
-export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): Array<ITile<any>> {
-  const results: Array<ITile<any>> = [];
+export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<any>[] {
+  const results: ITile<any>[] = [];
 
   if (isSpiral) {
     results.push(start.add(instance(start)));
@@ -27,8 +27,8 @@ export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): Array<
   return results;
 }
 
-export function intersect(a: Array<ITile<any>>, b: Array<ITile<any>>): Array<ITile<any>> {
-  const results: Array<ITile<any>> = [];
+export function intersect(a: ITile<any>[], b: ITile<any>[]): ITile<any>[] {
+  const results: ITile<any>[] = [];
 
   for (const i of a) {
     for (const j of b) {
@@ -41,8 +41,8 @@ export function intersect(a: Array<ITile<any>>, b: Array<ITile<any>>): Array<ITi
   return results;
 }
 
-export function axes(a: Array<ITile<any>>, axe: Integer, odd: boolean = false): Array<ITile<any>> {
-  const results: Array<ITile<any>> = [];
+export function axes(a: ITile<any>[], axe: Integer, odd: boolean = false): ITile<any>[] {
+  const results: ITile<any>[] = [];
 
   for (const i of a) {
     const v: any[] = i.v();

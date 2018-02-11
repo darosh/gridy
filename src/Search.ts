@@ -13,10 +13,10 @@ export class Search {
   public start: ITile<any>;
   public max: Integer = 0;
 
-  constructor(start: ITile<any> | Array<ITile<any>>, maxMovement: number, maxMagnitude: number,
+  constructor(start: ITile<any> | ITile<any>[], maxMovement: number, maxMagnitude: number,
               blocked: { [key: string]: boolean }, available?: { [key: string]: boolean }) {
 
-    const starts: Array<ITile<any>> = (start as ITile<any>).v ? [start as ITile<any>] : (start as Array<ITile<any>>);
+    const starts: ITile<any>[] = (start as ITile<any>).v ? [start as ITile<any>] : (start as ITile<any>[]);
 
     this.start = starts[0];
 
@@ -25,7 +25,7 @@ export class Search {
       this.previous[s.toString()] = null;
     });
 
-    const fringes: Array<Array<ITile<any>>> = [starts];
+    const fringes: ITile<any>[][] = [starts];
 
     for (let k: Integer = 0; k < maxMovement && fringes[k].length > 0; k++) {
       fringes[k + 1] = [];
@@ -52,11 +52,11 @@ export class Search {
     }
   }
 
-  public path(end: ITile<any> | Array<ITile<any>>, max: boolean = false): Array<ITile<any>> {
-    const ends: Array<ITile<any>> = (end as ITile<any>).v ? [end as ITile<any>] : (end as Array<ITile<any>>);
+  public path(end: ITile<any> | ITile<any>[], max: boolean = false): ITile<any>[] {
+    const ends: ITile<any>[] = (end as ITile<any>).v ? [end as ITile<any>] : (end as ITile<any>[]);
     const min = (max ? Math.max : Math.min)
       .apply(null, ends.map((e) => this.cost[e.toString()]).filter((e) => e !== undefined));
-    const path: Array<ITile<any>> = [];
+    const path: ITile<any>[] = [];
     let node: ITile<any> | null = ends.find((e: ITile<any>) => this.cost[e.toString()] === min) || null;
 
     while (node) {

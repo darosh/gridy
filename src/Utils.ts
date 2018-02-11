@@ -30,7 +30,7 @@ export function look(items: any[], values: boolean = false): { [key: string]: an
   return result;
 }
 
-export function neighbors(tiles: Array<ITile<any>>): void {
+export function neighbors(tiles: ITile<any>[]): void {
   function _neighbors(this: any) {
     return this._neighbors_data;
   }
@@ -44,8 +44,8 @@ export function neighbors(tiles: Array<ITile<any>>): void {
   });
 }
 
-export function connections(tiles: Array<ITile<any>>): Array<Array<ITile<any>>> {
-  const c: Array<Array<ITile<any>>> = [];
+export function connections(tiles: ITile<any>[]): ITile<any>[][] {
+  const c: ITile<any>[][] = [];
 
   return c;
 }
