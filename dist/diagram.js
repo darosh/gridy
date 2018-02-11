@@ -67,6 +67,7 @@ class Float2 {
     }
 }
 
+/** @external */
 class Diagram {
     constructor(svg, grid, animation = true) {
         this.translate = new Float2();

@@ -10,14 +10,17 @@ import { Search } from "./Search";
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 // Original source: http://www.redblobgames.com/grids/hexagons/ui.js
 
+/** @external */
 declare const d3: any;
 
+/** @external */
 interface INode {
   tileKey: string;
   key: string;
   tile: ITile<any>;
 }
 
+/** @external */
 export default class Diagram {
   public grid: IGrid<any>;
 

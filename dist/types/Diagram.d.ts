@@ -1,6 +1,7 @@
 import { IGrid } from "./IGrid";
 import { ITile } from "./ITile";
 import { Search } from "./Search";
+/** @external */
 export default class Diagram {
     grid: IGrid<any>;
     private nodes?;

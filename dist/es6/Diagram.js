@@ -1,4 +1,5 @@
 import { Float2 } from "./Float2";
+/** @external */
 export default class Diagram {
     constructor(svg, grid, animation = true) {
         this.translate = new Float2();
