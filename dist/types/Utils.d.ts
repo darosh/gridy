@@ -7,3 +7,5 @@ export declare function look(items: any[], values?: boolean): {
 export declare function neighbors(tiles: ITile<any>[]): void;
 export declare function map(tiles: ITile<any>[]): void;
 export declare function connections(tiles: ITile<any>[]): ITile<any>[][];
+export declare function toMap(tiles: ITile<any>[]): Map<any, ITile<any>>;
+export declare function toArray(m: Map<any, ITile<any>>): ITile<any>[];

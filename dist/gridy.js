@@ -475,9 +475,6 @@ class BrickGrid extends HexagonalGrid {
     }
 }
 
-/**
- * ![](../../examples/output/triangular-tile.svg)
- */
 class TriangularTile extends Integer2 {
     constructor(x = 0, y = 0, s = false) {
         super(x, y);
@@ -496,7 +493,7 @@ class TriangularTile extends Integer2 {
         return TriangularTile.directions1[0][1];
     }
     directions() {
-        return TriangularTile.directions1;
+        return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
     }
     oposite(n) {
         return TriangularTile.oposites[this.s.toString()][n];
@@ -984,6 +981,25 @@ function axes(a, axe, odd = false) {
     }
     return results;
 }
+function border(tiles) {
+    return tiles.filter((t) => t.neighbors().length < t.directions().length);
+}
+function outline(tiles) {
+    const map$$1 = new Map();
+    tiles.forEach((t) => {
+        const n = new Map(t.neighbors());
+        const d = new Map(t.directions());
+        if (n.size < d.size) {
+            for (const [k, v] of d) {
+                if (!n.has(k)) {
+                    const w = t.add(v);
+                    map$$1.set(w.v().toString(), w);
+                }
+            }
+        }
+    });
+    return Array.from(map$$1.values());
+}
 
 exports.BrickGrid = BrickGrid;
 exports.HexagonalGrid = HexagonalGrid;
@@ -1008,6 +1024,8 @@ exports.connections = connections;
 exports.axes = axes;
 exports.intersect = intersect;
 exports.spiral = spiral;
+exports.border = border;
+exports.outline = outline;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

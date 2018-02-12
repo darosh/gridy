@@ -39,3 +39,22 @@ export function axes(a, axe, odd = false) {
     }
     return results;
 }
+export function border(tiles) {
+    return tiles.filter((t) => t.neighbors().length < t.directions().length);
+}
+export function outline(tiles) {
+    const map = new Map();
+    tiles.forEach((t) => {
+        const n = new Map(t.neighbors());
+        const d = new Map(t.directions());
+        if (n.size < d.size) {
+            for (const [k, v] of d) {
+                if (!n.has(k)) {
+                    const w = t.add(v);
+                    map.set(w.v().toString(), w);
+                }
+            }
+        }
+    });
+    return Array.from(map.values());
+}

@@ -78,3 +78,11 @@ export function connections(tiles: ITile<any>[]): ITile<any>[][] {
 
   return c;
 }
+
+export function toMap(tiles: ITile<any>[]): Map<any, ITile<any>> {
+  return new Map(tiles.map<[any, ITile<any>]>((t) => ([t.v(), t])));
+}
+
+export function toArray(m: Map<any, ITile<any>>): ITile<any>[] {
+  return Array.from(m.values());
+}

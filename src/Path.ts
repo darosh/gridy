@@ -55,3 +55,27 @@ export function axes(a: ITile<any>[], axe: Integer, odd: boolean = false): ITile
 
   return results;
 }
+
+export function border(tiles: ITile<any>[]): ITile<any>[] {
+  return tiles.filter((t) => t.neighbors().length < t.directions().length);
+}
+
+export function outline(tiles: ITile<any>[]): ITile<any>[] {
+  const map = new Map<string, ITile<any>>();
+
+  tiles.forEach((t) => {
+    const n = new Map(t.neighbors());
+    const d = new Map(t.directions());
+
+    if (n.size < d.size) {
+      for (const [k, v] of d) {
+        if (!n.has(k)) {
+          const w = t.add(v);
+          map.set(w.v().toString(), w);
+        }
+      }
+    }
+  });
+
+  return Array.from(map.values());
+}

@@ -57,3 +57,9 @@ export function connections(tiles) {
     }
     return c;
 }
+export function toMap(tiles) {
+    return new Map(tiles.map((t) => ([t.v(), t])));
+}
+export function toArray(m) {
+    return Array.from(m.values());
+}

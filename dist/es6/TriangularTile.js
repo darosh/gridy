@@ -20,7 +20,7 @@ export class TriangularTile extends Integer2 {
         return TriangularTile.directions1[0][1];
     }
     directions() {
-        return TriangularTile.directions1;
+        return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
     }
     oposite(n) {
         return TriangularTile.oposites[this.s.toString()][n];

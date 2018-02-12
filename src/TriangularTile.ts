@@ -56,7 +56,7 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
   }
 
   public directions(): Directions<TriangularTile> {
-    return TriangularTile.directions1;
+    return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
   }
 
   public oposite(n: number): number {

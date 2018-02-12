@@ -722,6 +722,59 @@
           .highlight(active)
           .lines(lines)
       }
+    }, {
+      title: [
+        ['Border', 'demo']
+      ],
+      script: function (svg) {
+        const { Shape, TriangularGrid, neighbors, border } = Gridy
+
+        const size = 11
+
+        const grid = new TriangularGrid(24, false, Shape.Triangular, size, size)
+
+        neighbors(grid.tiles)
+        const selected = border(grid.tiles)
+
+        new Diagram(svg, grid)
+          .highlight(selected)
+      }
+    }, {
+      title: [
+        ['Outline', 'demo']
+      ],
+      script: function (svg) {
+        const { Shape, HexagonalGrid, neighbors, outline } = Gridy
+
+        const size = 3
+
+        const grid = new HexagonalGrid(48, false, Shape.Hexagonal, size, size)
+
+        neighbors(grid.tiles)
+        const out = outline(grid.tiles)
+        grid.tiles = grid.tiles.concat(out)
+
+        new Diagram(svg, grid)
+          .highlight(out)
+      }
+    }, {
+      title: [
+        ['Outline', 'demo']
+      ],
+      script: function (svg) {
+        const { Shape, TriangularGrid, neighbors, outline } = Gridy
+
+        const size = 3
+
+        const grid = new TriangularGrid(48, false, Shape.Triangular, size, size)
+
+        neighbors(grid.tiles)
+        const out = outline(grid.tiles)
+        grid.tiles = grid.tiles.concat(out)
+
+        new Diagram(svg, grid)
+          .highlight(out)
+      }
     }]
   }, {
     group: 'Interactive',
