@@ -596,7 +596,7 @@
 
         const blocked = []
 
-        for (let i = 0; i < 180; i++) {
+        for (let i = 0; i < size * size / 2; i++) {
           blocked.push(new RectangularTile(
             Math.floor(Math.random() * size + 1),
             Math.floor(Math.random() * (size - 1))
@@ -611,7 +611,11 @@
           grid.tiles
         )
 
-        const path = search.path(grid.tile(size - 1, size - 1))
+        const max = Math.max.apply(null, grid.tiles.map(t => search.cost[t.key] || -1))
+
+        const end = grid.tiles.find(t => search.cost[t.key] === max)
+
+        const path = search.path(end)
 
         new Diagram(svg, grid)
           .highlight(blocked, 'highlight-dark')

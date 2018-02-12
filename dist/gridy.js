@@ -1482,7 +1482,7 @@ var Search = function () {
                             if (availableMap && !availableMap.has(neighbor.key)) {
                                 continue;
                             }
-                            if (this.cost[neighbor.toString()] === undefined && (blockedMap && !blockedMap.has(neighbor.key) || !blocked) && neighbor.cubeLength() <= maxMagnitude) {
+                            if (this.cost[neighbor.key] === undefined && (blockedMap && !blockedMap.has(neighbor.key) || !blocked) && neighbor.cubeLength() <= maxMagnitude) {
                                 this.cost[neighbor.key] = k + 1;
                                 this.max = Math.max(this.max, k + 1);
                                 this.previous[neighbor.key] = tile;
@@ -1530,17 +1530,17 @@ var Search = function () {
 
             var ends = end.value ? [end] : end;
             var min = (max ? Math.max : Math.min).apply(null, ends.map(function (e) {
-                return _this.cost[e.toString()];
+                return _this.cost[e.key];
             }).filter(function (e) {
                 return e !== undefined;
             }));
             var path = [];
             var node = ends.find(function (e) {
-                return _this.cost[e.toString()] === min;
+                return _this.cost[e.key] === min;
             }) || null;
             while (node) {
                 path.push(node);
-                node = node.equals(this.start) ? null : this.previous[node.toString()];
+                node = node.equals(this.start) ? null : this.previous[node.key];
             }
             return path;
         }

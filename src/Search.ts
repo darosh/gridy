@@ -44,7 +44,7 @@ export class Search {
             continue;
           }
 
-          if ((this.cost[neighbor.toString()] === undefined)
+          if ((this.cost[neighbor.key] === undefined)
             && ((blockedMap && !blockedMap.has(neighbor.key)) || (!blocked))
             && neighbor.cubeLength() <= maxMagnitude) {
             this.cost[neighbor.key] = k + 1;
@@ -60,13 +60,13 @@ export class Search {
   public path(end: AnyTile | AnyTile[], max: boolean = false): AnyTile[] {
     const ends: AnyTile[] = (end as AnyTile).value ? [end as AnyTile] : (end as AnyTile[]);
     const min = (max ? Math.max : Math.min)
-      .apply(null, ends.map((e) => this.cost[e.toString()]).filter((e) => e !== undefined));
+      .apply(null, ends.map((e) => this.cost[e.key]).filter((e) => e !== undefined));
     const path: AnyTile[] = [];
-    let node: AnyTile | null = ends.find((e: AnyTile) => this.cost[e.toString()] === min) || null;
+    let node: AnyTile | null = ends.find((e: AnyTile) => this.cost[e.key] === min) || null;
 
     while (node) {
       path.push(node);
-      node = node.equals(this.start) ? null : this.previous[node.toString()];
+      node = node.equals(this.start) ? null : this.previous[node.key];
     }
 
     return path;
