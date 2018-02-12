@@ -31,7 +31,7 @@
     diagram.centers(document.getElementById('show2').checked)
     diagram.circles(document.getElementById('show3').checked)
     diagram.coordinates(document.getElementById('show4').checked)
-    diagram.tileCoordinates(document.getElementById('show5').checked)
+    diagram.tiles(document.getElementById('show5').checked)
     diagram.axes(document.getElementById('show8').checked)
   }
 
@@ -45,8 +45,9 @@
       search = new Gridy.Search(
         grid.tiles[0],
         Infinity,
-        100, {},
-        Gridy.look(grid.tiles)
+        100,
+        undefined,
+        grid.tiles
       )
     }
 
@@ -116,7 +117,18 @@
     check('i3')
     check('i4')
 
+    showShapes()
+
     update()
+  }
+
+  function showShapes () {
+    for (var i = 0; i < gridShapesKeys.length; i++) {
+      var e = document.getElementById('shape' + i).parentElement
+      e.style.display = (Gridy[gridName].shapes || []).indexOf(i) === -1 ? 'none' : 'inline-block'
+    }
+
+    document.getElementById('shapes').parentElement.parentElement.style.display = (Gridy[gridName].shapes || []).length ? 'block' : 'none'
   }
 
   function shapes () {

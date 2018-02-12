@@ -1,11 +1,7 @@
-import { ITile } from "./ITile";
+import { Directions } from "./Directions";
+import { AnyTile, ITile, TileMap } from "./ITile";
 export declare function instance<T>(obj: T): T;
 export declare function enumerate(obj: any): any;
-export declare function look(items: any[], values?: boolean): {
-    [key: string]: any;
-};
-export declare function neighbors(tiles: ITile<any>[]): void;
-export declare function map(tiles: ITile<any>[]): void;
-export declare function connections(tiles: ITile<any>[]): ITile<any>[][];
-export declare function toMap(tiles: ITile<any>[]): Map<any, ITile<any>>;
-export declare function toArray(m: Map<any, ITile<any>>): ITile<any>[];
+export declare function maped(available: TileMap, selection: Directions<AnyTile>): [number, ITile<any>][];
+export declare function toMap(tiles: AnyTile[]): Map<string, AnyTile>;
+export declare function toArray(m: Map<any, AnyTile>): AnyTile[];

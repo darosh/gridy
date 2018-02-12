@@ -1,6 +1,6 @@
 import { Float2 } from "./Float2";
 import { IGrid } from "./IGrid";
-import { ITile } from "./ITile";
+import { AnyTile, ITile } from "./ITile";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { Search } from "./Search";
@@ -17,7 +17,7 @@ declare const d3: any;
 interface INode {
   tileKey: string;
   key: string;
-  tile: ITile<any>;
+  tile: AnyTile;
 }
 
 /** @external */
@@ -29,7 +29,7 @@ export default class Diagram {
 
   private root: any;
   private svg: any;
-  private tiles: any;
+  private tilesElements: any;
   private tilesEnter: any;
   private all: any;
   private paths: any;
@@ -83,7 +83,7 @@ export default class Diagram {
     }
 
     if (this.showTiles) {
-      this.tileCoordinates(null);
+      this.tiles(null);
     }
 
     if (this.showAxes) {
@@ -258,7 +258,7 @@ export default class Diagram {
     return this;
   }
 
-  public tileCoordinates(show: boolean | any = true): Diagram {
+  public tiles(show: boolean | any = true): Diagram {
     let tiles: any | undefined;
 
     if (show === false) {
@@ -281,7 +281,7 @@ export default class Diagram {
     tiles.attr("y", "0.4em")
       .each(function(this: any, node: string): void {
         const selection: any = d3.select(this);
-        let labels: any[] = that.data[node].tile.v();
+        let labels: any[] = that.data[node].tile.value;
 
         if (labels[0] === 0 && labels[1] === 0 && labels[2] === 0) {
           labels = ["x", "y", "z"];
@@ -321,7 +321,7 @@ export default class Diagram {
    * @param classed Optional highlight class
    * @returns {Diagramy.Diagram} For chain call
    */
-  public highlight(tiles: ITile<any>[], classed: string = "highlight"): Diagram {
+  public highlight(tiles: AnyTile[], classed: string = "highlight"): Diagram {
     const tileSet: any = d3.set(tiles);
 
     this.all.classed(classed, (node: string): boolean => {
@@ -331,7 +331,7 @@ export default class Diagram {
     return this;
   }
 
-  public path(tiles: ITile<any>[], color?: string, width: number = 5): Diagram {
+  public path(tiles: AnyTile[], color?: string, width: number = 5): Diagram {
     this.paths.selectAll("*").remove();
 
     if (!tiles || !tiles.length) {
@@ -355,7 +355,7 @@ export default class Diagram {
     return this;
   }
 
-  public lines(tiles: ITile<any>[][], color?: string, width: number = 5): Diagram {
+  public lines(tiles: AnyTile[][], color?: string, width: number = 5): Diagram {
     this.paths.selectAll("*").remove();
 
     if (!tiles || !tiles.length) {
@@ -404,7 +404,7 @@ export default class Diagram {
       this.pointElement.attr("class", "marker").attr("r", 5);
     }
 
-    const tile: ITile<any> = this.grid.position(new Float2(xy[0], xy[1]));
+    const tile: AnyTile = this.grid.position(new Float2(xy[0], xy[1]));
 
     this.pointElement.attr(
       "transform",
@@ -442,17 +442,17 @@ export default class Diagram {
   }
 
   private initTiles(): any {
-    this.nodes = this.grid.tiles.map((n: ITile<any>): string => {
+    this.nodes = this.grid.tiles.map((n: AnyTile): string => {
       const d: INode = { tile: n, key: n.toString(), tileKey: this.grid.toPoint(n).toString() };
       this.data[d.tileKey] = d;
       return d.tileKey;
     });
 
-    this.tiles = this.root.selectAll("g.tile").data(this.nodes, (d: string): string => d);
+    this.tilesElements = this.root.selectAll("g.tile").data(this.nodes, (d: string): string => d);
 
-    this.transition(this.tiles.exit(), 0.5).style("opacity", 0).remove();
+    this.transition(this.tilesElements.exit(), 0.5).style("opacity", 0).remove();
 
-    const tilesEnter: any = this.tiles.enter().append("g")
+    const tilesEnter: any = this.tilesElements.enter().append("g")
       .attr("class", "tile")
       .style("opacity", this.animation ? 0 : 1)
       .attr("transform", (node: string): string => {
@@ -468,13 +468,13 @@ export default class Diagram {
     tilesEnter.append("g").attr("class", "tiles");
     tilesEnter.append("g").attr("class", "values");
 
-    this.transition(this.tiles.merge(tilesEnter)).attr("transform", (node: string): string => {
+    this.transition(this.tilesElements.merge(tilesEnter)).attr("transform", (node: string): string => {
       const center: Float2 = this.grid.center(this.data[node].tile);
       return "translate(" + center.x + "," + center.y + ")";
     }).style("opacity", 1);
 
     this.tilesEnter = tilesEnter;
-    this.all = this.tilesEnter.merge(this.tiles);
+    this.all = this.tilesEnter.merge(this.tilesElements);
   }
 
   private shapePath(tileType: number): string {

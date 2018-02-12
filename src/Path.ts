@@ -1,25 +1,29 @@
 import { Directions } from "./Directions";
 import { Integer } from "./Integer";
-import { ITile } from "./ITile";
-import { instance } from "./Utils";
+import { AnyTile, ITile } from "./ITile";
+import { instance, maped, toMap } from "./Utils";
 
-export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<any>[] {
-  const results: ITile<any>[] = [];
+export function circle(start: AnyTile, N: Integer): AnyTile[] {
+  return spiral(start, N, false);
+}
+
+export function spiral(start: AnyTile, N: Integer, isSpiral: boolean = true): AnyTile[] {
+  const results: AnyTile[] = [];
 
   if (isSpiral) {
     results.push(start.add(instance(start)));
   }
 
-  const neighbors: Directions<any> = start.neighbors(start.sides ? start.sides() : undefined);
+  const neighbors: Directions<any> = start.sideNeighbors ? start.sideNeighbors() : start.neighbors();
   const c: Integer = (neighbors.length === 6) ? 1 : 2;
 
   for (let k: Integer = isSpiral ? 1 : N; k <= N; k++) {
-    let H: ITile<any> = start.shift().scale(k);
+    let H: AnyTile = start.shift().scale(k);
 
     for (let i: Integer = 0; i < neighbors.length; i++) {
       for (let j: Integer = 0; j < k * c; j++) {
         results.push(H.add(start));
-        H = H.neighbors(H.sides ? H.sides() : undefined)[i][1];
+        H = (H.sideNeighbors ? H.sideNeighbors() : H.neighbors())[i][1];
       }
     }
   }
@@ -27,8 +31,8 @@ export function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<
   return results;
 }
 
-export function intersect(a: ITile<any>[], b: ITile<any>[]): ITile<any>[] {
-  const results: ITile<any>[] = [];
+export function intersect(a: AnyTile[], b: AnyTile[]): AnyTile[] {
+  const results: AnyTile[] = [];
 
   for (const i of a) {
     for (const j of b) {
@@ -41,11 +45,11 @@ export function intersect(a: ITile<any>[], b: ITile<any>[]): ITile<any>[] {
   return results;
 }
 
-export function axes(a: ITile<any>[], axe: Integer, odd: boolean = false): ITile<any>[] {
-  const results: ITile<any>[] = [];
+export function axes(a: AnyTile[], axe: Integer, odd: boolean = false): AnyTile[] {
+  const results: AnyTile[] = [];
 
   for (const i of a) {
-    const v: any[] = i.v();
+    const v: any[] = i.value;
     const l: boolean = (Math.abs(v[axe % v.length]) % 2) === 1;
 
     if (l === odd) {
@@ -56,26 +60,52 @@ export function axes(a: ITile<any>[], axe: Integer, odd: boolean = false): ITile
   return results;
 }
 
-export function border(tiles: ITile<any>[]): ITile<any>[] {
-  return tiles.filter((t) => t.neighbors().length < t.directions().length);
+export function border(tiles: AnyTile[]): AnyTile[] {
+  const tileMap = toMap(tiles);
+  return tiles.filter((t) => maped(tileMap, t.neighbors()).length < t.directions().length);
 }
 
-export function outline(tiles: ITile<any>[]): ITile<any>[] {
-  const map = new Map<string, ITile<any>>();
+export function outline(tiles: AnyTile[]): AnyTile[] {
+  const map = new Map<string, AnyTile>();
+  const tileMap = toMap(tiles);
 
   tiles.forEach((t) => {
-    const n = new Map(t.neighbors());
+    const n = new Map(maped(tileMap, t.neighbors()));
     const d = new Map(t.directions());
 
     if (n.size < d.size) {
       for (const [k, v] of d) {
         if (!n.has(k)) {
           const w = t.add(v);
-          map.set(w.v().toString(), w);
+          map.set(w.key, w);
         }
       }
     }
   });
 
   return Array.from(map.values());
+}
+
+export function connections(tiles: AnyTile[]): AnyTile[][] {
+  const c: AnyTile[][] = [];
+  const available = toMap(tiles);
+
+  for (const t of tiles) {
+    const m = new Map(maped(available, t.neighbors()));
+    const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.oposite ? t.oposite(k) : -k));
+
+    for (const k of s) {
+      const l = [];
+      let i: AnyTile | undefined = t;
+
+      while (i) {
+        l.push(i);
+        i = new Map(maped(available, i.neighbors())).get(k);
+      }
+
+      c.push(l);
+    }
+  }
+
+  return c;
 }

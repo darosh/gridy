@@ -1,3 +1,2 @@
-import { ITile } from "./ITile";
-
-export type Directions<T> = [number, T][];
+export type Direction<T> = [number, T];
+export type Directions<T> = Direction<T>[];

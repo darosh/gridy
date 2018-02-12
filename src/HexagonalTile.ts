@@ -1,7 +1,9 @@
+import { Axes6 } from "./Axes";
 import { Directions } from "./Directions";
 import { Integer } from "./Integer";
 import { Integer3 } from "./Integer3";
-import { ITile } from "./ITile";
+import { AnyTile, ITile } from "./ITile";
+import { toMap } from "./Utils";
 
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
@@ -13,14 +15,19 @@ import { ITile } from "./ITile";
  */
 export class HexagonalTile extends Integer3 implements ITile<Integer3> {
   public static directions: Directions<HexagonalTile> = [
-    [1, new HexagonalTile(1, -1, 0)],
-    [2, new HexagonalTile(1, 0, -1)],
-    [3, new HexagonalTile(0, 1, -1)],
-
-    [-1, new HexagonalTile(-1, 1, 0)],
-    [-2, new HexagonalTile(-1, 0, 1)],
-    [-3, new HexagonalTile(0, -1, 1)],
+    [Axes6.NW, new HexagonalTile(1, -1, 0)],
+    [Axes6.NE, new HexagonalTile(1, 0, -1)],
+    [Axes6.N, new HexagonalTile(0, 1, -1)],
+    [Axes6.SE, new HexagonalTile(-1, 1, 0)],
+    [Axes6.SW, new HexagonalTile(-1, 0, 1)],
+    [Axes6.S, new HexagonalTile(0, -1, 1)],
   ];
+
+  private tiles: AnyTile[] = [];
+
+  public get key() {
+    return this.toString();
+  }
 
   public shift(): HexagonalTile {
     return HexagonalTile.directions[4][1];
@@ -40,16 +47,6 @@ export class HexagonalTile extends Integer3 implements ITile<Integer3> {
     return new HexagonalTile(r.x, r.y, r.z);
   }
 
-  // neighbors(): Array<HexagonalTile> {
-  //   var results: Array<any> = [];
-
-  //   for (var dir: Integer = 0; dir < 6; dir++) {
-  //     results.push(this.add(HexagonalTile.directions[dir]));
-  //   }
-
-  //   return results;
-  // }
-
   public neighbors(): Directions<HexagonalTile> {
     const results: Directions<HexagonalTile> = [];
 
@@ -60,7 +57,19 @@ export class HexagonalTile extends Integer3 implements ITile<Integer3> {
     return results;
   }
 
-  public map(): Map<number, HexagonalTile> {
-    return new Map(this.neighbors());
+  public right() {
+    const x = this.x;
+    this.x = -this.z;
+    this.z = -this.y;
+    this.y = -x;
+    return this;
+  }
+
+  public left() {
+    const z = this.z;
+    this.z = -this.x;
+    this.x = -this.y;
+    this.y = -z;
+    return this;
   }
 }

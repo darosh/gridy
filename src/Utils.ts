@@ -1,4 +1,7 @@
-import { ITile } from "./ITile";
+import { Directions } from "./Directions";
+import { Integer } from "./Integer";
+import { AnyTile, ITile, TileMap } from "./ITile";
+import { Position } from "./Position";
 
 export function instance<T>(obj: T): T {
   return new (obj.constructor as any)();
@@ -20,69 +23,15 @@ export function enumerate(obj: any): any {
   return result;
 }
 
-export function look(items: any[], values: boolean = false): { [key: string]: any } {
-  const result: { [key: string]: any } = {};
-
-  items.forEach((v: any): void => {
-    result[v.toString()] = values ? v : true;
-  });
-
-  return result;
+export function maped(available: TileMap, selection: Directions<AnyTile>) {
+  return selection.filter((t) => available.has(t[1].key))
+    .map((t) => [t[0], available.get(t[1].key)]) as Directions<AnyTile>;
 }
 
-export function neighbors(tiles: ITile<any>[]): void {
-  function _neighbors(this: any) {
-    return this._neighbors_data;
-  }
-
-  const values = look(tiles, true);
-
-  tiles.forEach((t) => {
-    (t as any)._neighbors_data = t.neighbors().filter((n) => values[n[1]] !== undefined)
-      .map((n) => [n[0], values[n[1]]]);
-    (t as any)._neighbors = _neighbors;
-    t.neighbors = _neighbors;
-  });
+export function toMap(tiles: AnyTile[]): Map<string, AnyTile> {
+  return new Map(tiles.map<[any, AnyTile]>((t) => ([t.key, t])));
 }
 
-export function map(tiles: ITile<any>[]): void {
-  function _map(this: any) {
-    return this._map_data || (this._map_data = this._map());
-  }
-
-  tiles.forEach((t) => {
-    (t as any)._map = t.map;
-    t.map = _map;
-  });
-}
-
-export function connections(tiles: ITile<any>[]): ITile<any>[][] {
-  const c: ITile<any>[][] = [];
-
-  for (const t of tiles) {
-    const m = t.map();
-    const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.oposite ? t.oposite(k) : -k));
-
-    for (const k of s) {
-      const l = [];
-      let i = t;
-
-      while (i) {
-        l.push(i);
-        i = i.map().get(k);
-      }
-
-      c.push(l);
-    }
-  }
-
-  return c;
-}
-
-export function toMap(tiles: ITile<any>[]): Map<any, ITile<any>> {
-  return new Map(tiles.map<[any, ITile<any>]>((t) => ([t.v(), t])));
-}
-
-export function toArray(m: Map<any, ITile<any>>): ITile<any>[] {
+export function toArray(m: Map<any, AnyTile>): AnyTile[] {
   return Array.from(m.values());
 }

@@ -1,5 +1,5 @@
 import { IGrid } from "./IGrid";
-import { ITile } from "./ITile";
+import { AnyTile } from "./ITile";
 import { Search } from "./Search";
 /** @external */
 export default class Diagram {
@@ -8,7 +8,7 @@ export default class Diagram {
     private translate;
     private root;
     private svg;
-    private tiles;
+    private tilesElements;
     private tilesEnter;
     private all;
     private paths;
@@ -38,16 +38,16 @@ export default class Diagram {
     values(data: {
         [index: string]: any;
     }): Diagram;
-    tileCoordinates(show?: boolean | any): Diagram;
+    tiles(show?: boolean | any): Diagram;
     /**
      * Highlight selected tiles
      * @param tiles Array of selected tiles
      * @param classed Optional highlight class
      * @returns {Diagramy.Diagram} For chain call
      */
-    highlight(tiles: ITile<any>[], classed?: string): Diagram;
-    path(tiles: ITile<any>[], color?: string, width?: number): Diagram;
-    lines(tiles: ITile<any>[][], color?: string, width?: number): Diagram;
+    highlight(tiles: AnyTile[], classed?: string): Diagram;
+    path(tiles: AnyTile[], color?: string, width?: number): Diagram;
+    lines(tiles: AnyTile[][], color?: string, width?: number): Diagram;
     search(search?: Search, from?: string, to?: string): Diagram;
     point(xy: number[]): Diagram;
     mousePoint(): Diagram;

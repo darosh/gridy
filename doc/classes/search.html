@@ -108,19 +108,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<span class="tsd-signature-symbol">(</span>start<span class="tsd-signature-symbol">: </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span>, maxMovement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxMagnitude<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, blocked<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, available<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="search.html" class="tsd-signature-type">Search</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<span class="tsd-signature-symbol">(</span>start<span class="tsd-signature-symbol">: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol"> | </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span>, maxMovement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxMagnitude<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, blocked<span class="tsd-signature-symbol">?: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span>, available<span class="tsd-signature-symbol">?: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="search.html" class="tsd-signature-type">Search</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L14">Search.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L15">Search.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>start: <a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>start: <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol"> | </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
 									<h5>maxMovement: <span class="tsd-signature-type">number</span></h5>
@@ -129,15 +129,10 @@
 									<h5>maxMagnitude: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5>blocked: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">boolean</span></h5>
-										</li>
-									</ul>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> blocked: <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> available: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> available: <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="search.html" class="tsd-signature-type">Search</a></h4>
@@ -153,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">cost<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L11">Search.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L12">Search.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -171,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <a href="../globals.html#integer" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L14">Search.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L15">Search.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,14 +176,14 @@
 					<div class="tsd-signature tsd-kind-icon">previous<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L12">Search.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L13">Search.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -196,10 +191,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
-					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L13">Search.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L14">Search.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,25 +205,25 @@
 					<a name="path" class="tsd-anchor"></a>
 					<h3>path</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">(</span>end<span class="tsd-signature-symbol">: </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span>, max<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">(</span>end<span class="tsd-signature-symbol">: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol"> | </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span>, max<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/Search.ts#L55">Search.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/Search.ts#L60">Search.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>end: <a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>end: <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol"> | </span><a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> max: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/itile.html" class="tsd-signature-type">ITile</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#anytile" class="tsd-signature-type">AnyTile</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>

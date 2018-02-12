@@ -9,7 +9,7 @@ export declare class Integer3 implements IVector<Integer> {
     add(b: Integer3): Integer3;
     scale(k: Integer): Integer3;
     toString(): string;
-    v(): Integer[];
+    readonly value: Integer[];
     equals(other: Integer3): boolean;
     round(): Integer3;
     cubeLength(): Integer;

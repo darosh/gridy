@@ -1,23 +1,13 @@
 {
   "name": "gridy",
-  "version": "0.2.0-pre-alpha",
   "description": "TypeScript grid library for server and browser",
-  "repository": ".",
-  "main": "dist/gridy.js",
-  "module ": "dist/es6/index.js",
-  "types": "dist/types/index.js",
+  "version": "0.2.0-pre-alpha",
   "author": "Jan Forst <ensonador@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
-    "watch": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup dist/es6/index.js -w --o dist/gridy.js --f umd --name Gridy\" \"rollup dist/es6/Diagram.js -w --o dist/diagram.js --f umd --name Diagram\"",
-    "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
-    "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme assets/doc.template.md",
-    "test": "del-cli examples/output && node examples/node.js",
-    "clean": "del-cli doc dist examples/output"
-  },
   "dependencies": {},
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "concurrently": "^3.5.1",
     "d3": "4.13.0",
     "del-cli": "^1.1.0",
@@ -27,11 +17,28 @@
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jsdom": "10",
+    "jsdom": "10.1.0",
     "rollup": "^0.55.3",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-uglify": "^3.0.0",
     "tslint": "^5.9.1",
     "typedoc": "^0.10.0",
     "typedoc-plugin-internal-external": "^1.0.10",
-    "typescript": "^2.7.1"
-  }
+    "typescript": "^2.7.1",
+    "uglify-js": "^3.3.10"
+  },
+  "license": "MIT",
+  "main": "dist/gridy.js",
+  "module ": "dist/es6/index.js",
+  "repository": ".",
+  "scripts": {
+    "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
+    "clean": "del-cli doc dist examples/output",
+    "dist": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup -c rollup.config.js dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup -c rollup.config.js dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram && uglifyjs dist/diagram.js > dist/diagram.min.js && uglifyjs dist/gridy.js > dist/gridy.min.js",
+    "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme assets/doc.template.md",
+    "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
+    "test": "del-cli examples/output && node examples/node.js",
+    "watch": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup dist/es6/index.js -w --o dist/gridy.js --f umd --name Gridy\" \"rollup dist/es6/Diagram.js -w --o dist/diagram.js --f umd --name Diagram\""
+  },
+  "types": "dist/types/index.js"
 }

@@ -11,6 +11,7 @@ import { TileType } from "./TileType";
  * ![](../../examples/output/hexagonal-grid.svg)
  */
 export declare class HexagonalGrid implements IGrid<HexagonalTile> {
+    static shapes: Shape[];
     static twoAxisToCube(position: Position): HexagonalTile;
     static cubeToTwoAxis(tile: HexagonalTile): Position;
     static oddQToCube(position: Position): HexagonalTile;
@@ -41,4 +42,5 @@ export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     vertices(orientation?: boolean, scale?: Float): Float2[];
     center(tile: HexagonalTile): Float2;
     position(p: Float2): HexagonalTile;
+    tile(x: number, y: number): HexagonalTile | undefined;
 }

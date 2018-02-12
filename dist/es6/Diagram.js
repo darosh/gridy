@@ -38,7 +38,7 @@ export default class Diagram {
             this.coordinates(null);
         }
         if (this.showTiles) {
-            this.tileCoordinates(null);
+            this.tiles(null);
         }
         if (this.showAxes) {
             this.axes(null);
@@ -196,7 +196,7 @@ export default class Diagram {
         });
         return this;
     }
-    tileCoordinates(show = true) {
+    tiles(show = true) {
         let tiles;
         if (show === false) {
             this.all.selectAll("g.tiles").selectAll("text").remove();
@@ -219,7 +219,7 @@ export default class Diagram {
         tiles.attr("y", "0.4em")
             .each(function (node) {
             const selection = d3.select(this);
-            let labels = that.data[node].tile.v();
+            let labels = that.data[node].tile.value;
             if (labels[0] === 0 && labels[1] === 0 && labels[2] === 0) {
                 labels = ["x", "y", "z"];
             }
@@ -340,9 +340,9 @@ export default class Diagram {
             this.data[d.tileKey] = d;
             return d.tileKey;
         });
-        this.tiles = this.root.selectAll("g.tile").data(this.nodes, (d) => d);
-        this.transition(this.tiles.exit(), 0.5).style("opacity", 0).remove();
-        const tilesEnter = this.tiles.enter().append("g")
+        this.tilesElements = this.root.selectAll("g.tile").data(this.nodes, (d) => d);
+        this.transition(this.tilesElements.exit(), 0.5).style("opacity", 0).remove();
+        const tilesEnter = this.tilesElements.enter().append("g")
             .attr("class", "tile")
             .style("opacity", this.animation ? 0 : 1)
             .attr("transform", (node) => {
@@ -356,12 +356,12 @@ export default class Diagram {
         tilesEnter.append("g").attr("class", "coordinates");
         tilesEnter.append("g").attr("class", "tiles");
         tilesEnter.append("g").attr("class", "values");
-        this.transition(this.tiles.merge(tilesEnter)).attr("transform", (node) => {
+        this.transition(this.tilesElements.merge(tilesEnter)).attr("transform", (node) => {
             const center = this.grid.center(this.data[node].tile);
             return "translate(" + center.x + "," + center.y + ")";
         }).style("opacity", 1);
         this.tilesEnter = tilesEnter;
-        this.all = this.tilesEnter.merge(this.tiles);
+        this.all = this.tilesEnter.merge(this.tilesElements);
     }
     shapePath(tileType) {
         return this.grid.vertices(undefined, undefined, tileType).map((p) => p.x.toFixed(3) + "," + p.y.toFixed(3))

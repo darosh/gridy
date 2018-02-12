@@ -23,13 +23,13 @@ export class Float2 {
     equals(p) {
         return (this.x === p.x) && (this.y === p.y);
     }
-    v() {
+    get value() {
         return [this.x, this.y];
     }
     scale(k) {
         return new Float2(this.x * k, this.y * k);
     }
     toString() {
-        return this.v().join(",");
+        return this.value.toString();
     }
 }

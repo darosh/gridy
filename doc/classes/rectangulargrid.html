@@ -84,7 +84,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/igrid.html" class="tsd-signature-type">IGrid</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/igrid.html" class="tsd-signature-type">IGrid</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -104,7 +104,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#orientation" class="tsd-kind-icon">orientation</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#radius" class="tsd-kind-icon">radius</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#scale" class="tsd-kind-icon">scale</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#tile" class="tsd-kind-icon">tile</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#tilector" class="tsd-kind-icon">tile<wbr>Ctor</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#tiletypes" class="tsd-kind-icon">tile<wbr>Types</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#tiles" class="tsd-kind-icon">tiles</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="rectangulargrid.html#topoint" class="tsd-kind-icon">to<wbr>Point</a></li>
@@ -119,6 +119,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rectangulargrid.html#bounds" class="tsd-kind-icon">bounds</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rectangulargrid.html#center" class="tsd-kind-icon">center</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rectangulargrid.html#position" class="tsd-kind-icon">position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rectangulargrid.html#tile" class="tsd-kind-icon">tile</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rectangulargrid.html#vertices" class="tsd-kind-icon">vertices</a></li>
 							</ul>
 						</section>
@@ -131,13 +132,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Rectangular<wbr>Grid<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><a href="../globals.html#float" class="tsd-signature-type">Float</a>, orientation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, shape<span class="tsd-signature-symbol">?: </span><a href="../enums/shape.html" class="tsd-signature-type">Shape</a>, x<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, y<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, sidesOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, tile<span class="tsd-signature-symbol">?: </span><a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulargrid.html" class="tsd-signature-type">RectangularGrid</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Rectangular<wbr>Grid<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><a href="../globals.html#float" class="tsd-signature-type">Float</a>, orientation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, shape<span class="tsd-signature-symbol">?: </span><a href="../enums/shape.html" class="tsd-signature-type">Shape</a>, x<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, y<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, tile<span class="tsd-signature-symbol">?: </span><a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulargrid.html" class="tsd-signature-type">RectangularGrid</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L33">RectangularGrid.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L33">RectangularGrid.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,7 +150,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> orientation: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> shape: <a href="../enums/shape.html" class="tsd-signature-type">Shape</a><span class="tsd-signature-symbol"> =&nbsp;Shape.TrapezoidalEven</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> shape: <a href="../enums/shape.html" class="tsd-signature-type">Shape</a><span class="tsd-signature-symbol"> =&nbsp;Shape.Even</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> x: <a href="../globals.html#integer" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
@@ -158,10 +159,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> y: <a href="../globals.html#integer" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> sidesOnly: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> tile: <a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;RectangularTile</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> tile: <a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;RectangularTile</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="rectangulargrid.html" class="tsd-signature-type">RectangularGrid</a></h4>
@@ -178,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#angle">angle</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L26">RectangularGrid.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L26">RectangularGrid.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +187,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#orientation">orientation</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L24">RectangularGrid.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L24">RectangularGrid.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -200,7 +198,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#radius">radius</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L31">RectangularGrid.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L31">RectangularGrid.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,17 +209,17 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#scale">scale</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L25">RectangularGrid.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L25">RectangularGrid.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="tile" class="tsd-anchor"></a>
-					<h3>tile</h3>
-					<div class="tsd-signature tsd-kind-icon">tile<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="tilector" class="tsd-anchor"></a>
+					<h3>tile<wbr>Ctor</h3>
+					<div class="tsd-signature tsd-kind-icon">tile<wbr>Ctor<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itileconstructable.html" class="tsd-signature-type">ITileConstructable</a><span class="tsd-signature-symbol">&lt;</span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L33">RectangularGrid.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L33">RectangularGrid.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,18 +230,18 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tiletypes">tileTypes</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L32">RectangularGrid.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L32">RectangularGrid.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="tiles" class="tsd-anchor"></a>
 					<h3>tiles</h3>
-					<div class="tsd-signature tsd-kind-icon">tiles<span class="tsd-signature-symbol">:</span> <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">tiles<span class="tsd-signature-symbol">:</span> <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tiles">tiles</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L23">RectangularGrid.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L23">RectangularGrid.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -254,7 +252,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#topoint">toPoint</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L30">RectangularGrid.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L30">RectangularGrid.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -262,14 +260,14 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>tile<span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Position</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>tile<span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Position</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>tile: <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a></h5>
+												<h5>tile: <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Position</span></h4>
@@ -286,7 +284,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#totile">toTile</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L29">RectangularGrid.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L29">RectangularGrid.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -294,7 +292,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -306,7 +304,7 @@
 										</ul>
 										<h4 class="tsd-returns-title">Returns <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a>
 											<span class="tsd-signature-symbol"> | </span>
-											<a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a>
+											<a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a>
 										</h4>
 									</li>
 								</ul>
@@ -321,7 +319,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#x">x</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L27">RectangularGrid.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L27">RectangularGrid.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -332,7 +330,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#y">y</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L28">RectangularGrid.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L28">RectangularGrid.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -350,7 +348,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#bounds">bounds</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L77">RectangularGrid.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L61">RectangularGrid.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="rectangle.html" class="tsd-signature-type">Rectangle</a></h4>
@@ -361,19 +359,19 @@
 					<a name="center" class="tsd-anchor"></a>
 					<h3>center</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">center<span class="tsd-signature-symbol">(</span>tile<span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="float2.html" class="tsd-signature-type">Float2</a></li>
+						<li class="tsd-signature tsd-kind-icon">center<span class="tsd-signature-symbol">(</span>tile<span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="float2.html" class="tsd-signature-type">Float2</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L81">RectangularGrid.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L65">RectangularGrid.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>tile: <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a></h5>
+									<h5>tile: <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="float2.html" class="tsd-signature-type">Float2</a></h4>
@@ -384,14 +382,14 @@
 					<a name="position" class="tsd-anchor"></a>
 					<h3>position</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="float2.html" class="tsd-signature-type">Float2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a></li>
+						<li class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="float2.html" class="tsd-signature-type">Float2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#position">position</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L114">RectangularGrid.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L98">RectangularGrid.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -402,7 +400,37 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a>
 								<span class="tsd-signature-symbol"> | </span>
-								<a href="rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a>
+								<a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tile" class="tsd-anchor"></a>
+					<h3>tile</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">tile<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a><span class="tsd-signature-symbol"> | </span><a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tile">tile</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L102">RectangularGrid.ts:102</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="rectangulartile.html" class="tsd-signature-type">RectangularTile</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<a href="rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a>
 							</h4>
 						</li>
 					</ul>
@@ -417,7 +445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/RectangularGrid.ts#L92">RectangularGrid.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/RectangularGrid.ts#L76">RectangularGrid.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -466,7 +494,7 @@
 								<a href="rectangulargrid.html#scale" class="tsd-kind-icon">scale</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="rectangulargrid.html#tile" class="tsd-kind-icon">tile</a>
+								<a href="rectangulargrid.html#tilector" class="tsd-kind-icon">tile<wbr>Ctor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="rectangulargrid.html#tiletypes" class="tsd-kind-icon">tile<wbr>Types</a>
@@ -494,6 +522,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="rectangulargrid.html#position" class="tsd-kind-icon">position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rectangulargrid.html#tile" class="tsd-kind-icon">tile</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="rectangulargrid.html#vertices" class="tsd-kind-icon">vertices</a>

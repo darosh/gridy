@@ -19,29 +19,16 @@ import { TileType } from "./TileType";
  * ![](../../examples/output/hexagonal-grid.svg)
  */
 export class HexagonalGrid implements IGrid<HexagonalTile> {
+  public static shapes = [Shape.Hexagonal,
+    Shape.Rhombus, Shape.Even, Shape.Odd, Shape.Triangular];
+
   public static twoAxisToCube(position: Position): HexagonalTile {
     return new HexagonalTile(position.x, -position.y - position.x, position.y);
   }
 
-  // public static twoAxisToCubeEven(position: Position): HexagonalTile {
-  //   return new HexagonalTile(position.x + position.y, -position.y + position.x, -position.x);
-  // }
-
-  // public static twoAxisToCubeOdd(position: Position): HexagonalTile {
-  //   return new HexagonalTile(-position.y, -position.y - position.x, position.x + position.y);
-  // }
-
   public static cubeToTwoAxis(tile: HexagonalTile): Position {
     return new Position(Math.floor(tile.x), Math.floor(tile.z));
   }
-
-  // public static cubeToTwoAxisEven(tile: HexagonalTile): Position {
-  //   return new Position(Math.floor(-tile.z), Math.floor(tile.x + tile.z));
-  // }
-
-  // public static cubeToTwoAxisOdd(tile: HexagonalTile): Position {
-  //   return new Position(Math.floor(tile.x + tile.z), Math.floor(-tile.x));
-  // }
 
   public static oddQToCube(position: Position): HexagonalTile {
     /* tslint:disable:no-bitwise */
@@ -129,38 +116,6 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     return hexes;
   }
 
-  // static trapezoidalShapeOdd(minQ: Integer, maxQ: Integer,
-  //   minR: Integer, maxR: Integer,
-  //   toCube: (position: Position) => HexagonalTile): Array<HexagonalTile> {
-  //   var hexes: Array<HexagonalTile> = [];
-
-  //   for (var q: Integer = maxQ - 1; q >= minQ; q--) {
-  //     const shift = maxQ - q - 1
-
-  //     for (var r: Integer = minR; r < maxR; r++) {
-  //       hexes.push(toCube(new Position(q, r + shift)));
-  //     }
-  //   }
-
-  //   return hexes;
-  // }
-
-  // static trapezoidalShapeEven(minQ: Integer, maxQ: Integer,
-  //   minR: Integer, maxR: Integer,
-  //   toCube: (position: Position) => HexagonalTile): Array<HexagonalTile> {
-  //   var hexes: Array<HexagonalTile> = [];
-
-  //   for (var q: Integer = maxQ - 1; q >= minQ; q--) {
-  //     const shift = maxQ - q - 1
-
-  //     for (var r: Integer = minR; r < maxR; r++) {
-  //       hexes.push(toCube(new Position(r + shift, q)));
-  //     }
-  //   }
-
-  //   return hexes;
-  // }
-
   public static triangularShape(size: Integer): HexagonalTile[] {
     const hexes: HexagonalTile[] = [];
 
@@ -234,19 +189,19 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     this.y = y;
     this.shape = shape;
 
-    if (shape === Shape.TrapezoidalEven && orientation === false) {
+    if (shape === Shape.Even && orientation === false) {
       this.toTile = HexagonalGrid.evenQToCube;
       this.toPoint = HexagonalGrid.cubeToEvenQ;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === Shape.TrapezoidalEven && orientation === true) {
+    } else if (shape === Shape.Even && orientation === true) {
       this.toTile = HexagonalGrid.evenRToCube;
       this.toPoint = HexagonalGrid.cubeToEvenR;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === Shape.TrapezoidalOdd && orientation === false) {
+    } else if (shape === Shape.Odd && orientation === false) {
       this.toTile = HexagonalGrid.oddQToCube;
       this.toPoint = HexagonalGrid.cubeToOddQ;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else if (shape === Shape.TrapezoidalOdd && orientation === true) {
+    } else if (shape === Shape.Odd && orientation === true) {
       this.toTile = HexagonalGrid.oddRToCube;
       this.toPoint = HexagonalGrid.cubeToOddR;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
@@ -262,14 +217,6 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
       this.toTile = HexagonalGrid.twoAxisToCube;
       this.toPoint = HexagonalGrid.cubeToTwoAxis;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-      // } else if (shape === Shape.RhombusEven) {
-      //   this.toTile = HexagonalGrid.twoAxisToCubeEven;
-      //   this.toPoint = HexagonalGrid.cubeToTwoAxisEven;
-      //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-      // } else if (shape === Shape.RhombusOdd) {
-      //   this.toTile = HexagonalGrid.twoAxisToCubeOdd;
-      //   this.toPoint = HexagonalGrid.cubeToTwoAxisOdd;
-      //   this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
     } else {
       this.tiles = [];
       this.toPoint = () => new Position();
@@ -323,5 +270,9 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     }
 
     return new HexagonalTile(Math.round(q), Math.round(-q - r), Math.round(r));
+  }
+
+  public tile(x: number, y: number): HexagonalTile | undefined {
+    return this.toTile ? this.toTile(new Position(x, y)) : undefined;
   }
 }

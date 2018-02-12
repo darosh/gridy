@@ -1,3 +1,4 @@
+import { toMap } from "./Utils";
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -7,36 +8,38 @@ export class Search {
         this.cost = {};
         this.previous = {};
         this.max = 0;
-        const starts = start.v ? [start] : start;
+        const starts = start.value ? [start] : start;
         this.start = starts[0];
-        starts.forEach((s) => {
-            this.cost[s.toString()] = 0;
-            this.previous[s.toString()] = null;
-        });
+        const blockedMap = blocked ? toMap(blocked) : undefined;
+        const availableMap = available ? toMap(available) : undefined;
+        for (const s of starts) {
+            this.cost[s.key] = 0;
+            this.previous[s.key] = null;
+        }
         const fringes = [starts];
         for (let k = 0; k < maxMovement && fringes[k].length > 0; k++) {
             fringes[k + 1] = [];
-            fringes[k].forEach((tile) => {
+            for (const tile of fringes[k]) {
                 const neighbors = tile.neighbors();
                 for (const dir of neighbors) {
                     const neighbor = dir[1];
-                    if (available && !available[neighbor.toString()]) {
+                    if (availableMap && !availableMap.has(neighbor.key)) {
                         continue;
                     }
                     if ((this.cost[neighbor.toString()] === undefined)
-                        && ((blocked && !blocked[neighbor.toString()]) || (!blocked))
+                        && ((blockedMap && !blockedMap.has(neighbor.key)) || (!blocked))
                         && neighbor.cubeLength() <= maxMagnitude) {
-                        this.cost[neighbor.toString()] = k + 1;
+                        this.cost[neighbor.key] = k + 1;
                         this.max = Math.max(this.max, k + 1);
-                        this.previous[neighbor.toString()] = tile;
+                        this.previous[neighbor.key] = tile;
                         fringes[k + 1].push(neighbor);
                     }
                 }
-            });
+            }
         }
     }
     path(end, max = false) {
-        const ends = end.v ? [end] : end;
+        const ends = end.value ? [end] : end;
         const min = (max ? Math.max : Math.min)
             .apply(null, ends.map((e) => this.cost[e.toString()]).filter((e) => e !== undefined));
         const path = [];

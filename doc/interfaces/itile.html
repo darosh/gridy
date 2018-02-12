@@ -86,7 +86,7 @@
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
 					<li><a href="../classes/hexagonaltile.html" class="tsd-signature-type">HexagonalTile</a></li>
-					<li><a href="../classes/rectangularsimpletile.html" class="tsd-signature-type">RectangularSimpleTile</a></li>
+					<li><a href="../classes/rectangular8tile.html" class="tsd-signature-type">Rectangular8Tile</a></li>
 					<li><a href="../classes/rectangulartile.html" class="tsd-signature-type">RectangularTile</a></li>
 					<li><a href="../classes/triangulartile.html" class="tsd-signature-type">TriangularTile</a></li>
 				</ul>
@@ -96,22 +96,51 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itile.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itile.html#value" class="tsd-kind-icon">value</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#cubelength" class="tsd-kind-icon">cube<wbr>Length</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#directions" class="tsd-kind-icon">directions</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#equals" class="tsd-kind-icon">equals</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#neighbors" class="tsd-kind-icon">neighbors</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#oposite" class="tsd-kind-icon">oposite</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#scale" class="tsd-kind-icon">scale</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#shift" class="tsd-kind-icon">shift</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#sideneighbors" class="tsd-kind-icon">side<wbr>Neighbors</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#sides" class="tsd-kind-icon">sides</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itile.html#v" class="tsd-kind-icon">v</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="key" class="tsd-anchor"></a>
+					<h3>key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L5">ITile.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L6">ITile.ts:6</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -126,7 +155,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L13">ITile.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L15">ITile.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,7 +178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L11">ITile.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L13">ITile.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -166,7 +195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L7">ITile.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L8">ITile.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -183,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L12">ITile.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L14">ITile.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -197,41 +226,18 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="map" class="tsd-anchor"></a>
-					<h3>map</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L6">ITile.ts:6</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="neighbors" class="tsd-anchor"></a>
 					<h3>neighbors</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">neighbors<span class="tsd-signature-symbol">(</span>direction<span class="tsd-signature-symbol">?: </span><a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">neighbors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L5">ITile.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L7">ITile.ts:7</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> direction: <a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -246,7 +252,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L9">ITile.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L11">ITile.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -269,7 +275,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L14">ITile.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L16">ITile.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -292,10 +298,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L10">ITile.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L12">ITile.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="sideneighbors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> side<wbr>Neighbors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">side<wbr>Neighbors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L10">ITile.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -309,27 +332,10 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L8">ITile.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/c4b756b/src/ITile.ts#L9">ITile.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#directions" class="tsd-signature-type">Directions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="v" class="tsd-anchor"></a>
-					<h3>v</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">v<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/46ce9b5/src/ITile.ts#L15">ITile.ts:15</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -350,6 +356,12 @@
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="itile.html" class="tsd-kind-icon">ITile</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itile.html#key" class="tsd-kind-icon">key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itile.html#value" class="tsd-kind-icon">value</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="itile.html#add" class="tsd-kind-icon">add</a>
 							</li>
@@ -361,9 +373,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="itile.html#equals" class="tsd-kind-icon">equals</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="itile.html#map" class="tsd-kind-icon">map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="itile.html#neighbors" class="tsd-kind-icon">neighbors</a>
@@ -378,10 +387,10 @@
 								<a href="itile.html#shift" class="tsd-kind-icon">shift</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="itile.html#sides" class="tsd-kind-icon">sides</a>
+								<a href="itile.html#sideneighbors" class="tsd-kind-icon">side<wbr>Neighbors</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="itile.html#v" class="tsd-kind-icon">v</a>
+								<a href="itile.html#sides" class="tsd-kind-icon">sides</a>
 							</li>
 						</ul>
 					</li>

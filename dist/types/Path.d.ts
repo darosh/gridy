@@ -1,7 +1,9 @@
 import { Integer } from "./Integer";
-import { ITile } from "./ITile";
-export declare function spiral(start: ITile<any>, N: Integer, isSpiral: boolean): ITile<any>[];
-export declare function intersect(a: ITile<any>[], b: ITile<any>[]): ITile<any>[];
-export declare function axes(a: ITile<any>[], axe: Integer, odd?: boolean): ITile<any>[];
-export declare function border(tiles: ITile<any>[]): ITile<any>[];
-export declare function outline(tiles: ITile<any>[]): ITile<any>[];
+import { AnyTile } from "./ITile";
+export declare function circle(start: AnyTile, N: Integer): AnyTile[];
+export declare function spiral(start: AnyTile, N: Integer, isSpiral?: boolean): AnyTile[];
+export declare function intersect(a: AnyTile[], b: AnyTile[]): AnyTile[];
+export declare function axes(a: AnyTile[], axe: Integer, odd?: boolean): AnyTile[];
+export declare function border(tiles: AnyTile[]): AnyTile[];
+export declare function outline(tiles: AnyTile[]): AnyTile[];
+export declare function connections(tiles: AnyTile[]): AnyTile[][];

@@ -11,6 +11,7 @@ import { TriangularTile } from "./TriangularTile";
  * ![](../../examples/output/triangular-grid.svg)
  */
 export declare class TriangularGrid implements IGrid<TriangularTile> {
+    static shapes: Shape[];
     tiles: TriangularTile[];
     orientation: boolean;
     scale: Float;
@@ -26,6 +27,7 @@ export declare class TriangularGrid implements IGrid<TriangularTile> {
     vertices(orientation?: boolean, scale?: Float, tileType?: Integer): Float2[];
     position(p: Float2): TriangularTile;
     getTileType(tile: TriangularTile): Integer;
+    tile(x: number, y: number): undefined;
     private rhombus();
     private triangle();
     private hexagonalShape(size);

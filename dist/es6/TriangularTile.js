@@ -7,11 +7,14 @@ export class TriangularTile extends Integer2 {
         super(x, y);
         this.s = s;
     }
-    v() {
+    get key() {
+        return this.toString();
+    }
+    get value() {
         return [this.x, this.y, this.s];
     }
     toString() {
-        return this.v().join(",");
+        return this.value.toString();
     }
     equals(p) {
         return (this.s === p.s) && super.equals(p);
@@ -40,9 +43,6 @@ export class TriangularTile extends Integer2 {
                 this.add(this.s ? TriangularTile.directions2[dir][1] : TriangularTile.directions1[dir][1])]);
         }
         return results;
-    }
-    map() {
-        return new Map(this.neighbors());
     }
 }
 TriangularTile.directions1 = [

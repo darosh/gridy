@@ -25,10 +25,10 @@ export class Integer3 implements IVector<Integer> {
   }
 
   public toString(): string {
-    return this.v().join(",");
+    return this.value.toString();
   }
 
-  public v(): Integer[] {
+  public get value(): Integer[] {
     return [this.x, this.y, this.z];
   }
 

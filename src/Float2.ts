@@ -38,7 +38,7 @@ export class Float2 implements IVector<Float> {
     return (this.x === p.x) && (this.y === p.y);
   }
 
-  public v(): Float[] {
+  public get value(): Float[] {
     return [this.x, this.y];
   }
 
@@ -47,6 +47,6 @@ export class Float2 implements IVector<Float> {
   }
 
   public toString(): string {
-    return this.v().join(",");
+    return this.value.toString();
   }
 }

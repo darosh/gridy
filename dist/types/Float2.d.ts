@@ -9,7 +9,7 @@ export declare class Float2 implements IVector<Float> {
     y: Float;
     constructor(x?: Float, y?: Float);
     equals(p: Float2): boolean;
-    v(): Float[];
+    readonly value: Float[];
     scale(k: Float): Float2;
     toString(): string;
 }

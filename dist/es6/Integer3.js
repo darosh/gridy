@@ -14,9 +14,9 @@ export class Integer3 {
         return new Integer3(this.x * k, this.y * k, this.z * k);
     }
     toString() {
-        return this.v().join(",");
+        return this.value.toString();
     }
-    v() {
+    get value() {
         return [this.x, this.y, this.z];
     }
     equals(other) {

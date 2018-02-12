@@ -7,12 +7,10 @@ import { ITile } from "./ITile";
  */
 export declare class RectangularTile extends Integer2 implements ITile<Integer2> {
     static directions: Directions<RectangularTile>;
-    static sides: Directions<RectangularTile>;
+    readonly key: string;
     shift(): RectangularTile;
     directions(): Directions<RectangularTile>;
-    sides(): Directions<RectangularTile>;
     add(a: RectangularTile): RectangularTile;
     scale(a: Integer): RectangularTile;
-    neighbors(directions?: Directions<RectangularTile>): Directions<RectangularTile>;
-    map(): Map<number, RectangularTile>;
+    neighbors(): Directions<RectangularTile>;
 }

@@ -62,6 +62,9 @@ export class TriangularGrid {
     getTileType(tile) {
         return tile.s ? 0 : 1;
     }
+    tile(x, y) {
+        return undefined;
+    }
     rhombus() {
         const results = [];
         for (let px = 0; px < this.x; px++) {
@@ -99,3 +102,4 @@ export class TriangularGrid {
         return results;
     }
 }
+TriangularGrid.shapes = [Shape.Hexagonal, Shape.Rhombus, Shape.Triangular];

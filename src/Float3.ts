@@ -53,12 +53,12 @@ export class Float3 implements IVector<Float> {
     return (this.x === other.x) && (this.y === other.y) && (this.z === other.z);
   }
 
-  public v(): Float[] {
+  public get value(): Float[] {
     return [this.x, this.y, this.z];
   }
 
   public toString(): string {
-    return "#{" + this.v().join(",") + "}";
+    return this.value.toString();
   }
 
   public round(): Integer3 {

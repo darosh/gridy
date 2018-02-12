@@ -1,9 +1,7 @@
 export enum Shape {
-  TrapezoidalEven,
-  TrapezoidalOdd,
+  Even,
+  Odd,
   Hexagonal,
   Triangular,
   Rhombus,
-  // RhombusEven,
-  // RhombusOdd,
 }

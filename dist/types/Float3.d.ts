@@ -10,7 +10,7 @@ export declare class Float3 implements IVector<Float> {
     z: Float;
     constructor(x: Float, y: Float, z: Float);
     equals(other: Float3): boolean;
-    v(): Float[];
+    readonly value: Float[];
     toString(): string;
     round(): Integer3;
 }

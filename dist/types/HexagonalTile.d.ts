@@ -7,10 +7,13 @@ import { ITile } from "./ITile";
  */
 export declare class HexagonalTile extends Integer3 implements ITile<Integer3> {
     static directions: Directions<HexagonalTile>;
+    private tiles;
+    readonly key: string;
     shift(): HexagonalTile;
     directions(): Directions<HexagonalTile>;
     add(a: HexagonalTile): HexagonalTile;
     scale(a: Integer): HexagonalTile;
     neighbors(): Directions<HexagonalTile>;
-    map(): Map<number, HexagonalTile>;
+    right(): this;
+    left(): this;
 }

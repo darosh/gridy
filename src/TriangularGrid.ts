@@ -14,6 +14,8 @@ import { TriangularTile } from "./TriangularTile";
  * ![](../../examples/output/triangular-grid.svg)
  */
 export class TriangularGrid implements IGrid<TriangularTile> {
+  public static shapes = [Shape.Hexagonal, Shape.Rhombus,  Shape.Triangular];
+
   public tiles: TriangularTile[];
   public orientation: boolean;
   public scale: Float;
@@ -87,6 +89,10 @@ export class TriangularGrid implements IGrid<TriangularTile> {
 
   public getTileType(tile: TriangularTile): Integer {
     return tile.s ? 0 : 1;
+  }
+
+  public tile(x: number, y: number) {
+    return undefined;
   }
 
   private rhombus(): TriangularTile[] {

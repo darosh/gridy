@@ -10,8 +10,9 @@ export declare class TriangularTile extends Integer2 implements ITile<Integer2> 
     static directions2: Directions<TriangularTile>;
     static oposites: any;
     s: boolean;
+    readonly key: string;
     constructor(x?: Integer, y?: Integer, s?: boolean);
-    v(): any[];
+    readonly value: any[];
     toString(): string;
     equals(p: TriangularTile): boolean;
     shift(): TriangularTile;
@@ -20,5 +21,4 @@ export declare class TriangularTile extends Integer2 implements ITile<Integer2> 
     add(a: TriangularTile): TriangularTile;
     scale(a: Integer): TriangularTile;
     neighbors(): Directions<TriangularTile>;
-    map(): Map<number, TriangularTile>;
 }

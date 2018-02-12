@@ -34,17 +34,21 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
 
   public s: boolean;
 
+  public get key() {
+    return this.toString();
+  }
+
   constructor(x: Integer = 0, y: Integer = 0, s: boolean = false) {
     super(x, y);
     this.s = s;
   }
 
-  public v(): any[] {
+  public get value(): any[] {
     return [this.x, this.y, this.s];
   }
 
   public toString(): string {
-    return this.v().join(",");
+    return this.value.toString();
   }
 
   public equals(p: TriangularTile): boolean {
@@ -82,9 +86,5 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
     }
 
     return results;
-  }
-
-  public map(): Map<number, TriangularTile> {
-    return new Map(this.neighbors());
   }
 }

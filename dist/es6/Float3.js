@@ -37,11 +37,11 @@ export class Float3 {
     equals(other) {
         return (this.x === other.x) && (this.y === other.y) && (this.z === other.z);
     }
-    v() {
+    get value() {
         return [this.x, this.y, this.z];
     }
     toString() {
-        return "#{" + this.v().join(",") + "}";
+        return this.value.toString();
     }
     round() {
         return Float3.round(this);

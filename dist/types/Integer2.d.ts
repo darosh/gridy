@@ -4,7 +4,7 @@ export declare class Integer2 implements IVector<Integer> {
     x: Integer;
     y: Integer;
     constructor(x?: Integer, y?: Integer);
-    v(): Integer[];
+    readonly value: Integer[];
     distance(b: Integer2): Integer;
     toString(): string;
     equals(p: Integer2): boolean;

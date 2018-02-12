@@ -10,7 +10,7 @@ var Diagram = require('../dist/diagram')
 var css = fs.readFileSync('examples/diagram.css', 'utf8')
 
 if (!fs.existsSync('examples/output')) {
-  fs.mkdir('examples/output')
+  fs.mkdirSync('examples/output')
 }
 
 function make (x, y, a, b, c, d, h, p, grid, fileName) {
@@ -47,12 +47,12 @@ make(100, 100, true, false, false, false, false, false, new Gridy.HexagonalGrid(
   'examples/output/hexagonal-grid.svg')
 make(100, 100, true, false, false, false, false, false, new Gridy.TriangularGrid(16, false, Gridy.Shape.Triangular, 5),
   'examples/output/triangular-grid.svg')
-make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(15, false, Gridy.Shape.TrapezoidalEven, 5, 5),
+make(100, 100, true, false, false, false, false, false, new Gridy.RectangularGrid(15, false, Gridy.Shape.Even, 5, 5),
   'examples/output/rectangular-grid.svg')
-make(100, 100, true, false, false, false, false, false, new Gridy.BrickGrid(15, true, Gridy.Shape.TrapezoidalOdd, 7, 7),
+make(100, 100, true, false, false, false, false, false, new Gridy.BrickGrid(15, true, Gridy.Shape.Odd, 7, 7),
   'examples/output/brick-grid.svg')
 
-make(340, 240, true, false, true, false, false, false, new Gridy.HexagonalGrid(45, true, Gridy.Shape.TrapezoidalEven, 5, 5),
+make(340, 240, true, false, true, false, false, false, new Gridy.HexagonalGrid(45, true, Gridy.Shape.Even, 5, 5),
   'examples/output/trapezoidal.svg')
 make(340, 240, false, true, false, true, false, false, new Gridy.HexagonalGrid(45, false, Gridy.Shape.Hexagonal, 3),
   'examples/output/hexagonal.svg')
@@ -78,8 +78,8 @@ function maze () {
     new Gridy.HexagonalTile(),
     Infinity,
     100,
-    Gridy.look(blocked),
-    Gridy.look(grid.tiles)
+    blocked,
+    grid.tiles
   )
 
   var path = search.path(grid.toTile(new Gridy.Position(8, 4)))

@@ -18,7 +18,7 @@
         new Diagram(svg, grid)
           .circles()
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -33,7 +33,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -47,7 +47,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -62,63 +62,63 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
         ['Hexagonal', 'grid'],
-        ['TrapezoidalEven', 'shape']
+        ['Even', 'shape']
       ],
       script: function (svg) {
         const { Shape, HexagonalGrid } = Gridy
 
-        const grid = new HexagonalGrid(70, false, Shape.TrapezoidalEven, 4, 4)
+        const grid = new HexagonalGrid(70, false, Shape.Even, 4, 4)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
         ['Hexagonal', 'grid'],
-        ['TrapezoidalEven', 'shape']
+        ['Even', 'shape']
       ],
       script: function (svg) {
         const { Shape, HexagonalGrid } = Gridy
 
-        const grid = new HexagonalGrid(70, true, Shape.TrapezoidalEven, 4, 4)
+        const grid = new HexagonalGrid(70, true, Shape.Even, 4, 4)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
         ['Hexagonal', 'grid'],
-        ['TrapezoidalOdd', 'shape']
+        ['Odd', 'shape']
       ],
       script: function (svg) {
         const { Shape, HexagonalGrid } = Gridy
 
-        const grid = new HexagonalGrid(70, false, Shape.TrapezoidalOdd, 4, 4)
+        const grid = new HexagonalGrid(70, false, Shape.Odd, 4, 4)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
         ['Hexagonal', 'grid'],
-        ['TrapezoidalOdd', 'shape']
+        ['Odd', 'shape']
       ],
       script: function (svg) {
         const { Shape, HexagonalGrid } = Gridy
 
-        const grid = new HexagonalGrid(70, true, Shape.TrapezoidalOdd, 4, 4)
+        const grid = new HexagonalGrid(70, true, Shape.Odd, 4, 4)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -128,11 +128,45 @@
       script: function (svg) {
         const { Shape, HexagonalGrid } = Gridy
 
-        const grid = new HexagonalGrid(70, false, Shape.Rhombus, 4, 4)
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
+      }
+    }, {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (svg) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+
+        rotate(grid, 2)
+        normalize(grid)
+
+        new Diagram(svg, grid)
+          .coordinates()
+          .tiles()
+      }
+    }, {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (svg) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
+
+        rotate(grid, -2)
+        normalize(grid)
+
+        new Diagram(svg, grid)
+          .coordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -147,7 +181,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
       }
     }, {
       title: [
@@ -240,24 +274,24 @@
         ['Array', 'selection']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, Position } = Gridy
+        const { Shape, HexagonalGrid } = Gridy
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
         const tiles = [
-          grid.toTile(new Position(0, 0)),
-          grid.toTile(new Position(3, 0)),
-          grid.toTile(new Position(3, 1)),
-          grid.toTile(new Position(3, 2)),
-          grid.toTile(new Position(3, 3)),
-          grid.toTile(new Position(1, 3)),
-          grid.toTile(new Position(1, 2)),
-          grid.toTile(new Position(1, 1))
+          grid.tile(0, 0),
+          grid.tile(3, 0),
+          grid.tile(3, 1),
+          grid.tile(3, 2),
+          grid.tile(3, 3),
+          grid.tile(1, 3),
+          grid.tile(1, 2),
+          grid.tile(1, 1)
         ]
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .highlight(tiles)
       }
     }, {
@@ -265,15 +299,15 @@
         ['Array', 'selection']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, Position } = Gridy
+        const { Shape, RectangularGrid } = Gridy
 
         const grid = new RectangularGrid(60, false, Shape.Rhombus, 4, 4)
 
         const tiles = [
-          grid.toTile(new Position(0, 0)),
-          grid.toTile(new Position(3, 0)),
-          grid.toTile(new Position(3, 1)),
-          grid.toTile(new Position(1, 1))
+          grid.tile(0, 0),
+          grid.tile(3, 0),
+          grid.tile(3, 1),
+          grid.tile(1, 1)
         ]
 
         new Diagram(svg, grid)
@@ -293,7 +327,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .highlight(tiles)
       }
     }]
@@ -304,15 +338,15 @@
         ['Circle', 'path']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, spiral, HexagonalTile } = Gridy
+        const { Shape, HexagonalGrid, circle, HexagonalTile } = Gridy
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
-        const path = spiral(new HexagonalTile(1, -2, 1), 2, false)
+        const path = circle(new HexagonalTile(1, -2, 1), 2)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .path(path)
           .highlight(path)
       }
@@ -325,11 +359,11 @@
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
-        const path = spiral(new HexagonalTile(1, -2, 1), 2, true)
+        const path = spiral(new HexagonalTile(1, -2, 1), 2)
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .path(path)
           .highlight(path)
       }
@@ -342,7 +376,7 @@
 
         const grid = new BrickGrid(40, true, Shape.Triangular, 9)
 
-        const path = spiral(new HexagonalTile(1, -2, 1), 2, true)
+        const path = spiral(new HexagonalTile(1, -2, 1), 2)
 
         new Diagram(svg, grid)
           .path(path)
@@ -357,7 +391,7 @@
 
         const grid = new RectangularGrid(40, false, Shape.Rhombus, 7, 7)
 
-        const path = spiral(new RectangularTile(3, 3), 2, true)
+        const path = spiral(new RectangularTile(3, 3), 2)
 
         new Diagram(svg, grid)
           .coordinates()
@@ -373,7 +407,7 @@
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
-        const path = spiral(new HexagonalTile(1, -2, 1), 2, true)
+        const path = spiral(new HexagonalTile(1, -2, 1), 2)
 
         const cropped = intersect(
           path,
@@ -382,7 +416,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .path(cropped)
           .highlight(cropped)
       }
@@ -402,7 +436,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .path(path)
           .highlight(path)
       }
@@ -433,22 +467,23 @@
         ['Search', 'path']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, HexagonalTile, Search, look, Position } = Gridy
+        const { Shape, HexagonalGrid, HexagonalTile, Search } = Gridy
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
         const search = new Search(
           new HexagonalTile(),
           Infinity,
-          8, {},
-          look(grid.tiles)
+          8,
+          undefined,
+          grid.tiles
         )
 
-        const path = search.path(grid.toTile(new Position(3, 3)))
+        const path = search.path(grid.tile(3, 3))
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .path(path)
       }
     }, {
@@ -456,30 +491,30 @@
         ['Obstacles', 'path']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, HexagonalTile, Search, look, Position } = Gridy
+        const { Shape, HexagonalGrid, HexagonalTile, Search } = Gridy
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
         const blocked = [
-          grid.toTile(new Position(1, 0)),
-          grid.toTile(new Position(2, 1)),
-          grid.toTile(new Position(1, 3)),
-          grid.toTile(new Position(2, 2))
+          grid.tile(1, 0),
+          grid.tile(2, 1),
+          grid.tile(1, 3),
+          grid.tile(2, 2)
         ]
 
         const search = new Search(
           new HexagonalTile(),
           Infinity,
           8,
-          look(blocked),
-          look(grid.tiles)
+          blocked,
+          grid.tiles
         )
 
-        const path = search.path(grid.toTile(new Position(3, 3)))
+        const path = search.path(grid.tile(3, 3))
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .highlight(blocked)
           .path(path)
       }
@@ -488,26 +523,26 @@
         ['Obstacles', 'path']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, RectangularTile, Search, look, Position } = Gridy
+        const { Shape, RectangularGrid, RectangularTile, Search } = Gridy
 
         const grid = new RectangularGrid(40, true, Shape.Rhombus, 5, 5)
 
         const blocked = [
-          grid.toTile(new Position(1, 0)),
-          grid.toTile(new Position(2, 1)),
-          grid.toTile(new Position(1, 3)),
-          grid.toTile(new Position(2, 2))
+          grid.tile(1, 0),
+          grid.tile(2, 1),
+          grid.tile(1, 3),
+          grid.tile(2, 2)
         ]
 
         const search = new Search(
           new RectangularTile(),
           Infinity,
           8,
-          look(blocked),
-          look(grid.tiles)
+          blocked,
+          grid.tiles
         )
 
-        const path = search.path(grid.toTile(new Position(4, 0)))
+        const path = search.path(grid.tile(4, 0))
 
         new Diagram(svg, grid)
           .coordinates()
@@ -521,28 +556,28 @@
       class: 'wide',
       width: 760,
       script: function (svg) {
-        const { Shape, HexagonalGrid, HexagonalTile, Search, look, Position, spiral } = Gridy
+        const { Shape, HexagonalGrid, HexagonalTile, Search, circle } = Gridy
 
         const grid = new HexagonalGrid(32, true, Shape.Hexagonal, 14)
 
         let t = []
         const blocked = []
-          .concat(((t = spiral(new HexagonalTile(), 1, false)).splice(5, 1), t))
-          .concat(((t = spiral(new HexagonalTile(), 3, false)).splice(2, 1), t))
-          .concat(((t = spiral(new HexagonalTile(), 5, false)).splice(18, 1), t))
-          .concat(((t = spiral(new HexagonalTile(), 7, false)).splice(33, 1), t))
-          .concat(((t = spiral(new HexagonalTile(), 9, false)).splice(7, 1), t))
-          .concat(((t = spiral(new HexagonalTile(), 11, false)).splice(22, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 1)).splice(5, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 3)).splice(2, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 5)).splice(18, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 7)).splice(33, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 9)).splice(7, 1), t))
+          .concat(((t = circle(new HexagonalTile(), 11)).splice(22, 1), t))
 
         const search = new Search(
           new HexagonalTile(),
           Infinity,
           100,
-          look(blocked),
-          look(grid.tiles)
+          blocked,
+          grid.tiles
         )
 
-        const path = search.path(grid.toTile(new Position(13, 6)))
+        const path = search.path(grid.tile(13, 6))
 
         new Diagram(svg, grid)
           .highlight(blocked)
@@ -553,30 +588,30 @@
         ['Search maze', 'demo']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, RectangularSimpleTile, Search, look, Position } = Gridy
+        const { Shape, RectangularGrid, RectangularTile, Search } = Gridy
 
         const size = 24
 
-        const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size, RectangularSimpleTile)
+        const grid = new RectangularGrid(14, false, Shape.Rhombus, size, size)
 
         const blocked = []
 
         for (let i = 0; i < 180; i++) {
-          blocked.push(new Position(
+          blocked.push(new RectangularTile(
             Math.floor(Math.random() * size + 1),
             Math.floor(Math.random() * (size - 1))
           ))
         }
 
         const search = new Search(
-          new RectangularSimpleTile(),
+          new RectangularTile(),
           Infinity,
           100,
-          look(blocked),
-          look(grid.tiles)
+          blocked,
+          grid.tiles
         )
 
-        const path = search.path(grid.toTile(new Position(size - 1, size - 1)))
+        const path = search.path(grid.tile(size - 1, size - 1))
 
         new Diagram(svg, grid)
           .highlight(blocked, 'highlight-dark')
@@ -588,7 +623,7 @@
         ['Connect path', 'demo']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, RectangularTile, Search, look, Position } = Gridy
+        const { Shape, RectangularGrid, RectangularTile, Search, Position } = Gridy
 
         const size = 7
 
@@ -610,10 +645,10 @@
           Infinity,
           100,
           undefined,
-          look(available)
+          available
         )
 
-        const path = search.path(grid.toTile(new Position(size - 1, size - 1)))
+        const path = search.path(grid.tile(size - 1, size - 1))
 
         new Diagram(svg, grid)
           .highlight(available)
@@ -625,7 +660,7 @@
         ['Connect edges', 'demo']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, Search, look, Position, neighbors } = Gridy
+        const { Shape, HexagonalGrid, Search } = Gridy
 
         const size = 11
 
@@ -635,20 +670,18 @@
         const ends = []
 
         for (let i = 0; i < size; i++) {
-          starts.push(grid.toTile(new Position(0, i)))
-          ends.push(grid.toTile(new Position(size - 1, i)))
+          starts.push(grid.tile(0, i))
+          ends.push(grid.tile(size - 1, i))
         }
 
         const blocked = grid.tiles.filter((s, i) => !((s.x - s.y) % 3) || !((i + s.x) % 7))
-
-        neighbors(grid.tiles) // Optional
 
         const search = new Search(
           starts,
           Infinity,
           100,
-          look(blocked),
-          look(grid.tiles)
+          blocked,
+          grid.tiles
         )
 
         const path = search.path(ends)
@@ -664,7 +697,7 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, neighbors, map, connections } = Gridy
+        const { Shape, HexagonalGrid, connections } = Gridy
 
         const size = 11
 
@@ -672,8 +705,6 @@
 
         const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
 
-        neighbors(active)
-        map(active) // Optional
         const lines = connections(active).filter((l) => l.length === 5)
 
         new Diagram(svg, grid)
@@ -685,16 +716,14 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, RectangularGrid, neighbors, map, connections } = Gridy
+        const { Shape, RectangularGrid, Rectangular8Tile, connections } = Gridy
 
         const size = 11
 
-        const grid = new RectangularGrid(24, false, Shape.Rhombus, size, size)
+        const grid = new RectangularGrid(24, false, Shape.Rhombus, size, size, Rectangular8Tile)
 
         const active = grid.tiles.filter((s, i) => ((s.x - s.y) % 3) || !((i + s.x) % 8))
 
-        neighbors(active)
-        map(active) // Optional
         const lines = connections(active).filter((l) => l.length === 5)
 
         new Diagram(svg, grid)
@@ -706,7 +735,7 @@
         ['Connections', 'demo']
       ],
       script: function (svg) {
-        const { Shape, TriangularGrid, neighbors, map, connections } = Gridy
+        const { Shape, TriangularGrid, connections } = Gridy
 
         const size = 11
 
@@ -714,8 +743,6 @@
 
         const active = grid.tiles.filter((s, i) => [13, 50, 98].indexOf(i) === -1)
 
-        neighbors(active)
-        map(active) // Optional
         const lines = connections(active).filter((l) => l.length <= 7 && l.length >= 3)
 
         new Diagram(svg, grid)
@@ -727,13 +754,12 @@
         ['Border', 'demo']
       ],
       script: function (svg) {
-        const { Shape, TriangularGrid, neighbors, border } = Gridy
+        const { Shape, TriangularGrid, border } = Gridy
 
         const size = 11
 
         const grid = new TriangularGrid(24, false, Shape.Triangular, size, size)
 
-        neighbors(grid.tiles)
         const selected = border(grid.tiles)
 
         new Diagram(svg, grid)
@@ -744,13 +770,12 @@
         ['Outline', 'demo']
       ],
       script: function (svg) {
-        const { Shape, HexagonalGrid, neighbors, outline } = Gridy
+        const { Shape, HexagonalGrid, outline } = Gridy
 
         const size = 3
 
         const grid = new HexagonalGrid(48, false, Shape.Hexagonal, size, size)
 
-        neighbors(grid.tiles)
         const out = outline(grid.tiles)
         grid.tiles = grid.tiles.concat(out)
 
@@ -762,13 +787,12 @@
         ['Outline', 'demo']
       ],
       script: function (svg) {
-        const { Shape, TriangularGrid, neighbors, outline } = Gridy
+        const { Shape, TriangularGrid, outline } = Gridy
 
         const size = 3
 
         const grid = new TriangularGrid(48, false, Shape.Triangular, size, size)
 
-        neighbors(grid.tiles)
         const out = outline(grid.tiles)
         grid.tiles = grid.tiles.concat(out)
 
@@ -789,7 +813,7 @@
 
         new Diagram(svg, grid)
           .coordinates()
-          .tileCoordinates()
+          .tiles()
           .point([90, 33])
           .mousePoint()
       }
@@ -824,7 +848,12 @@
     element.appendChild(link)
     const svg = d3.select(element).append('svg').attr('width', item.width || 340).attr('height', item.height || 340)
     code(item.script, element)
+    const start = Date.now()
     item.script(svg)
+    const time = document.createElement('div')
+    time.className = 'time'
+    time.textContent = Date.now() - start + 'ms'
+    element.appendChild(time)
   }
 
   function group (item, root, done) {

@@ -3,14 +3,14 @@ export class Integer2 {
         this.x = x;
         this.y = y;
     }
-    v() {
+    get value() {
         return [this.x, this.y];
     }
     distance(b) {
         return Math.floor((Math.abs(this.x - b.x) + Math.abs(this.y - b.y)) / 2);
     }
     toString() {
-        return this.x + "," + this.y;
+        return this.value.toString();
     }
     equals(p) {
         return (this.x === p.x) && (this.y === p.y);

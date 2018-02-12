@@ -10,7 +10,7 @@ export class Integer2 implements IVector<Integer> {
     this.y = y;
   }
 
-  public v(): Integer[] {
+  public get value(): Integer[] {
     return [this.x, this.y];
   }
 
@@ -19,7 +19,7 @@ export class Integer2 implements IVector<Integer> {
   }
 
   public toString(): string {
-    return this.x + "," + this.y;
+    return this.value.toString();
   }
 
   public equals(p: Integer2): boolean {

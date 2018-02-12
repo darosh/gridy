@@ -1,6 +1,7 @@
 import { Directions } from "./Directions";
 import { Integer } from "./Integer";
-import { ITile } from "./ITile";
+import { AnyTile, ITile } from "./ITile";
+import { toMap } from "./Utils";
 
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
@@ -9,55 +10,59 @@ import { ITile } from "./ITile";
 
 export class Search {
   public cost: { [key: string]: Integer } = {};
-  public previous: { [key: string]: ITile<any> | null } = {};
-  public start: ITile<any>;
+  public previous: { [key: string]: AnyTile | null } = {};
+  public start: AnyTile;
   public max: Integer = 0;
 
-  constructor(start: ITile<any> | ITile<any>[], maxMovement: number, maxMagnitude: number,
-              blocked: { [key: string]: boolean }, available?: { [key: string]: boolean }) {
+  constructor(start: AnyTile | AnyTile[], maxMovement: number, maxMagnitude: number,
+              blocked?: AnyTile[], available?: AnyTile[]) {
 
-    const starts: ITile<any>[] = (start as ITile<any>).v ? [start as ITile<any>] : (start as ITile<any>[]);
+    const starts: AnyTile[] = (start as AnyTile).value ? [start as AnyTile] : (start as AnyTile[]);
 
     this.start = starts[0];
 
-    starts.forEach((s) => {
-      this.cost[s.toString()] = 0;
-      this.previous[s.toString()] = null;
-    });
+    const blockedMap = blocked ? toMap(blocked) : undefined;
+    const availableMap = available ? toMap(available) : undefined;
 
-    const fringes: ITile<any>[][] = [starts];
+    for (const s of starts) {
+      this.cost[s.key] = 0;
+      this.previous[s.key] = null;
+    }
+
+    const fringes: AnyTile[][] = [starts];
 
     for (let k: Integer = 0; k < maxMovement && fringes[k].length > 0; k++) {
       fringes[k + 1] = [];
-      fringes[k].forEach((tile: ITile<any>) => {
-        const neighbors: Directions<ITile<any>> = tile.neighbors();
+
+      for (const tile of fringes[k]) {
+        const neighbors: Directions<AnyTile> = tile.neighbors();
 
         for (const dir of neighbors) {
-          const neighbor: ITile<any> = dir[1];
+          const neighbor: AnyTile = dir[1];
 
-          if (available && !available[neighbor.toString()]) {
+          if (availableMap && !availableMap.has(neighbor.key)) {
             continue;
           }
 
           if ((this.cost[neighbor.toString()] === undefined)
-            && ((blocked && !blocked[neighbor.toString()]) || (!blocked))
+            && ((blockedMap && !blockedMap.has(neighbor.key)) || (!blocked))
             && neighbor.cubeLength() <= maxMagnitude) {
-            this.cost[neighbor.toString()] = k + 1;
+            this.cost[neighbor.key] = k + 1;
             this.max = Math.max(this.max, k + 1);
-            this.previous[neighbor.toString()] = tile;
+            this.previous[neighbor.key] = tile;
             fringes[k + 1].push(neighbor);
           }
         }
-      });
+      }
     }
   }
 
-  public path(end: ITile<any> | ITile<any>[], max: boolean = false): ITile<any>[] {
-    const ends: ITile<any>[] = (end as ITile<any>).v ? [end as ITile<any>] : (end as ITile<any>[]);
+  public path(end: AnyTile | AnyTile[], max: boolean = false): AnyTile[] {
+    const ends: AnyTile[] = (end as AnyTile).value ? [end as AnyTile] : (end as AnyTile[]);
     const min = (max ? Math.max : Math.min)
       .apply(null, ends.map((e) => this.cost[e.toString()]).filter((e) => e !== undefined));
-    const path: ITile<any>[] = [];
-    let node: ITile<any> | null = ends.find((e: ITile<any>) => this.cost[e.toString()] === min) || null;
+    const path: AnyTile[] = [];
+    let node: AnyTile | null = ends.find((e: AnyTile) => this.cost[e.toString()] === min) || null;
 
     while (node) {
       path.push(node);

@@ -1,7 +1,7 @@
 import { Float2 } from "./Float2";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
-import { ITile } from "./ITile";
+import { AnyTile, ITile } from "./ITile";
 import { Rectangle } from "./Rectangle";
 
 // From http://www.redblobgames.com/grids/hexagons/
@@ -33,7 +33,7 @@ function boundsOfPoints(points: Float2[]): Rectangle {
 }
 
 export function bounds(grid: IGrid<any>): Rectangle {
-  const centers: Float2[] = grid.tiles.map((tile: ITile<any>): Float2 => {
+  const centers: Float2[] = grid.tiles.map((tile: AnyTile): Float2 => {
     return grid.center(tile);
   });
 
