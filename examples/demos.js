@@ -560,17 +560,18 @@
 
         const grid = new HexagonalGrid(32, true, Shape.Hexagonal, 14)
 
+        const center = new HexagonalTile()
         let t = []
         const blocked = []
-          .concat(((t = circle(new HexagonalTile(), 1)).splice(5, 1), t))
-          .concat(((t = circle(new HexagonalTile(), 3)).splice(2, 1), t))
-          .concat(((t = circle(new HexagonalTile(), 5)).splice(18, 1), t))
-          .concat(((t = circle(new HexagonalTile(), 7)).splice(33, 1), t))
-          .concat(((t = circle(new HexagonalTile(), 9)).splice(7, 1), t))
-          .concat(((t = circle(new HexagonalTile(), 11)).splice(22, 1), t))
+          .concat(((t = circle(center, 1)).splice(5, 1), t))
+          .concat(((t = circle(center, 3)).splice(2, 1), t))
+          .concat(((t = circle(center, 5)).splice(18, 1), t))
+          .concat(((t = circle(center, 7)).splice(33, 1), t))
+          .concat(((t = circle(center, 9)).splice(7, 1), t))
+          .concat(((t = circle(center, 11)).splice(22, 1), t))
 
         const search = new Search(
-          new HexagonalTile(),
+          center,
           Infinity,
           100,
           blocked,
