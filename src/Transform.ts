@@ -2,7 +2,7 @@ import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { Position } from "./Position";
 
-export function rotate(grid: IGrid<any>, direction: Integer): void {
+export function rotate(grid: IGrid<any>, direction: Integer = 1): void {
   grid.tiles.forEach((t) => {
     let d = direction;
 

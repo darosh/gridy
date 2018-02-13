@@ -67,7 +67,13 @@ export class HexagonalGrid {
         return new HexagonalTile(position.x, -position.y - position.x, position.y);
     }
     static cubeToTwoAxis(tile) {
-        return new Position(Math.floor(tile.x), Math.floor(tile.z));
+        return new Position(tile.x, tile.z);
+    }
+    static twoAxisToCubeXY(position) {
+        return new HexagonalTile(position.x, position.y, -position.x - position.y);
+    }
+    static cubeToTwoAxisXY(tile) {
+        return new Position(tile.x, tile.y);
     }
     static oddQToCube(position) {
         /* tslint:disable:no-bitwise */
@@ -77,8 +83,8 @@ export class HexagonalGrid {
         return new HexagonalTile(x, -x - z, z);
     }
     static cubeToOddQ(tile) {
-        const x = Math.floor(tile.x);
-        const z = Math.floor(tile.z);
+        const x = tile.x;
+        const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x, z + ((x - (x & 1)) >> 1));
         /* tslint:enable:no-bitwise */
@@ -91,8 +97,8 @@ export class HexagonalGrid {
         return new HexagonalTile(x, -x - z, z);
     }
     static cubeToEvenQ(tile) {
-        const x = Math.floor(tile.x);
-        const z = Math.floor(tile.z);
+        const x = tile.x;
+        const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x, z + ((x + (x & 1)) >> 1));
         /* tslint:enable:no-bitwise */
@@ -105,8 +111,8 @@ export class HexagonalGrid {
         return new HexagonalTile(x, -x - z, z);
     }
     static cubeToOddR(tile) {
-        const x = Math.floor(tile.x);
-        const z = Math.floor(tile.z);
+        const x = tile.x;
+        const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x + ((z - (z & 1)) >> 1), z);
         /* tslint:enable:no-bitwise */
@@ -119,8 +125,8 @@ export class HexagonalGrid {
         return new HexagonalTile(x, -x - z, z);
     }
     static cubeToEvenR(tile) {
-        const x = Math.floor(tile.x);
-        const z = Math.floor(tile.z);
+        const x = tile.x;
+        const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x + ((z + (z & 1)) >> 1), z);
         /* tslint:enable:no-bitwise */

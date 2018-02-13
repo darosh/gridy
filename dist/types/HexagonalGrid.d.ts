@@ -14,6 +14,8 @@ export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     static shapes: Shape[];
     static twoAxisToCube(position: Position): HexagonalTile;
     static cubeToTwoAxis(tile: HexagonalTile): Position;
+    static twoAxisToCubeXY(position: Position): HexagonalTile;
+    static cubeToTwoAxisXY(tile: HexagonalTile): Position;
     static oddQToCube(position: Position): HexagonalTile;
     static cubeToOddQ(tile: HexagonalTile): Position;
     static evenQToCube(position: Position): HexagonalTile;

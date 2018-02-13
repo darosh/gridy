@@ -647,7 +647,17 @@ var HexagonalGrid = function () {
     }, {
         key: "cubeToTwoAxis",
         value: function cubeToTwoAxis(tile) {
-            return new Integer2(Math.floor(tile.x), Math.floor(tile.z));
+            return new Integer2(tile.x, tile.z);
+        }
+    }, {
+        key: "twoAxisToCubeXY",
+        value: function twoAxisToCubeXY(position) {
+            return new HexagonalTile(position.x, position.y, -position.x - position.y);
+        }
+    }, {
+        key: "cubeToTwoAxisXY",
+        value: function cubeToTwoAxisXY(tile) {
+            return new Integer2(tile.x, tile.y);
         }
     }, {
         key: "oddQToCube",
@@ -661,8 +671,8 @@ var HexagonalGrid = function () {
     }, {
         key: "cubeToOddQ",
         value: function cubeToOddQ(tile) {
-            var x = Math.floor(tile.x);
-            var z = Math.floor(tile.z);
+            var x = tile.x;
+            var z = tile.z;
             /* tslint:disable:no-bitwise */
             return new Integer2(x, z + (x - (x & 1) >> 1));
             /* tslint:enable:no-bitwise */
@@ -679,8 +689,8 @@ var HexagonalGrid = function () {
     }, {
         key: "cubeToEvenQ",
         value: function cubeToEvenQ(tile) {
-            var x = Math.floor(tile.x);
-            var z = Math.floor(tile.z);
+            var x = tile.x;
+            var z = tile.z;
             /* tslint:disable:no-bitwise */
             return new Integer2(x, z + (x + (x & 1) >> 1));
             /* tslint:enable:no-bitwise */
@@ -697,8 +707,8 @@ var HexagonalGrid = function () {
     }, {
         key: "cubeToOddR",
         value: function cubeToOddR(tile) {
-            var x = Math.floor(tile.x);
-            var z = Math.floor(tile.z);
+            var x = tile.x;
+            var z = tile.z;
             /* tslint:disable:no-bitwise */
             return new Integer2(x + (z - (z & 1) >> 1), z);
             /* tslint:enable:no-bitwise */
@@ -715,8 +725,8 @@ var HexagonalGrid = function () {
     }, {
         key: "cubeToEvenR",
         value: function cubeToEvenR(tile) {
-            var x = Math.floor(tile.x);
-            var z = Math.floor(tile.z);
+            var x = tile.x;
+            var z = tile.z;
             /* tslint:disable:no-bitwise */
             return new Integer2(x + (z + (z & 1) >> 1), z);
             /* tslint:enable:no-bitwise */
@@ -1548,7 +1558,9 @@ var Search = function () {
     return Search;
 }();
 
-function rotate(grid, direction) {
+function rotate(grid) {
+    var direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
     grid.tiles.forEach(function (t) {
         var d = direction;
         while (d > 0) {

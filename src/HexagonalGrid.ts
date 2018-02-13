@@ -27,7 +27,15 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   }
 
   public static cubeToTwoAxis(tile: HexagonalTile): Position {
-    return new Position(Math.floor(tile.x), Math.floor(tile.z));
+    return new Position(tile.x, tile.z);
+  }
+
+  public static twoAxisToCubeXY(position: Position): HexagonalTile {
+    return new HexagonalTile(position.x, position.y, -position.x - position.y);
+  }
+
+  public static cubeToTwoAxisXY(tile: HexagonalTile): Position {
+    return new Position(tile.x, tile.y);
   }
 
   public static oddQToCube(position: Position): HexagonalTile {
@@ -40,8 +48,8 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   }
 
   public static cubeToOddQ(tile: HexagonalTile): Position {
-    const x: Integer = Math.floor(tile.x);
-    const z: Integer = Math.floor(tile.z);
+    const x: Integer = tile.x;
+    const z: Integer = tile.z;
 
     /* tslint:disable:no-bitwise */
     return new Position(x, z + ((x - (x & 1)) >> 1));
@@ -58,8 +66,8 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   }
 
   public static cubeToEvenQ(tile: HexagonalTile): Position {
-    const x: Integer = Math.floor(tile.x);
-    const z: Integer = Math.floor(tile.z);
+    const x: Integer = tile.x;
+    const z: Integer = tile.z;
 
     /* tslint:disable:no-bitwise */
     return new Position(x, z + ((x + (x & 1)) >> 1));
@@ -76,8 +84,8 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   }
 
   public static cubeToOddR(tile: HexagonalTile): Position {
-    const x: Integer = Math.floor(tile.x);
-    const z: Integer = Math.floor(tile.z);
+    const x: Integer = tile.x;
+    const z: Integer = tile.z;
 
     /* tslint:disable:no-bitwise */
     return new Position(x + ((z - (z & 1)) >> 1), z);
@@ -94,8 +102,8 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   }
 
   public static cubeToEvenR(tile: HexagonalTile): Position {
-    const x: Integer = Math.floor(tile.x);
-    const z: Integer = Math.floor(tile.z);
+    const x: Integer = tile.x;
+    const z: Integer = tile.z;
 
     /* tslint:disable:no-bitwise */
     return new Position(x + ((z + (z & 1)) >> 1), z);

@@ -35,7 +35,7 @@
     "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
     "clean": "del-cli doc dist examples/output",
     "dist": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup -c rollup.config.js dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup -c rollup.config.js dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram && uglifyjs dist/diagram.js > dist/diagram.min.js && uglifyjs dist/gridy.js > dist/gridy.min.js",
-    "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme assets/doc.template.md",
+    "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme .template.md",
     "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
     "test": "del-cli examples/output && node examples/node.js",
     "watch": "npm run build && concurrently --raw --kill-others \"tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6\" \"rollup dist/es6/index.js -w --o dist/gridy.js --f umd --name Gridy\" \"rollup dist/es6/Diagram.js -w --o dist/diagram.js --f umd --name Diagram\""

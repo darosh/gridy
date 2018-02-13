@@ -142,14 +142,14 @@
       script: function (svg) {
         const { Shape, HexagonalGrid, rotate, normalize } = Gridy
 
-        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+        const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
 
-        rotate(grid, 2)
+        rotate(grid)
         normalize(grid)
 
         new Diagram(svg, grid)
-          .coordinates()
-          .tiles()
+          .axes()
+          .mousePoint()
       }
     }, {
       title: [
@@ -161,7 +161,26 @@
 
         const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
 
-        rotate(grid, -2)
+        rotate(grid)
+        grid.toPoint = HexagonalGrid.cubeToTwoAxisXY
+        grid.toTile = HexagonalGrid.twoAxisToCubeXY
+        normalize(grid)
+
+        new Diagram(svg, grid)
+          .axes()
+          .mousePoint()
+      }
+    }, {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (svg) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+
+        rotate(grid, -1)
         normalize(grid)
 
         new Diagram(svg, grid)

@@ -1,5 +1,9 @@
 export { Shape } from "./Shape";
 
+export { IGrid } from "./IGrid";
+export { ITile } from "./ITile";
+export { Direction, Directions } from "./Directions";
+
 export { BrickGrid } from "./BrickGrid";
 export { HexagonalGrid } from "./HexagonalGrid";
 export { TriangularGrid } from "./TriangularGrid";
