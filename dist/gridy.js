@@ -619,6 +619,7 @@ var HexagonalGrid = function () {
         value: function position(p) {
             var size = this.scale / 2;
             p = p.scale(1 / size);
+            p.y *= this.scaleY;
             var q = void 0;
             var r = void 0;
             if (this.orientation) {
@@ -654,6 +655,16 @@ var HexagonalGrid = function () {
         key: "cubeToTwoAxisXY",
         value: function cubeToTwoAxisXY(tile) {
             return new Integer2(tile.x, tile.y);
+        }
+    }, {
+        key: "twoAxisToCubeYZ",
+        value: function twoAxisToCubeYZ(position) {
+            return new HexagonalTile(-position.x - position.y, position.x, position.y);
+        }
+    }, {
+        key: "cubeToTwoAxisYZ",
+        value: function cubeToTwoAxisYZ(tile) {
+            return new Integer2(tile.y, tile.z);
         }
     }, {
         key: "oddQToCube",
@@ -1189,7 +1200,7 @@ var RectangularGrid = function () {
     }, {
         key: "position",
         value: function position(p) {
-            return new this.tileCtor(Math.round(p.x), Math.round(p.y));
+            return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
         }
     }, {
         key: "tile",

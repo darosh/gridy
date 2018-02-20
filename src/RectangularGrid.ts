@@ -97,7 +97,7 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
   }
 
   public position(p: Float2): RectangularTile | Rectangular8Tile {
-    return new this.tileCtor(Math.round(p.x), Math.round(p.y));
+    return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY  ));
   }
 
   public tile(x: number, y: number) {

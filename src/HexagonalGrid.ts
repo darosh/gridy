@@ -38,6 +38,14 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     return new Position(tile.x, tile.y);
   }
 
+  public static twoAxisToCubeYZ(position: Position): HexagonalTile {
+    return new HexagonalTile( -position.x - position.y, position.x, position.y);
+  }
+
+  public static cubeToTwoAxisYZ(tile: HexagonalTile): Position {
+    return new Position(tile.y, tile.z);
+  }
+
   public static oddQToCube(position: Position): HexagonalTile {
     /* tslint:disable:no-bitwise */
     const x: Integer = position.x;
@@ -263,6 +271,7 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   public position(p: Float2): HexagonalTile {
     const size: Float = this.scale / 2;
     p = p.scale(1 / size);
+    p.y *= this.scaleY;
 
     let q: Float;
     let r: Float;

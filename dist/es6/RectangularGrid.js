@@ -63,7 +63,7 @@ export class RectangularGrid {
         return points;
     }
     position(p) {
-        return new this.tileCtor(Math.round(p.x), Math.round(p.y));
+        return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
     }
     tile(x, y) {
         return this.toTile(new Position(x, y));

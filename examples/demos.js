@@ -181,6 +181,25 @@
         const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
 
         rotate(grid, -1)
+        grid.toPoint = HexagonalGrid.cubeToTwoAxisYZ
+        grid.toTile = HexagonalGrid.twoAxisToCubeYZ
+        normalize(grid)
+
+        new Diagram(svg, grid)
+          .axes()
+          .mousePoint()
+      }
+    }, {
+      title: [
+        ['Hexagonal', 'grid'],
+        ['Rhombus', 'shape']
+      ],
+      script: function (svg) {
+        const { Shape, HexagonalGrid, rotate, normalize } = Gridy
+
+        const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
+
+        rotate(grid, -1)
         normalize(grid)
 
         new Diagram(svg, grid)

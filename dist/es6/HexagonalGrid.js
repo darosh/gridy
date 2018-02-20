@@ -72,6 +72,12 @@ export class HexagonalGrid {
     static cubeToTwoAxisXY(tile) {
         return new Position(tile.x, tile.y);
     }
+    static twoAxisToCubeYZ(position) {
+        return new HexagonalTile(-position.x - position.y, position.x, position.y);
+    }
+    static cubeToTwoAxisYZ(tile) {
+        return new Position(tile.y, tile.z);
+    }
     static oddQToCube(position) {
         /* tslint:disable:no-bitwise */
         const x = position.x;
@@ -195,6 +201,7 @@ export class HexagonalGrid {
     position(p) {
         const size = this.scale / 2;
         p = p.scale(1 / size);
+        p.y *= this.scaleY;
         let q;
         let r;
         if (this.orientation) {
