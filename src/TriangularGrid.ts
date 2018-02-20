@@ -19,10 +19,11 @@ export class TriangularGrid implements IGrid<TriangularTile> {
   public tiles: TriangularTile[];
   public orientation: boolean;
   public scale: Float;
+  public scaleY: Float = -1;
   public angle: Float = -60;
   public x: Integer;
   public y: Integer;
-  // toTile?: (position: Position) => TriangularTile;
+  public toTile: (position: Position) => TriangularTile;
   public toPoint: (tile: TriangularTile) => Position;
   public radius: Float;
   public tileTypes: TileType = TileType.Variable;
@@ -52,6 +53,10 @@ export class TriangularGrid implements IGrid<TriangularTile> {
     this.toPoint = (tile: TriangularTile): Position => {
       return new Position(tile.x * 2 + (tile.s ? 1 : 0), tile.y);
     };
+
+    this.toTile = (position: Position): TriangularTile => {
+      return new TriangularTile(position.x / 2 - (position.x % 2), position.y);
+    };
   }
 
   public bounds(): Rectangle {
@@ -61,14 +66,14 @@ export class TriangularGrid implements IGrid<TriangularTile> {
   public center(tile: TriangularTile): Float2 {
     return new Float2(
       (tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2,
-      this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))),
+      this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY,
     );
   }
 
   public vertices(orientation?: boolean, scale?: Float, tileType: Integer = 0): Float2[] {
     scale = (scale === undefined) ? this.scale : scale;
 
-    if (tileType === 0) {
+    if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
       return [
         new Float2(0, -scale * SQRT_3_3),
         new Float2(-scale / 2, scale * SQRT_3_6),

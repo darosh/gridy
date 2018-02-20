@@ -64,6 +64,7 @@ make(230, 230, false, true, false, true, false, false, new Gridy.TriangularGrid(
 
 function maze () {
   var grid = new Gridy.HexagonalGrid(15, true, Gridy.Shape.Hexagonal, 9)
+  grid.scaleY = 1
 
   var t = []
   var blocked = []
@@ -92,6 +93,7 @@ maze()
 
 function pyramid () {
   var grid = new Gridy.BrickGrid(31, true, Gridy.Shape.Triangular, 9)
+  grid.scaleY = 1
 
   var path = Gridy.spiral(new Gridy.HexagonalTile(2, -6, 4), 2, true)
 

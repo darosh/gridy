@@ -174,10 +174,11 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
   public tiles: HexagonalTile[];
   public orientation: boolean;
   public scale: Float;
+  public scaleY: Float = -1;
   public angle: Float = -30;
   public x: Integer;
   public y: Integer;
-  public toTile?: (position: Position) => HexagonalTile;
+  public toTile: (position: Position) => HexagonalTile;
   public toPoint: (tile: HexagonalTile) => Position;
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
@@ -221,13 +222,10 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
       this.toTile = HexagonalGrid.evenQToCube;
       this.toPoint = HexagonalGrid.cubeToEvenQ;
       this.tiles = HexagonalGrid.triangularShape(x);
-    } else if (shape === Shape.Rhombus) {
+    } else /*if (shape === Shape.Rhombus)*/ {
       this.toTile = HexagonalGrid.twoAxisToCube;
       this.toPoint = HexagonalGrid.cubeToTwoAxis;
       this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-    } else {
-      this.tiles = [];
-      this.toPoint = () => new Position();
     }
   }
 
@@ -254,9 +252,9 @@ export class HexagonalGrid implements IGrid<HexagonalTile> {
     const size: Float = this.scale / 2;
 
     if (this.orientation) {
-      s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z);
+      s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
     } else {
-      s = new Float2(1.5 * tile.x, SQRT_3_2 * tile.x + SQRT_3 * tile.z);
+      s = new Float2(1.5 * tile.x, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
     }
 
     return s.scale(size);

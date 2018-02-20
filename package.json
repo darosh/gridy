@@ -32,9 +32,9 @@
   "module ": "dist/es6/index.js",
   "repository": ".",
   "scripts": {
-    "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram",
+    "build": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup -c rollup.config.js dist/es6/index.js -o dist/gridy.js -f umd -n Gridy && rollup -c rollup.config.js dist/es6/Diagram.js -o dist/diagram.js -f umd -n Diagram",
     "clean": "del-cli doc dist examples/output",
-    "dist": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup -c rollup.config.js dist/es6/index.js --o dist/gridy.js --f umd --name Gridy && rollup -c rollup.config.js dist/es6/Diagram.js --o dist/diagram.js --f umd --name Diagram && uglifyjs dist/diagram.js > dist/diagram.min.js && uglifyjs dist/gridy.js > dist/gridy.min.js",
+    "dist": "del-cli dist && tsc -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6 && rollup -c rollup.config.js dist/es6/index.js -o dist/gridy.js -f umd -n Gridy && rollup -c rollup.config.js dist/es6/Diagram.js -o dist/diagram.js -f umd -n Diagram && uglifyjs dist/diagram.js > dist/diagram.min.js && uglifyjs dist/gridy.js > dist/gridy.min.js",
     "doc": "del-cli doc && typedoc --hideGenerator --mode file --out doc src/ --name Gridy --readme .template.md",
     "lint": "tslint -p tsconfig.json --fix && eslint --fix examples/*.js",
     "test": "del-cli examples/output && node examples/node.js",

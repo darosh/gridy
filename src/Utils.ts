@@ -35,3 +35,14 @@ export function toMap(tiles: AnyTile[]): Map<string, AnyTile> {
 export function toArray(m: Map<any, AnyTile>): AnyTile[] {
   return Array.from(m.values());
 }
+
+export function link(tilesMap: Map<any, AnyTile>): void {
+  for (const tile of tilesMap.values()) {
+    (tile as any).links = new Map<number, AnyTile>();
+    for (const n of tile.neighbors()) {
+      if (tilesMap.has(n[1].key)) {
+        (tile as any).links.set(n[0], tilesMap.get(n[1].key));
+      }
+    }
+  }
+}

@@ -16,6 +16,7 @@ export declare class RectangularGrid implements IGrid<RectangularTile | Rectangu
     tiles: RectangularTile[] | Rectangular8Tile[];
     orientation: boolean;
     scale: Float;
+    scaleY: Float;
     angle: Float;
     x: Integer;
     y: Integer;

@@ -13,6 +13,7 @@ import { TileType } from "./TileType";
  */
 export class RectangularGrid {
     constructor(scale, orientation = false, shape = Shape.Even, x = 1, y = 1, tile = RectangularTile) {
+        this.scaleY = -1;
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -36,10 +37,10 @@ export class RectangularGrid {
     }
     center(tile) {
         if (this.orientation) {
-            return new Float2(tile.x * this.scale / SQRT_2 + tile.y * this.scale / SQRT_2, tile.y * this.scale / SQRT_2 - tile.x * this.scale / SQRT_2);
+            return new Float2(tile.x * this.scale / SQRT_2 + tile.y * this.scale * this.scaleY / SQRT_2, tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2);
         }
         else {
-            return new Float2(tile.x * this.scale, tile.y * this.scale);
+            return new Float2(tile.x * this.scale, tile.y * this.scale * this.scaleY);
         }
     }
     vertices(orientation, scale) {

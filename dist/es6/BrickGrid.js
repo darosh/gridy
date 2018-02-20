@@ -23,10 +23,10 @@ export class BrickGrid extends HexagonalGrid {
         let s;
         const size = this.scale / 2;
         if (this.orientation) {
-            s = new Float2(SQRT_2 * cube.x + SQRT_2_2 * cube.z, SQRT_2 * cube.z);
+            s = new Float2(SQRT_2 * cube.x + SQRT_2_2 * cube.z, SQRT_2 * cube.z * this.scaleY);
         }
         else {
-            s = new Float2(SQRT_2 * cube.x, SQRT_2_2 * cube.x + SQRT_2 * cube.z);
+            s = new Float2(SQRT_2 * cube.x, (SQRT_2_2 * cube.x + SQRT_2 * cube.z) * this.scaleY);
         }
         return s.scale(size);
     }

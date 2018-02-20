@@ -14,5 +14,5 @@ export { Integer2 } from "./Integer2";
 export { Integer3 } from "./Integer3";
 export { Search } from "./Search";
 export { normalize, translate, rotate } from "./Transform";
-export { enumerate, instance } from "./Utils";
+export { enumerate, instance, toMap, toArray, link } from "./Utils";
 export { axes, intersect, circle, spiral, border, outline, connections } from "./Path";

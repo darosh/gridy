@@ -544,6 +544,7 @@ var HexagonalGrid = function () {
         var y = arguments[4];
         classCallCheck(this, HexagonalGrid);
 
+        this.scaleY = -1;
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -577,15 +578,10 @@ var HexagonalGrid = function () {
             this.toTile = HexagonalGrid.evenQToCube;
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.triangularShape(x);
-        } else if (shape === exports.Shape.Rhombus) {
+        } else {
             this.toTile = HexagonalGrid.twoAxisToCube;
             this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-        } else {
-            this.tiles = [];
-            this.toPoint = function () {
-                return new Integer2();
-            };
         }
     }
 
@@ -612,9 +608,9 @@ var HexagonalGrid = function () {
             var s = void 0;
             var size = this.scale / 2;
             if (this.orientation) {
-                s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z);
+                s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
             } else {
-                s = new Float2(1.5 * tile.x, SQRT_3_2 * tile.x + SQRT_3 * tile.z);
+                s = new Float2(1.5 * tile.x, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
             }
             return s.scale(size);
         }
@@ -817,9 +813,9 @@ var BrickGrid = function (_HexagonalGrid) {
             var s = void 0;
             var size = this.scale / 2;
             if (this.orientation) {
-                s = new Float2(SQRT_2 * cube.x + SQRT_2_2 * cube.z, SQRT_2 * cube.z);
+                s = new Float2(SQRT_2 * cube.x + SQRT_2_2 * cube.z, SQRT_2 * cube.z * this.scaleY);
             } else {
-                s = new Float2(SQRT_2 * cube.x, SQRT_2_2 * cube.x + SQRT_2 * cube.z);
+                s = new Float2(SQRT_2 * cube.x, (SQRT_2_2 * cube.x + SQRT_2 * cube.z) * this.scaleY);
             }
             return s.scale(size);
         }
@@ -930,6 +926,7 @@ var TriangularGrid = function () {
         var y = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
         classCallCheck(this, TriangularGrid);
 
+        this.scaleY = -1;
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
@@ -950,6 +947,9 @@ var TriangularGrid = function () {
         this.toPoint = function (tile) {
             return new Integer2(tile.x * 2 + (tile.s ? 1 : 0), tile.y);
         };
+        this.toTile = function (position) {
+            return new TriangularTile(position.x / 2 - position.x % 2, position.y);
+        };
     }
 
     createClass(TriangularGrid, [{
@@ -960,7 +960,7 @@ var TriangularGrid = function () {
     }, {
         key: "center",
         value: function center(tile) {
-            return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)));
+            return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
         }
     }, {
         key: "vertices",
@@ -968,7 +968,7 @@ var TriangularGrid = function () {
             var tileType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
             scale = scale === undefined ? this.scale : scale;
-            if (tileType === 0) {
+            if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
                 return [new Float2(0, -scale * SQRT_3_3), new Float2(-scale / 2, scale * SQRT_3_6), new Float2(scale / 2, scale * SQRT_3_6)];
             } else {
                 return [new Float2(0, scale * (SQRT_3_6 + SQRT_3_6)), new Float2(-scale / 2, -scale * (SQRT_3_3 - SQRT_3_6)), new Float2(scale / 2, -scale * (SQRT_3_3 - SQRT_3_6))];
@@ -1128,6 +1128,7 @@ var RectangularGrid = function () {
         var tile = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : RectangularTile;
         classCallCheck(this, RectangularGrid);
 
+        this.scaleY = -1;
         this.angle = -45;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -1160,9 +1161,9 @@ var RectangularGrid = function () {
         key: "center",
         value: function center(tile) {
             if (this.orientation) {
-                return new Float2(tile.x * this.scale / SQRT_2 + tile.y * this.scale / SQRT_2, tile.y * this.scale / SQRT_2 - tile.x * this.scale / SQRT_2);
+                return new Float2(tile.x * this.scale / SQRT_2 + tile.y * this.scale * this.scaleY / SQRT_2, tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2);
             } else {
-                return new Float2(tile.x * this.scale, tile.y * this.scale);
+                return new Float2(tile.x * this.scale, tile.y * this.scale * this.scaleY);
             }
         }
     }, {
@@ -1425,6 +1426,61 @@ function toMap(tiles) {
     return new Map(tiles.map(function (t) {
         return [t.key, t];
     }));
+}
+function toArray$1(m) {
+    return Array.from(m.values());
+}
+function link(tilesMap) {
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+        for (var _iterator2 = tilesMap.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var tile = _step2.value;
+
+            tile.links = new Map();
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = tile.neighbors()[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var n = _step3.value;
+
+                    if (tilesMap.has(n[1].key)) {
+                        tile.links.set(n[0], tilesMap.get(n[1].key));
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
 }
 
 // From http://www.redblobgames.com/grids/hexagons/
@@ -1714,9 +1770,10 @@ function border(tiles) {
         return maped(tileMap, t.neighbors()).length < t.directions().length;
     });
 }
-function outline(tiles) {
+function outline(tiles, available) {
     var map = new Map();
     var tileMap = toMap(tiles);
+    var availableMap = available ? toMap(available) : undefined;
     tiles.forEach(function (t) {
         var n = new Map(maped(tileMap, t.neighbors()));
         var d = new Map(t.directions());
@@ -1736,7 +1793,11 @@ function outline(tiles) {
 
                     if (!n.has(k)) {
                         var w = t.add(v);
-                        map.set(w.key, w);
+                        if (availableMap) {
+                            map.set(w.key, availableMap.get(w.key));
+                        } else {
+                            map.set(w.key, w);
+                        }
                     }
                 }
             } catch (err) {
@@ -1845,6 +1906,9 @@ exports.translate = translate;
 exports.rotate = rotate;
 exports.enumerate = enumerate;
 exports.instance = instance;
+exports.toMap = toMap;
+exports.toArray = toArray$1;
+exports.link = link;
 exports.axes = axes;
 exports.intersect = intersect;
 exports.circle = circle;

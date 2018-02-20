@@ -10,6 +10,7 @@ import { TriangularTile } from "./TriangularTile";
  */
 export class TriangularGrid {
     constructor(scale, orientation = false, shape = Shape.Triangular, x = 1, y = 1) {
+        this.scaleY = -1;
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
@@ -32,16 +33,19 @@ export class TriangularGrid {
         this.toPoint = (tile) => {
             return new Position(tile.x * 2 + (tile.s ? 1 : 0), tile.y);
         };
+        this.toTile = (position) => {
+            return new TriangularTile(position.x / 2 - (position.x % 2), position.y);
+        };
     }
     bounds() {
         return bounds(this);
     }
     center(tile) {
-        return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))));
+        return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY);
     }
     vertices(orientation, scale, tileType = 0) {
         scale = (scale === undefined) ? this.scale : scale;
-        if (tileType === 0) {
+        if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
             return [
                 new Float2(0, -scale * SQRT_3_3),
                 new Float2(-scale / 2, scale * SQRT_3_6),

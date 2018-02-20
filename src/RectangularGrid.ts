@@ -23,6 +23,7 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
   public tiles: RectangularTile[] | Rectangular8Tile[];
   public orientation: boolean;
   public scale: Float;
+  public scaleY: Float = -1;
   public angle: Float = -45;
   public x: Integer;
   public y: Integer;
@@ -65,11 +66,11 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
   public center(tile: RectangularTile | Rectangular8Tile): Float2 {
     if (this.orientation) {
       return new Float2(
-        tile.x * this.scale / SQRT_2 + tile.y * this.scale / SQRT_2,
-        tile.y * this.scale / SQRT_2 - tile.x * this.scale / SQRT_2,
+        tile.x * this.scale / SQRT_2 + tile.y * this.scale * this.scaleY / SQRT_2,
+        tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2,
       );
     } else {
-      return new Float2(tile.x * this.scale, tile.y * this.scale);
+      return new Float2(tile.x * this.scale, tile.y * this.scale * this.scaleY);
     }
   }
 

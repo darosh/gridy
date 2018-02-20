@@ -15,9 +15,11 @@ export declare class TriangularGrid implements IGrid<TriangularTile> {
     tiles: TriangularTile[];
     orientation: boolean;
     scale: Float;
+    scaleY: Float;
     angle: Float;
     x: Integer;
     y: Integer;
+    toTile: (position: Position) => TriangularTile;
     toPoint: (tile: TriangularTile) => Position;
     radius: Float;
     tileTypes: TileType;

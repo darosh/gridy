@@ -1,6 +1,7 @@
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
 import { Integer } from "./Integer";
+import { AnyTile } from "./ITile";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { Shape } from "./Shape";
@@ -10,10 +11,11 @@ export interface IGrid<T> {
   tiles: T[];
   orientation: any;
   scale: Float;
+  scaleY: Float;
   angle: Float;
   x: Integer;
   y: Integer;
-  toTile?: (position: Position) => T;
+  toTile: (position: Position) => T;
   toPoint: (tile: T) => Position;
   radius: Float;
   tileTypes?: TileType;
@@ -29,3 +31,5 @@ export interface IGrid<T> {
 export interface IGridConstructable {
   new(scale: Float, orientation: boolean, shape: Shape, x: Integer, y: Integer): IGrid<any>;
 }
+
+export type AnyGrid = IGrid<AnyTile>;

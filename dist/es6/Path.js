@@ -46,9 +46,10 @@ export function border(tiles) {
     const tileMap = toMap(tiles);
     return tiles.filter((t) => maped(tileMap, t.neighbors()).length < t.directions().length);
 }
-export function outline(tiles) {
+export function outline(tiles, available) {
     const map = new Map();
     const tileMap = toMap(tiles);
+    const availableMap = available ? toMap(available) : undefined;
     tiles.forEach((t) => {
         const n = new Map(maped(tileMap, t.neighbors()));
         const d = new Map(t.directions());
@@ -56,7 +57,12 @@ export function outline(tiles) {
             for (const [k, v] of d) {
                 if (!n.has(k)) {
                     const w = t.add(v);
-                    map.set(w.key, w);
+                    if (availableMap) {
+                        map.set(w.key, availableMap.get(w.key));
+                    }
+                    else {
+                        map.set(w.key, w);
+                    }
                 }
             }
         }

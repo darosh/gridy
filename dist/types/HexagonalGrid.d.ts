@@ -31,10 +31,11 @@ export declare class HexagonalGrid implements IGrid<HexagonalTile> {
     tiles: HexagonalTile[];
     orientation: boolean;
     scale: Float;
+    scaleY: Float;
     angle: Float;
     x: Integer;
     y: Integer;
-    toTile?: (position: Position) => HexagonalTile;
+    toTile: (position: Position) => HexagonalTile;
     toPoint: (tile: HexagonalTile) => Position;
     radius: Float;
     tileTypes: TileType;

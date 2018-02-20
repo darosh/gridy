@@ -14,6 +14,7 @@ import { TileType } from "./TileType";
  */
 export class HexagonalGrid {
     constructor(scale, orientation = false, shape = Shape.Hexagonal, x = 1, y) {
+        this.scaleY = -1;
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
@@ -53,14 +54,10 @@ export class HexagonalGrid {
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.triangularShape(x);
         }
-        else if (shape === Shape.Rhombus) {
+        else {
             this.toTile = HexagonalGrid.twoAxisToCube;
             this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-        }
-        else {
-            this.tiles = [];
-            this.toPoint = () => new Position();
         }
     }
     static twoAxisToCube(position) {
@@ -188,10 +185,10 @@ export class HexagonalGrid {
         let s;
         const size = this.scale / 2;
         if (this.orientation) {
-            s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z);
+            s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
         }
         else {
-            s = new Float2(1.5 * tile.x, SQRT_3_2 * tile.x + SQRT_3 * tile.z);
+            s = new Float2(1.5 * tile.x, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
         }
         return s.scale(size);
     }
