@@ -39,7 +39,7 @@ export function bounds(grid: IGrid<any>): Rectangle {
 
   // TODO use vertices(..,...,tileType) for TriangularGrid;
 
-  const b1: Rectangle = boundsOfPoints(grid.vertices());
+  const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation));
   const b2: Rectangle = boundsOfPoints(centers);
 
   return Rectangle.add(b1, b2);

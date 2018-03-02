@@ -45,8 +45,10 @@ export class HexagonalGrid {
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         }
         else if (shape === Shape.Hexagonal) {
-            this.toTile = HexagonalGrid.evenQToCube;
-            this.toPoint = HexagonalGrid.cubeToEvenQ;
+            // this.toTile = HexagonalGrid.evenQToCube;
+            // this.toPoint = HexagonalGrid.cubeToEvenQ;
+            this.toTile = HexagonalGrid.twoAxisToCube;
+            this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.hexagonalShape(x);
         }
         else if (shape === Shape.Triangular) {

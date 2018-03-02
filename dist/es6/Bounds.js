@@ -26,7 +26,7 @@ export function bounds(grid) {
         return grid.center(tile);
     });
     // TODO use vertices(..,...,tileType) for TriangularGrid;
-    const b1 = boundsOfPoints(grid.vertices());
+    const b1 = boundsOfPoints(grid.vertices(grid.orientation));
     const b2 = boundsOfPoints(centers);
     return Rectangle.add(b1, b2);
 }

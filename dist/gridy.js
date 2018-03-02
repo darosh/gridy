@@ -334,7 +334,7 @@ function bounds(grid) {
         return grid.center(tile);
     });
     // TODO use vertices(..,...,tileType) for TriangularGrid;
-    var b1 = boundsOfPoints(grid.vertices());
+    var b1 = boundsOfPoints(grid.vertices(grid.orientation));
     var b2 = boundsOfPoints(centers);
     return Rectangle.add(b1, b2);
 }
@@ -571,8 +571,10 @@ var HexagonalGrid = function () {
             this.toPoint = HexagonalGrid.cubeToOddR;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
         } else if (shape === exports.Shape.Hexagonal) {
-            this.toTile = HexagonalGrid.evenQToCube;
-            this.toPoint = HexagonalGrid.cubeToEvenQ;
+            // this.toTile = HexagonalGrid.evenQToCube;
+            // this.toPoint = HexagonalGrid.cubeToEvenQ;
+            this.toTile = HexagonalGrid.twoAxisToCube;
+            this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.hexagonalShape(x);
         } else if (shape === exports.Shape.Triangular) {
             this.toTile = HexagonalGrid.evenQToCube;
