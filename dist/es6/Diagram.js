@@ -65,11 +65,21 @@ export default class Diagram {
             return this;
         }
         const paths = [];
-        for (let i = 0; i < (this.grid.tileTypes || 0); i++) {
-            paths.push(this.shapePath(i));
+        if (!this.grid.irregular) {
+            for (let i = 0; i < (this.grid.tileTypes || 0); i++) {
+                paths.push(this.shapePath(i));
+            }
         }
         if (this.grid.tileTypes === 1) {
-            polygons.attr("points", paths[0]);
+            polygons.attr("points", (node) => {
+                if (this.grid.irregular) {
+                    return this.grid.vertices(false, 0, 0, this.data[node].tile).map((p) => p.x.toFixed(3) + "," + p.y.toFixed(3))
+                        .join(" ");
+                }
+                else {
+                    return paths[0];
+                }
+            });
         }
         else {
             polygons.attr("points", (node) => {

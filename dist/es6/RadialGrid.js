@@ -1,8 +1,9 @@
-import { bounds } from "./Bounds";
-import { ANG, DEG_TO_RAD, SQRT_2 } from "./Constants";
+import { ANG, DEG_TO_RAD } from "./Constants";
 import { Float2 } from "./Float2";
+import { Float3 } from "./Float3";
 import { Position } from "./Position";
 import { RadialTile } from "./RadialTile";
+import { Rectangle } from "./Rectangle";
 import { Shape } from "./Shape";
 import { TileType } from "./TileType";
 /**
@@ -11,8 +12,9 @@ import { TileType } from "./TileType";
 export class RadialGrid {
     constructor(scale, orientation = false, shape = Shape.Even, x = 1, y = 1, tile = RadialTile) {
         this.scaleY = -1;
-        this.angle = -45;
+        this.angle = -0;
         this.tileTypes = TileType.Simple;
+        this.irregular = true;
         this.scale = scale;
         this.radius = scale / 2;
         this.orientation = orientation;
@@ -30,27 +32,22 @@ export class RadialGrid {
         this.toPoint = (p) => new Position(p.x, p.y);
     }
     bounds() {
-        return bounds(this);
+        const r = this.scale * (this.x * 2 + 1);
+        return new Rectangle(-r, r, -r, r);
+        // return bounds(this);
     }
     vertices(orientation, scale, tileType, tile) {
+        const t = tile;
         const points = [];
-        scale = (scale === undefined) ? this.scale : scale;
-        orientation = (orientation === undefined) ? false : this.orientation;
-        if (orientation) {
-            scale *= SQRT_2;
-            points.push(new Float2(-scale / 2, 0));
-            points.push(new Float2(0, -scale / 2));
-            points.push(new Float2(scale / 2, 0));
-            points.push(new Float2(0, scale / 2));
-        }
-        else {
-            points.push(new Float2(-scale / 2, -scale / 2));
-            points.push(new Float2(-scale / 2, scale / 2));
-            points.push(new Float2(scale / 2, scale / 2));
-            points.push(new Float2(scale / 2, -scale / 2));
-        }
-        return points;
+        const c = this.center(t);
+        points.push(this.center(new Float3(t.x - 0.5, t.y - 0.5, t.z)));
+        points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z)));
+        points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z)));
+        points.push(this.center(new Float3(t.x + 0.5, t.y - 0.5, t.z)));
+        return points.map((p) => new Float2(p.x - c.x, p.y - c.y));
     }
+    // public path(tile?: AnyTile) {
+    // }
     position(p) {
         return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
     }

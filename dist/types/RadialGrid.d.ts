@@ -30,6 +30,6 @@ export declare class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     bounds(): Rectangle;
     vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[];
     position(p: Float2): RadialTile | Radial8Tile;
-    tile(x: number, y: number): RadialTile | Radial8Tile;
+    tile(x: number, y: number): Radial8Tile | RadialTile;
     center(tile: RadialTile | RadialTile): Float2;
 }

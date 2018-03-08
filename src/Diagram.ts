@@ -210,7 +210,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function (this: any, node: string): void {
+      .each(function(this: any, node: string): void {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         const selection: any = d3.select(this);
         selection.selectAll("*").remove();
@@ -243,7 +243,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function (this: any, node: string): void {
+      .each(function(this: any, node: string): void {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         const selection: any = d3.select(this);
         selection.selectAll("*").remove();
@@ -262,7 +262,7 @@ export default class Diagram {
 
     this.all.selectAll("g.values").append("text")
       .attr("y", "0.4em")
-      .text(function (this: any, node: string) {
+      .text(function(this: any, node: string) {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         return data[that.data[node].tile.toString()];
       });
@@ -291,7 +291,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function (this: any, node: string): void {
+      .each(function(this: any, node: string): void {
         const selection: any = d3.select(this);
         let labels: any[] = that.data[node].tile.value;
 
