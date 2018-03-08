@@ -32,7 +32,7 @@ export class RadialGrid {
         this.toPoint = (p) => new Position(p.x, p.y);
     }
     bounds() {
-        const r = this.scale * (this.x * 2 + 1) / 2;
+        const r = this.scale * this.x;
         return new Rectangle(-r, r, -r, r);
         // return bounds(this);
     }

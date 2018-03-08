@@ -1236,7 +1236,7 @@ var RadialGrid = function () {
     createClass(RadialGrid, [{
         key: "bounds",
         value: function bounds() {
-            var r = this.scale * (this.x * 2 + 1) / 2;
+            var r = this.scale * this.x;
             return new Rectangle(-r, r, -r, r);
             // return bounds(this);
         }

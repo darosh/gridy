@@ -58,7 +58,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   }
 
   public bounds(): Rectangle {
-    const r = this.scale * (this.x * 2 + 1) / 2;
+    const r = this.scale * this.x;
     return new Rectangle(-r, r, -r, r);
     // return bounds(this);
   }

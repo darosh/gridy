@@ -304,6 +304,18 @@
           .circles()
           .coordinates()
       }
+    }, {
+      title: [
+        ['Radial', 'grid']
+      ],
+      script: function (svg) {
+        const { Shape, RadialGrid } = Gridy
+
+        const grid = new RadialGrid(40, false, Shape.Even, 4, 12)
+
+        new Diagram(svg, grid)
+          .circles()
+      }
     }]
   }, {
     group: 'Selection',
