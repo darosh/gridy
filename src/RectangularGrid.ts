@@ -4,7 +4,7 @@ import { Float } from "./Float";
 import { Float2 } from "./Float2";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
-import { AnyTile, ITile, ITileConstructable } from "./ITile";
+import { AnyTile, ITile, ITileConstructible } from "./ITile";
 import { Position } from "./Position";
 import { Rectangle } from "./Rectangle";
 import { Rectangular8Tile } from "./Rectangular8Tile";
@@ -31,14 +31,14 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
   public toPoint: (tile: RectangularTile | Rectangular8Tile) => Position;
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
-  public tileCtor: ITileConstructable<RectangularTile | Rectangular8Tile>;
+  public tileCtor: ITileConstructible<RectangularTile | Rectangular8Tile>;
 
   constructor(scale: Float,
               orientation: boolean = false,
               shape: Shape = Shape.Even,
               x: Integer = 1,
               y: Integer = 1,
-              tile: ITileConstructable<RectangularTile | Rectangular8Tile> = RectangularTile) {
+              tile: ITileConstructible<RectangularTile | Rectangular8Tile> = RectangularTile) {
     this.scale = scale;
     this.radius = scale / 2;
     this.orientation = orientation;

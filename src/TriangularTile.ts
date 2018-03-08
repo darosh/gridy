@@ -19,7 +19,7 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
     [3, new TriangularTile(1, 0, false)],
   ];
 
-  public static oposites: any = {
+  public static opposites: any = {
     false: {
       1: 3,
       2: 1,
@@ -63,8 +63,8 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
     return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
   }
 
-  public oposite(n: number): number {
-    return TriangularTile.oposites[this.s.toString()][n];
+  public opposite(n: number): number {
+    return TriangularTile.opposites[this.s.toString()][n];
   }
 
   public add(a: TriangularTile): TriangularTile {
