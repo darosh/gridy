@@ -113,12 +113,24 @@ export default class Diagram {
 
     const paths: string[] = [];
 
-    for (let i: number = 0; i < (this.grid.tileTypes || 0); i++) {
-      paths.push(this.shapePath(i));
+    if (!this.grid.irregular) {
+      for (let i: number = 0; i < (this.grid.tileTypes || 0); i++) {
+        paths.push(this.shapePath(i));
+      }
     }
 
     if (this.grid.tileTypes === 1) {
-      polygons.attr("points", paths[0]);
+      polygons.attr("points",
+        (node: string): string => {
+          if (this.grid.irregular) {
+            return this.grid.vertices(false, 0, 0, this.data[node].tile).map((p: Float2): string =>
+              p.x.toFixed(3) + "," + p.y.toFixed(3))
+              .join(" ");
+          } else {
+            return paths[0];
+          }
+        },
+      );
     } else {
       polygons.attr(
         "points",
@@ -198,7 +210,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function(this: any, node: string): void {
+      .each(function (this: any, node: string): void {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         const selection: any = d3.select(this);
         selection.selectAll("*").remove();
@@ -231,7 +243,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function(this: any, node: string): void {
+      .each(function (this: any, node: string): void {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         const selection: any = d3.select(this);
         selection.selectAll("*").remove();
@@ -250,7 +262,7 @@ export default class Diagram {
 
     this.all.selectAll("g.values").append("text")
       .attr("y", "0.4em")
-      .text(function(this: any, node: string) {
+      .text(function (this: any, node: string) {
         const p: Position = that.grid.toPoint(that.data[node].tile);
         return data[that.data[node].tile.toString()];
       });
@@ -279,7 +291,7 @@ export default class Diagram {
     const that: Diagram = this;
 
     tiles.attr("y", "0.4em")
-      .each(function(this: any, node: string): void {
+      .each(function (this: any, node: string): void {
         const selection: any = d3.select(this);
         let labels: any[] = that.data[node].tile.value;
 
@@ -441,8 +453,8 @@ export default class Diagram {
     this.transition(this.paths).attr("transform", "translate(" + this.translate + ")");
 
     // this.root.append("rect").attr("class", "bound")
-      // .attr("x", bounds.minX).attr("y", bounds.minY)
-      // .attr("width", bounds.maxX - bounds.minX).attr("height", bounds.maxY - bounds.minY);
+    // .attr("x", bounds.minX).attr("y", bounds.minY)
+    // .attr("width", bounds.maxX - bounds.minX).attr("height", bounds.maxY - bounds.minY);
   }
 
   private initTiles(): any {

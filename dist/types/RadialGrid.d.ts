@@ -25,10 +25,11 @@ export declare class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     radius: Float;
     tileTypes: TileType;
     tileCtor: ITileConstructible<RadialTile | Radial8Tile>;
+    irregular: boolean;
     constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer, tile?: ITileConstructible<RadialTile | Radial8Tile>);
     bounds(): Rectangle;
     vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[];
     position(p: Float2): RadialTile | Radial8Tile;
-    tile(x: number, y: number): Radial8Tile | RadialTile;
-    center(tile: RadialTile | RadialTile | any): Float2;
+    tile(x: number, y: number): RadialTile | Radial8Tile;
+    center(tile: RadialTile | RadialTile): Float2;
 }

@@ -2,6 +2,7 @@ import { bounds } from "./Bounds";
 import { ANG, DEG_TO_RAD, SQRT_2 } from "./Constants";
 import { Float } from "./Float";
 import { Float2 } from "./Float2";
+import { Float3 } from "./Float3";
 import { IGrid } from "./IGrid";
 import { Integer } from "./Integer";
 import { AnyTile, ITile, ITileConstructible } from "./ITile";
@@ -20,7 +21,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   public orientation: boolean;
   public scale: Float;
   public scaleY: Float = -1;
-  public angle: Float = -45;
+  public angle: Float = -0;
   public x: Integer;
   public y: Integer;
   public toTile: (point: Position) => RadialTile | Radial8Tile;
@@ -28,6 +29,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   public radius: Float;
   public tileTypes: TileType = TileType.Simple;
   public tileCtor: ITileConstructible<RadialTile | Radial8Tile>;
+  public irregular: boolean = true;
 
   constructor(scale: Float,
               orientation: boolean = false,
@@ -56,30 +58,27 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   }
 
   public bounds(): Rectangle {
-    return bounds(this);
+    const r = this.scale * (this.x * 2 + 1);
+    return new Rectangle(-r, r, -r, r);
+    // return bounds(this);
   }
 
   public vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[] {
+    const t: any = tile;
     const points: Float2[] = [];
-    scale = (scale === undefined) ? this.scale : scale;
-    orientation = (orientation === undefined) ? false : this.orientation;
 
-    if (orientation) {
-      scale *= SQRT_2;
+    const c = this.center(t);
 
-      points.push(new Float2(-scale / 2, 0));
-      points.push(new Float2(0, -scale / 2));
-      points.push(new Float2(scale / 2, 0));
-      points.push(new Float2(0, scale / 2));
-    } else {
-      points.push(new Float2(-scale / 2, -scale / 2));
-      points.push(new Float2(-scale / 2, scale / 2));
-      points.push(new Float2(scale / 2, scale / 2));
-      points.push(new Float2(scale / 2, -scale / 2));
-    }
+    points.push(this.center(new Float3(t.x - 0.5, t.y - 0.5, t.z) as any));
+    points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z) as any));
+    points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z) as any));
+    points.push(this.center(new Float3(t.x + 0.5, t.y - 0.5, t.z) as any));
 
-    return points;
+    return points.map((p) => new Float2(p.x - c.x, p.y - c.y));
   }
+
+  // public path(tile?: AnyTile) {
+  // }
 
   public position(p: Float2): RadialTile | Radial8Tile {
     return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
@@ -89,7 +88,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     return this.toTile(new Position(x, y));
   }
 
-  public center(tile: RadialTile | RadialTile | any): Float2 {
+  public center(tile: RadialTile | RadialTile): Float2 {
     let angle;
 
     if (this.orientation) {
