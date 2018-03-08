@@ -49,8 +49,8 @@ export class RadialGrid {
     path(tile) {
         const p = this.vertices(false, 0, 0, tile);
         const c = this.center(tile);
-        const r1 = this.scale * (Math.max(0, tile.x - .5 + 1));
-        const r2 = this.scale * (tile.x + .5 + 1);
+        const r1 = this.scale * tile.x;
+        const r2 = this.scale * (tile.x + 1);
         return `M ${p[0].x} ${p[0].y} A ${r1} ${r1} 0 0 1 ${p[1].x} ${p[1].y} `
             + `L ${p[2].x} ${p[2].y} A ${r2} ${r2} 0 0 0 ${p[3].x} ${p[3].y} Z`;
     }

@@ -23,6 +23,10 @@ export class RadialTile extends Integer3 implements ITile<Integer3> {
 
   private tiles: AnyTile[] = [];
 
+  public get value(): Integer[] {
+    return [this.x, this.y];
+  }
+
   public get key() {
     return this.toString();
   }

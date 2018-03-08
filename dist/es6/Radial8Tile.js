@@ -11,6 +11,9 @@ export class Radial8Tile extends Integer3 {
         super(...arguments);
         this.tiles = [];
     }
+    get value() {
+        return [this.x, this.y];
+    }
     get key() {
         return this.toString();
     }

@@ -182,7 +182,7 @@ export default class Diagram {
   /**
    * Show/hide tile center points
    * @param show
-   * @returns {Diagramy.Diagram}
+   * @returns {Diagram}
    */
   public centers(show: boolean | any = true): Diagram {
     if (show === false) {
@@ -364,7 +364,7 @@ export default class Diagram {
    * Highlight selected tiles
    * @param tiles Array of selected tiles
    * @param classed Optional highlight class
-   * @returns {Diagramy.Diagram} For chain call
+   * @returns {Diagram} For chain call
    */
   public highlight(tiles: AnyTile[], classed: string = "highlight"): Diagram {
     const tileSet: any = d3.set(tiles);
