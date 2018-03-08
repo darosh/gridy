@@ -7,6 +7,7 @@ export default class Diagram {
         this.duration = 0;
         this.data = {};
         this.showPolygons = true;
+        this.showPolygonPaths = true;
         this.showCenters = false;
         this.showCircles = false;
         this.showAxes = false;
@@ -47,8 +48,10 @@ export default class Diagram {
     }
     polygons(show = true) {
         let polygons;
+        const irregular = this.grid.irregular;
+        this.polygonPaths(show);
         if (show === false) {
-            this.all.selectAll("g.polygon").selectAll("polygon").remove();
+            this.all.selectAll("g.polygon").selectAll("*").remove();
             this.showPolygons = false;
             return this;
         }
@@ -58,21 +61,21 @@ export default class Diagram {
         }
         else if (show !== true) {
             this.tilesEnter.selectAll("g.polygon").append("polygon");
-            polygons = this.all.selectAll("g.polygon").selectAll("polygon");
+            polygons = this.all.selectAll("g.polygon").selectAll("*");
             this.showPolygons = true;
         }
         else {
             return this;
         }
         const paths = [];
-        if (!this.grid.irregular) {
+        if (!irregular) {
             for (let i = 0; i < (this.grid.tileTypes || 0); i++) {
                 paths.push(this.shapePath(i));
             }
         }
         if (this.grid.tileTypes === 1) {
             polygons.attr("points", (node) => {
-                if (this.grid.irregular) {
+                if (irregular) {
                     return this.grid.vertices(false, 0, 0, this.data[node].tile).map((p) => p.x.toFixed(3) + "," + p.y.toFixed(3))
                         .join(" ");
                 }
@@ -89,6 +92,31 @@ export default class Diagram {
         this.transition(polygons)
             .attr("transform", "rotate(" + (this.grid.orientation * this.grid.angle) + ")");
         return this;
+    }
+    polygonPaths(show = true) {
+        let polygons;
+        if (show === false) {
+            this.all.selectAll("g.paths").selectAll("*").remove();
+            this.showPolygonPaths = false;
+            return;
+        }
+        else if (show === true && !this.showPolygonPaths) {
+            polygons = this.all.selectAll("g.paths").append("path");
+            this.showPolygonPaths = true;
+        }
+        else if (show !== true) {
+            this.tilesEnter.selectAll("g.paths").append("path");
+            polygons = this.all.selectAll("g.paths").selectAll("path");
+            this.showPolygonPaths = true;
+        }
+        else {
+            return;
+        }
+        polygons.attr("d", (node) => {
+            return this.grid.path ? this.grid.path(this.data[node].tile) : "M 0 0";
+        });
+        this.transition(polygons)
+            .attr("transform", "rotate(" + (this.grid.orientation * this.grid.angle) + ")");
     }
     /**
      * Show/hide tile center points
@@ -363,6 +391,7 @@ export default class Diagram {
             return "translate(" + center.x + "," + center.y + ")";
         });
         tilesEnter.append("g").attr("class", "polygon");
+        tilesEnter.append("g").attr("class", "paths");
         tilesEnter.append("g").attr("class", "center");
         tilesEnter.append("g").attr("class", "circle");
         tilesEnter.append("g").attr("class", "axes");

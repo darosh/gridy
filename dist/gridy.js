@@ -1231,7 +1231,7 @@ var RadialGrid = function () {
     createClass(RadialGrid, [{
         key: "bounds",
         value: function bounds() {
-            var r = this.scale * (this.x * 2 + 1);
+            var r = this.scale * (this.x * 2 + 1) / 2;
             return new Rectangle(-r, r, -r, r);
             // return bounds(this);
         }
@@ -1249,9 +1249,15 @@ var RadialGrid = function () {
                 return new Float2(p.x - c.x, p.y - c.y);
             });
         }
-        // public path(tile?: AnyTile) {
-        // }
-
+    }, {
+        key: "path",
+        value: function path(tile) {
+            var p = this.vertices(false, 0, 0, tile);
+            var c = this.center(tile);
+            var r1 = this.scale * Math.max(0, tile.x - .5 + 1);
+            var r2 = this.scale * (tile.x + .5 + 1);
+            return "M " + p[0].x + " " + p[0].y + " A " + r1 + " " + r1 + " 0 0 1 " + p[1].x + " " + p[1].y + " " + ("L " + p[2].x + " " + p[2].y + " A " + r2 + " " + r2 + " 0 0 0 " + p[3].x + " " + p[3].y + " Z");
+        }
     }, {
         key: "position",
         value: function position(p) {

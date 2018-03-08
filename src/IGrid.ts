@@ -26,7 +26,7 @@ export interface IGrid<T> {
   bounds(): Rectangle;
   center(tile: T): Float2;
   vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[];
-  path?(tile?: AnyTile): Float2[];
+  path?(tile?: AnyTile): string;
   position(position: Float2): T;
 }
 

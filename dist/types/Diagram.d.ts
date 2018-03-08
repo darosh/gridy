@@ -18,6 +18,7 @@ export default class Diagram {
     private duration;
     private data;
     private showPolygons;
+    private showPolygonPaths;
     private showCenters;
     private showCircles;
     private showAxes;
@@ -26,6 +27,7 @@ export default class Diagram {
     constructor(svg: any, grid: IGrid<any>, animation?: boolean);
     init(): Diagram;
     polygons(show?: boolean | any): Diagram;
+    polygonPaths(show?: boolean | any): void;
     /**
      * Show/hide tile center points
      * @param show

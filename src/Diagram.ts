@@ -42,6 +42,7 @@ export default class Diagram {
   private data: { [key: string]: INode } = {};
 
   private showPolygons: boolean = true;
+  private showPolygonPaths: boolean = true;
   private showCenters: boolean = false;
   private showCircles: boolean = false;
   private showAxes: boolean = false;
@@ -95,9 +96,12 @@ export default class Diagram {
 
   public polygons(show: boolean | any = true): Diagram {
     let polygons: any;
+    const irregular = this.grid.irregular;
+
+    this.polygonPaths(show);
 
     if (show === false) {
-      this.all.selectAll("g.polygon").selectAll("polygon").remove();
+      this.all.selectAll("g.polygon").selectAll("*").remove();
       this.showPolygons = false;
       return this;
     } else if (show === true && !this.showPolygons) {
@@ -105,7 +109,7 @@ export default class Diagram {
       this.showPolygons = true;
     } else if (show !== true) {
       this.tilesEnter.selectAll("g.polygon").append("polygon");
-      polygons = this.all.selectAll("g.polygon").selectAll("polygon");
+      polygons = this.all.selectAll("g.polygon").selectAll("*");
       this.showPolygons = true;
     } else {
       return this;
@@ -113,7 +117,7 @@ export default class Diagram {
 
     const paths: string[] = [];
 
-    if (!this.grid.irregular) {
+    if (!irregular) {
       for (let i: number = 0; i < (this.grid.tileTypes || 0); i++) {
         paths.push(this.shapePath(i));
       }
@@ -122,7 +126,7 @@ export default class Diagram {
     if (this.grid.tileTypes === 1) {
       polygons.attr("points",
         (node: string): string => {
-          if (this.grid.irregular) {
+          if (irregular) {
             return this.grid.vertices(false, 0, 0, this.data[node].tile).map((p: Float2): string =>
               p.x.toFixed(3) + "," + p.y.toFixed(3))
               .join(" ");
@@ -144,6 +148,35 @@ export default class Diagram {
       .attr("transform", "rotate(" + (this.grid.orientation * this.grid.angle) + ")");
 
     return this;
+  }
+
+  public polygonPaths(show: boolean | any = true) {
+    let polygons: any;
+
+    if (show === false) {
+      this.all.selectAll("g.paths").selectAll("*").remove();
+      this.showPolygonPaths = false;
+      return;
+    } else if (show === true && !this.showPolygonPaths) {
+      polygons = this.all.selectAll("g.paths").append("path");
+      this.showPolygonPaths = true;
+    } else if (show !== true) {
+      this.tilesEnter.selectAll("g.paths").append("path");
+      polygons = this.all.selectAll("g.paths").selectAll("path");
+      this.showPolygonPaths = true;
+    } else {
+      return;
+    }
+
+    polygons.attr(
+      "d",
+      (node: string): string => {
+        return this.grid.path ? (this.grid.path as any)(this.data[node].tile) : "M 0 0";
+      },
+    );
+
+    this.transition(polygons)
+      .attr("transform", "rotate(" + (this.grid.orientation * this.grid.angle) + ")");
   }
 
   /**
@@ -477,6 +510,7 @@ export default class Diagram {
       });
 
     tilesEnter.append("g").attr("class", "polygon");
+    tilesEnter.append("g").attr("class", "paths");
     tilesEnter.append("g").attr("class", "center");
     tilesEnter.append("g").attr("class", "circle");
     tilesEnter.append("g").attr("class", "axes");

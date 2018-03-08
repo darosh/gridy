@@ -147,6 +147,7 @@ var Diagram = function () {
         this.duration = 0;
         this.data = {};
         this.showPolygons = true;
+        this.showPolygonPaths = true;
         this.showCenters = false;
         this.showCircles = false;
         this.showAxes = false;
@@ -196,8 +197,10 @@ var Diagram = function () {
             var show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
             var polygons = void 0;
+            var irregular = this.grid.irregular;
+            this.polygonPaths(show);
             if (show === false) {
-                this.all.selectAll("g.polygon").selectAll("polygon").remove();
+                this.all.selectAll("g.polygon").selectAll("*").remove();
                 this.showPolygons = false;
                 return this;
             } else if (show === true && !this.showPolygons) {
@@ -205,20 +208,20 @@ var Diagram = function () {
                 this.showPolygons = true;
             } else if (show !== true) {
                 this.tilesEnter.selectAll("g.polygon").append("polygon");
-                polygons = this.all.selectAll("g.polygon").selectAll("polygon");
+                polygons = this.all.selectAll("g.polygon").selectAll("*");
                 this.showPolygons = true;
             } else {
                 return this;
             }
             var paths = [];
-            if (!this.grid.irregular) {
+            if (!irregular) {
                 for (var i = 0; i < (this.grid.tileTypes || 0); i++) {
                     paths.push(this.shapePath(i));
                 }
             }
             if (this.grid.tileTypes === 1) {
                 polygons.attr("points", function (node) {
-                    if (_this.grid.irregular) {
+                    if (irregular) {
                         return _this.grid.vertices(false, 0, 0, _this.data[node].tile).map(function (p) {
                             return p.x.toFixed(3) + "," + p.y.toFixed(3);
                         }).join(" ");
@@ -233,6 +236,33 @@ var Diagram = function () {
             }
             this.transition(polygons).attr("transform", "rotate(" + this.grid.orientation * this.grid.angle + ")");
             return this;
+        }
+    }, {
+        key: "polygonPaths",
+        value: function polygonPaths() {
+            var _this2 = this;
+
+            var show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+            var polygons = void 0;
+            if (show === false) {
+                this.all.selectAll("g.paths").selectAll("*").remove();
+                this.showPolygonPaths = false;
+                return;
+            } else if (show === true && !this.showPolygonPaths) {
+                polygons = this.all.selectAll("g.paths").append("path");
+                this.showPolygonPaths = true;
+            } else if (show !== true) {
+                this.tilesEnter.selectAll("g.paths").append("path");
+                polygons = this.all.selectAll("g.paths").selectAll("path");
+                this.showPolygonPaths = true;
+            } else {
+                return;
+            }
+            polygons.attr("d", function (node) {
+                return _this2.grid.path ? _this2.grid.path(_this2.data[node].tile) : "M 0 0";
+            });
+            this.transition(polygons).attr("transform", "rotate(" + this.grid.orientation * this.grid.angle + ")");
         }
         /**
          * Show/hide tile center points
@@ -412,13 +442,13 @@ var Diagram = function () {
     }, {
         key: "highlight",
         value: function highlight(tiles) {
-            var _this2 = this;
+            var _this3 = this;
 
             var classed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "highlight";
 
             var tileSet = d3.set(tiles);
             this.all.classed(classed, function (node) {
-                return tileSet.has(_this2.data[node].tile);
+                return tileSet.has(_this3.data[node].tile);
             });
             return this;
         }
@@ -443,7 +473,7 @@ var Diagram = function () {
     }, {
         key: "lines",
         value: function lines(tiles, color) {
-            var _this3 = this;
+            var _this4 = this;
 
             var width = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 5;
 
@@ -456,7 +486,7 @@ var Diagram = function () {
                 var d = [];
                 for (var i = 0; i < t.length; i++) {
                     d.push(i === 0 ? "M" : "L");
-                    d.push(_this3.grid.center(t[i]).toString());
+                    d.push(_this4.grid.center(t[i]).toString());
                 }
                 return d.join(" ");
             });
@@ -465,7 +495,7 @@ var Diagram = function () {
     }, {
         key: "search",
         value: function search(_search) {
-            var _this4 = this;
+            var _this5 = this;
 
             var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "hsl(90, 80%, 80%)";
             var to = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "hsl(200, 80%, 80%)";
@@ -476,7 +506,7 @@ var Diagram = function () {
             }
             var color = d3.interpolate(from, to);
             this.all.selectAll("g.polygon").selectAll("polygon").style("fill", function (node) {
-                var v = _search.cost[_this4.data[node].key];
+                var v = _search.cost[_this5.data[node].key];
                 return v >= 0 ? color(v / (_search.max || 1)) : null;
             });
             return this;
@@ -484,7 +514,7 @@ var Diagram = function () {
     }, {
         key: "point",
         value: function point(xy) {
-            var _this5 = this;
+            var _this6 = this;
 
             if (!this.pointElement) {
                 this.pointElement = this.svg.append("circle");
@@ -494,18 +524,18 @@ var Diagram = function () {
             this.pointElement.attr("transform", "translate(" + (xy[0] + this.translate.x) + "," + (xy[1] + this.translate.y) + ")");
             // console.log(xy, tile)
             this.all.classed("highlight", function (node) {
-                return _this5.data[node].tile.equals(tile);
+                return _this6.data[node].tile.equals(tile);
             });
             return this;
         }
     }, {
         key: "mousePoint",
         value: function mousePoint() {
-            var _this6 = this;
+            var _this7 = this;
 
             this.svg.on("mousemove", function () {
-                var xy = d3.mouse(_this6.root.node());
-                _this6.point(xy);
+                var xy = d3.mouse(_this7.root.node());
+                _this7.point(xy);
             });
             return this;
         }
@@ -523,11 +553,11 @@ var Diagram = function () {
     }, {
         key: "initTiles",
         value: function initTiles() {
-            var _this7 = this;
+            var _this8 = this;
 
             this.nodes = this.grid.tiles.map(function (n) {
-                var d = { tile: n, key: n.toString(), tileKey: _this7.grid.toPoint(n).toString() };
-                _this7.data[d.tileKey] = d;
+                var d = { tile: n, key: n.toString(), tileKey: _this8.grid.toPoint(n).toString() };
+                _this8.data[d.tileKey] = d;
                 return d.tileKey;
             });
             this.tilesElements = this.root.selectAll("g.tile").data(this.nodes, function (d) {
@@ -535,10 +565,11 @@ var Diagram = function () {
             });
             this.transition(this.tilesElements.exit(), 0.5).style("opacity", 0).remove();
             var tilesEnter = this.tilesElements.enter().append("g").attr("class", "tile").style("opacity", this.animation ? 0 : 1).attr("transform", function (node) {
-                var center = _this7.grid.center(_this7.data[node].tile);
+                var center = _this8.grid.center(_this8.data[node].tile);
                 return "translate(" + center.x + "," + center.y + ")";
             });
             tilesEnter.append("g").attr("class", "polygon");
+            tilesEnter.append("g").attr("class", "paths");
             tilesEnter.append("g").attr("class", "center");
             tilesEnter.append("g").attr("class", "circle");
             tilesEnter.append("g").attr("class", "axes");
@@ -546,7 +577,7 @@ var Diagram = function () {
             tilesEnter.append("g").attr("class", "tiles");
             tilesEnter.append("g").attr("class", "values");
             this.transition(this.tilesElements.merge(tilesEnter)).attr("transform", function (node) {
-                var center = _this7.grid.center(_this7.data[node].tile);
+                var center = _this8.grid.center(_this8.data[node].tile);
                 return "translate(" + center.x + "," + center.y + ")";
             }).style("opacity", 1);
             this.tilesEnter = tilesEnter;

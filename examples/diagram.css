@@ -10,6 +10,12 @@ text {
   stroke-width: 0.5;
 }
 
+.tile .paths path {
+  fill: rgba(255,0,0,0.2);
+  stroke: rgba(255,0,255,0.2);
+  stroke-width: 0.5;
+}
+
 .path {
   fill: none;
   stroke: hsl(60, 20%, 15%);
