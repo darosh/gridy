@@ -20,15 +20,16 @@ export interface IGrid<T> {
   radius: Float;
   tileTypes?: TileType;
   getTileType?: (tile: T) => Integer;
+  irregular?: boolean;
 
   tile(x: number, y: number): T | undefined;
   bounds(): Rectangle;
   center(tile: T): Float2;
-  vertices(orientation?: boolean, scale?: Float, tileType?: Integer): Float2[];
+  vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[];
   position(position: Float2): T;
 }
 
-export interface IGridConstructable {
+export interface IGridConstructible {
   new(scale: Float, orientation: boolean, shape: Shape, x: Integer, y: Integer): IGrid<any>;
 }
 

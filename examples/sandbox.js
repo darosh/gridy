@@ -71,9 +71,9 @@
   }
 
   exports.sizeUpdated = function () {
-    size = document.getElementById('size').value
-    X = document.getElementById('X').value
-    Y = document.getElementById('Y').value
+    size = parseInt(document.getElementById('size').value, 10)
+    X = parseInt(document.getElementById('X').value, 10)
+    Y = parseInt(document.getElementById('Y').value, 10)
     update()
   }
 
@@ -116,6 +116,7 @@
     check('i2')
     check('i3')
     check('i4')
+    check('i5')
 
     showShapes()
 
