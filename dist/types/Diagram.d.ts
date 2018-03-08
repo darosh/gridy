@@ -31,7 +31,7 @@ export default class Diagram {
     /**
      * Show/hide tile center points
      * @param show
-     * @returns {Diagramy.Diagram}
+     * @returns {Diagram}
      */
     centers(show?: boolean | any): Diagram;
     circles(show?: boolean | any): Diagram;
@@ -45,7 +45,7 @@ export default class Diagram {
      * Highlight selected tiles
      * @param tiles Array of selected tiles
      * @param classed Optional highlight class
-     * @returns {Diagramy.Diagram} For chain call
+     * @returns {Diagram} For chain call
      */
     highlight(tiles: AnyTile[], classed?: string): Diagram;
     path(tiles: AnyTile[], color?: string, width?: number): Diagram;
