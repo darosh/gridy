@@ -5,3 +5,7 @@ export const SQRT_3_6 = Math.sqrt(3) / 6;
 export const SQRT_2 = Math.sqrt(2);
 export const SQRT_2_2 = Math.sqrt(2) / 2;
 export const SQRT_2_4 = Math.sqrt(2) / 4;
+export const DEG_TO_RAD = Math.PI / 180.0;
+export const ANG = 360;
+export const ANG_2 = 180;
+export const ANG_4 = 90;

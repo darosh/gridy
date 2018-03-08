@@ -25,8 +25,8 @@ export class TriangularTile extends Integer2 {
     directions() {
         return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
     }
-    oposite(n) {
-        return TriangularTile.oposites[this.s.toString()][n];
+    opposite(n) {
+        return TriangularTile.opposites[this.s.toString()][n];
     }
     add(a) {
         const r = super.add(a);
@@ -55,7 +55,7 @@ TriangularTile.directions2 = [
     [2, new TriangularTile(0, 0, false)],
     [3, new TriangularTile(1, 0, false)],
 ];
-TriangularTile.oposites = {
+TriangularTile.opposites = {
     false: {
         1: 3,
         2: 1,

@@ -8,7 +8,7 @@ import { ITile } from "./ITile";
 export declare class TriangularTile extends Integer2 implements ITile<Integer2> {
     static directions1: Directions<TriangularTile>;
     static directions2: Directions<TriangularTile>;
-    static oposites: any;
+    static opposites: any;
     s: boolean;
     readonly key: string;
     constructor(x?: Integer, y?: Integer, s?: boolean);
@@ -17,7 +17,7 @@ export declare class TriangularTile extends Integer2 implements ITile<Integer2> 
     equals(p: TriangularTile): boolean;
     shift(): TriangularTile;
     directions(): Directions<TriangularTile>;
-    oposite(n: number): number;
+    opposite(n: number): number;
     add(a: TriangularTile): TriangularTile;
     scale(a: Integer): TriangularTile;
     neighbors(): Directions<TriangularTile>;

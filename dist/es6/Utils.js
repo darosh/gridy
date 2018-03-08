@@ -1,3 +1,4 @@
+import { ANG_4, DEG_TO_RAD } from "./Constants";
 export function instance(obj) {
     return new obj.constructor();
 }
@@ -12,7 +13,7 @@ export function enumerate(obj) {
     }
     return result;
 }
-export function maped(available, selection) {
+export function mapped(available, selection) {
     return selection.filter((t) => available.has(t[1].key))
         .map((t) => [t[0], available.get(t[1].key)]);
 }
@@ -31,4 +32,20 @@ export function link(tilesMap) {
             }
         }
     }
+}
+export function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    const angleInRadians = (angleInDegrees - ANG_4) * DEG_TO_RAD;
+    return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians)),
+    };
+}
+export function describeArc(x, y, radius, startAngle, endAngle) {
+    const start = polarToCartesian(x, y, radius, endAngle);
+    const end = polarToCartesian(x, y, radius, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    return [
+        "M", start.x, start.y,
+        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
+    ].join(" ");
 }

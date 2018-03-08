@@ -1,4 +1,4 @@
-import { instance, maped, toMap } from "./Utils";
+import { instance, mapped, toMap } from "./Utils";
 export function circle(start, N) {
     return spiral(start, N, false);
 }
@@ -44,14 +44,14 @@ export function axes(a, axe, odd = false) {
 }
 export function border(tiles) {
     const tileMap = toMap(tiles);
-    return tiles.filter((t) => maped(tileMap, t.neighbors()).length < t.directions().length);
+    return tiles.filter((t) => mapped(tileMap, t.neighbors()).length < t.directions().length);
 }
 export function outline(tiles, available) {
     const map = new Map();
     const tileMap = toMap(tiles);
     const availableMap = available ? toMap(available) : undefined;
     tiles.forEach((t) => {
-        const n = new Map(maped(tileMap, t.neighbors()));
+        const n = new Map(mapped(tileMap, t.neighbors()));
         const d = new Map(t.directions());
         if (n.size < d.size) {
             for (const [k, v] of d) {
@@ -73,14 +73,14 @@ export function connections(tiles) {
     const c = [];
     const available = toMap(tiles);
     for (const t of tiles) {
-        const m = new Map(maped(available, t.neighbors()));
-        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.oposite ? t.oposite(k) : -k));
+        const m = new Map(mapped(available, t.neighbors()));
+        const s = Array.from(m.keys()).filter((k) => (k > 0) && !m.has(t.opposite ? t.opposite(k) : -k));
         for (const k of s) {
             const l = [];
             let i = t;
             while (i) {
                 l.push(i);
-                i = new Map(maped(available, i.neighbors())).get(k);
+                i = new Map(mapped(available, i.neighbors())).get(k);
             }
             c.push(l);
         }

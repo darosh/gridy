@@ -7,14 +7,14 @@ export interface ITile<T> {
     directions(): Directions<T>;
     sides?(): Directions<T>;
     sideNeighbors?(): Directions<T>;
-    oposite?(n: number): number;
+    opposite?(n: number): number;
     shift(): T;
     cubeLength(): number;
     equals(h: T): boolean;
     add(h: T): T;
     scale(k: Integer): T;
 }
-export interface ITileConstructable<T> {
+export interface ITileConstructible<T> {
     new (...args: any[]): T;
 }
 export declare type AnyTile = ITile<any>;

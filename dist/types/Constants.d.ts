@@ -6,3 +6,7 @@ export declare const SQRT_3_6: Float;
 export declare const SQRT_2: Float;
 export declare const SQRT_2_2: Float;
 export declare const SQRT_2_4: Float;
+export declare const DEG_TO_RAD: Float;
+export declare const ANG: Float;
+export declare const ANG_2: Float;
+export declare const ANG_4: Float;
