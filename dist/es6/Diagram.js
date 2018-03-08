@@ -371,9 +371,9 @@ export default class Diagram {
         this.translate = new Float2((parseFloat(this.svg.attr("width")) - bounds.minX - bounds.maxX) / 2, (parseFloat(this.svg.attr("height")) - bounds.minY - bounds.maxY) / 2);
         this.transition(this.root).attr("transform", "translate(" + this.translate + ")");
         this.transition(this.paths).attr("transform", "translate(" + this.translate + ")");
-        this.root.append("rect").attr("class", "bound")
-            .attr("x", bounds.minX).attr("y", bounds.minY)
-            .attr("width", bounds.maxX - bounds.minX).attr("height", bounds.maxY - bounds.minY);
+        // this.root.append("rect").attr("class", "bound")
+        // .attr("x", bounds.minX).attr("y", bounds.minY)
+        // .attr("width", bounds.maxX - bounds.minX).attr("height", bounds.maxY - bounds.minY);
     }
     initTiles() {
         this.nodes = this.grid.tiles.map((n) => {
