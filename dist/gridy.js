@@ -1201,11 +1201,12 @@ var RadialGrid = function () {
         var orientation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         var shape = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : exports.Shape.Even;
         var x = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+        var y = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
 
         var _this = this;
 
-        var y = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
         var tile = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : RadialTile;
+        var startY = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
         classCallCheck(this, RadialGrid);
 
         this.scaleY = -1;
@@ -1217,10 +1218,11 @@ var RadialGrid = function () {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
+        this.startY = startY;
         this.tileCtor = tile;
         var results = [];
         for (var px = 0; px < x; px++) {
-            for (var py = 0; py < y; py++) {
+            for (var py = startY; py < y; py++) {
                 results.push(new tile(px, py, x));
             }
         }

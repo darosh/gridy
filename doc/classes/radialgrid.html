@@ -106,6 +106,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#radius" class="tsd-kind-icon">radius</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#scale" class="tsd-kind-icon">scale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#scaley" class="tsd-kind-icon">scaleY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#starty" class="tsd-kind-icon">startY</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#tilector" class="tsd-kind-icon">tile<wbr>Ctor</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#tiletypes" class="tsd-kind-icon">tile<wbr>Types</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="radialgrid.html#tiles" class="tsd-kind-icon">tiles</a></li>
@@ -135,13 +136,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Radial<wbr>Grid<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><a href="../globals.html#float" class="tsd-signature-type">Float</a>, orientation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, shape<span class="tsd-signature-symbol">?: </span><a href="../enums/shape.html" class="tsd-signature-type">Shape</a>, x<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, y<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, tile<span class="tsd-signature-symbol">?: </span><a href="../interfaces/itileconstructible.html" class="tsd-signature-type">ITileConstructible</a><span class="tsd-signature-symbol">&lt;</span><a href="radialtile.html" class="tsd-signature-type">RadialTile</a><span class="tsd-signature-symbol"> | </span><a href="radial8tile.html" class="tsd-signature-type">Radial8Tile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="radialgrid.html" class="tsd-signature-type">RadialGrid</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Radial<wbr>Grid<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><a href="../globals.html#float" class="tsd-signature-type">Float</a>, orientation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, shape<span class="tsd-signature-symbol">?: </span><a href="../enums/shape.html" class="tsd-signature-type">Shape</a>, x<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, y<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a>, tile<span class="tsd-signature-symbol">?: </span><a href="../interfaces/itileconstructible.html" class="tsd-signature-type">ITileConstructible</a><span class="tsd-signature-symbol">&lt;</span><a href="radialtile.html" class="tsd-signature-type">RadialTile</a><span class="tsd-signature-symbol"> | </span><a href="radial8tile.html" class="tsd-signature-type">Radial8Tile</a><span class="tsd-signature-symbol">&gt;</span>, startY<span class="tsd-signature-symbol">?: </span><a href="../globals.html#integer" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="radialgrid.html" class="tsd-signature-type">RadialGrid</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L32">RadialGrid.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L33">RadialGrid.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -164,6 +165,9 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> tile: <a href="../interfaces/itileconstructible.html" class="tsd-signature-type">ITileConstructible</a><span class="tsd-signature-symbol">&lt;</span><a href="radialtile.html" class="tsd-signature-type">RadialTile</a><span class="tsd-signature-symbol"> | </span><a href="radial8tile.html" class="tsd-signature-type">Radial8Tile</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;RadialTile</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> startY: <a href="../globals.html#integer" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="radialgrid.html" class="tsd-signature-type">RadialGrid</a></h4>
 						</li>
@@ -179,7 +183,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#angle">angle</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L24">RadialGrid.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L24">RadialGrid.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,7 +194,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#irregular">irregular</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L32">RadialGrid.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L33">RadialGrid.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +205,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#orientation">orientation</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L21">RadialGrid.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L21">RadialGrid.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +216,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#radius">radius</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L29">RadialGrid.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L30">RadialGrid.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -223,7 +227,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#scale">scale</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L22">RadialGrid.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L22">RadialGrid.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -234,7 +238,17 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#scaley">scaleY</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L23">RadialGrid.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L23">RadialGrid.ts:23</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="starty" class="tsd-anchor"></a>
+					<h3>startY</h3>
+					<div class="tsd-signature tsd-kind-icon">startY<span class="tsd-signature-symbol">:</span> <a href="../globals.html#integer" class="tsd-signature-type">Integer</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L27">RadialGrid.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -244,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">tile<wbr>Ctor<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itileconstructible.html" class="tsd-signature-type">ITileConstructible</a><span class="tsd-signature-symbol">&lt;</span><a href="radialtile.html" class="tsd-signature-type">RadialTile</a><span class="tsd-signature-symbol"> | </span><a href="radial8tile.html" class="tsd-signature-type">Radial8Tile</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L31">RadialGrid.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L32">RadialGrid.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +269,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tiletypes">tileTypes</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L30">RadialGrid.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L31">RadialGrid.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -266,7 +280,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tiles">tiles</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L20">RadialGrid.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L20">RadialGrid.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -277,7 +291,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#topoint">toPoint</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L28">RadialGrid.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L29">RadialGrid.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -309,7 +323,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#totile">toTile</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L27">RadialGrid.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L28">RadialGrid.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -344,7 +358,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#x">x</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L25">RadialGrid.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L25">RadialGrid.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -355,7 +369,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#y">y</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L26">RadialGrid.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L26">RadialGrid.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -373,7 +387,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#bounds">bounds</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L60">RadialGrid.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L63">RadialGrid.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="rectangle.html" class="tsd-signature-type">Rectangle</a></h4>
@@ -390,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L98">RadialGrid.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L101">RadialGrid.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L80">RadialGrid.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L83">RadialGrid.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -437,7 +451,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#position">position</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L90">RadialGrid.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L93">RadialGrid.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -464,7 +478,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#tile">tile</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L94">RadialGrid.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L97">RadialGrid.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -494,7 +508,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/igrid.html">IGrid</a>.<a href="../interfaces/igrid.html#vertices">vertices</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/darosh/gridy/blob/6e661af/src/RadialGrid.ts#L66">RadialGrid.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/darosh/gridy/blob/971a151/src/RadialGrid.ts#L69">RadialGrid.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -553,6 +567,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="radialgrid.html#scaley" class="tsd-kind-icon">scaleY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="radialgrid.html#starty" class="tsd-kind-icon">startY</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="radialgrid.html#tilector" class="tsd-kind-icon">tile<wbr>Ctor</a>

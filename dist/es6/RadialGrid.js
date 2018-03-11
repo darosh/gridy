@@ -10,7 +10,7 @@ import { TileType } from "./TileType";
  * ![](../../examples/output/Radial-grid.svg)
  */
 export class RadialGrid {
-    constructor(scale, orientation = false, shape = Shape.Even, x = 1, y = 1, tile = RadialTile) {
+    constructor(scale, orientation = false, shape = Shape.Even, x = 1, y = 1, tile = RadialTile, startY = 0) {
         this.scaleY = -1;
         this.angle = -0;
         this.tileTypes = TileType.Simple;
@@ -20,10 +20,11 @@ export class RadialGrid {
         this.orientation = orientation;
         this.x = x;
         this.y = y;
+        this.startY = startY;
         this.tileCtor = tile;
         const results = [];
         for (let px = 0; px < x; px++) {
-            for (let py = 0; py < y; py++) {
+            for (let py = startY; py < y; py++) {
                 results.push(new tile(px, py, x));
             }
         }

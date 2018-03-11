@@ -24,6 +24,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   public angle: Float = -0;
   public x: Integer;
   public y: Integer;
+  public startY: Integer;
   public toTile: (point: Position) => RadialTile | Radial8Tile;
   public toPoint: (tile: RadialTile | Radial8Tile) => Position;
   public radius: Float;
@@ -36,18 +37,20 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
               shape: Shape = Shape.Even,
               x: Integer = 1,
               y: Integer = 1,
-              tile: ITileConstructible<RadialTile | Radial8Tile> = RadialTile) {
+              tile: ITileConstructible<RadialTile | Radial8Tile> = RadialTile,
+              startY: Integer = 0) {
     this.scale = scale;
     this.radius = scale / 2;
     this.orientation = orientation;
     this.x = x;
     this.y = y;
+    this.startY = startY;
     this.tileCtor = tile;
 
     const results: RadialTile[] = [];
 
     for (let px: Integer = 0; px < x; px++) {
-      for (let py: Integer = 0; py < y; py++) {
+      for (let py: Integer = startY; py < y; py++) {
         results.push(new tile(px, py, x) as RadialTile);
       }
     }

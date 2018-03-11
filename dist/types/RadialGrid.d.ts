@@ -20,13 +20,14 @@ export declare class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     angle: Float;
     x: Integer;
     y: Integer;
+    startY: Integer;
     toTile: (point: Position) => RadialTile | Radial8Tile;
     toPoint: (tile: RadialTile | Radial8Tile) => Position;
     radius: Float;
     tileTypes: TileType;
     tileCtor: ITileConstructible<RadialTile | Radial8Tile>;
     irregular: boolean;
-    constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer, tile?: ITileConstructible<RadialTile | Radial8Tile>);
+    constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer, tile?: ITileConstructible<RadialTile | Radial8Tile>, startY?: Integer);
     bounds(): Rectangle;
     vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[];
     path(tile: RadialTile): string;
