@@ -52,8 +52,8 @@ export class RadialGrid {
         const c = this.center(tile);
         const r1 = this.scale * tile.y;
         const r2 = this.scale * (tile.y + 1);
-        return `M ${p[0].x} ${p[0].y} A ${r1} ${r1} 0 0 1 ${p[1].x} ${p[1].y} `
-            + `L ${p[2].x} ${p[2].y} A ${r2} ${r2} 0 0 0 ${p[3].x} ${p[3].y} Z`;
+        return `M ${p[0].x} ${p[0].y} A ${r1} ${r1} 0 0 0 ${p[1].x} ${p[1].y} `
+            + `L ${p[2].x} ${p[2].y} A ${r2} ${r2} 0 0 1 ${p[3].x} ${p[3].y} Z`;
     }
     position(p) {
         return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
@@ -72,6 +72,6 @@ export class RadialGrid {
         else {
             angle = (tile.x * DEG_TO_RAD) * (ANG / tile.z);
         }
-        return new Float2((tile.y + 0.5) * this.scale * Math.cos(angle), (tile.y + 0.5) * this.scale * Math.sin(angle));
+        return new Float2((tile.y + 0.5) * this.scale * Math.sin(angle), (tile.y + 0.5) * this.scale * Math.cos(angle));
     }
 }
