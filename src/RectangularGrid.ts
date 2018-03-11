@@ -27,6 +27,7 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
   public angle: Float = -45;
   public x: Integer;
   public y: Integer;
+  public startY: Integer;
   public toTile: (point: Position) => RectangularTile | Rectangular8Tile;
   public toPoint: (tile: RectangularTile | Rectangular8Tile) => Position;
   public radius: Float;
@@ -38,18 +39,20 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
               shape: Shape = Shape.Even,
               x: Integer = 1,
               y: Integer = 1,
-              tile: ITileConstructible<RectangularTile | Rectangular8Tile> = RectangularTile) {
+              tile: ITileConstructible<RectangularTile | Rectangular8Tile> = RectangularTile,
+              startY: Integer = 0) {
     this.scale = scale;
     this.radius = scale / 2;
     this.orientation = orientation;
     this.x = x;
     this.y = y;
+    this.startY = y;
     this.tileCtor = tile;
 
     const results: RectangularTile[] = [];
 
     for (let px: Integer = 0; px < x; px++) {
-      for (let py: Integer = 0; py < y; py++) {
+      for (let py: Integer = startY; py < y; py++) {
         results.push(new tile(px, py) as RectangularTile);
       }
     }

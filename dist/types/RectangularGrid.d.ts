@@ -20,12 +20,13 @@ export declare class RectangularGrid implements IGrid<RectangularTile | Rectangu
     angle: Float;
     x: Integer;
     y: Integer;
+    startY: Integer;
     toTile: (point: Position) => RectangularTile | Rectangular8Tile;
     toPoint: (tile: RectangularTile | Rectangular8Tile) => Position;
     radius: Float;
     tileTypes: TileType;
     tileCtor: ITileConstructible<RectangularTile | Rectangular8Tile>;
-    constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer, tile?: ITileConstructible<RectangularTile | Rectangular8Tile>);
+    constructor(scale: Float, orientation?: boolean, shape?: Shape, x?: Integer, y?: Integer, tile?: ITileConstructible<RectangularTile | Rectangular8Tile>, startY?: Integer);
     bounds(): Rectangle;
     center(tile: RectangularTile | Rectangular8Tile): Float2;
     vertices(orientation?: boolean, scale?: Float): Float2[];
