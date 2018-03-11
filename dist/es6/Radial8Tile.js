@@ -2,8 +2,8 @@ import { Axes8 } from "./Axes";
 import { Integer3 } from "./Integer3";
 /**
  * ![](../../examples/output/radial-tile.svg)
- * x: radius position
- * y: angle position
+ * x: angle position
+ * y: radius position
  * z: angular length
  */
 export class Radial8Tile extends Integer3 {
@@ -25,16 +25,16 @@ export class Radial8Tile extends Integer3 {
     }
     add(a) {
         const length = this.z || a.z;
-        let angle = this.y + a.y;
+        let angle = this.x + a.x;
         angle = angle % length;
         angle = (angle + length) % length;
-        return new Radial8Tile(this.x + a.x, angle, length);
+        return new Radial8Tile(angle, this.y + a.y, length);
     }
     scale(a) {
-        return new Radial8Tile(this.x * a, this.y, this.z);
+        return new Radial8Tile(this.x, this.y * a, this.z);
     }
     cubeLength() {
-        return Math.floor(Math.abs(this.x));
+        return Math.floor(Math.abs(this.y));
     }
     neighbors() {
         const results = [];

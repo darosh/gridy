@@ -311,7 +311,7 @@
       script: function (svg) {
         const { Shape, RadialGrid } = Gridy
 
-        const grid = new RadialGrid(40, false, Shape.Even, 4, 12)
+        const grid = new RadialGrid(40, false, Shape.Even, 12, 4)
 
         new Diagram(svg, grid)
           .circles()

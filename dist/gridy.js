@@ -1101,8 +1101,8 @@ var Float3 = function () {
 
 /**
  * ![](../../examples/output/radial-tile.svg)
- * x: radius position
- * y: angle position
+ * x: angle position
+ * y: radius position
  * z: radius width
  * w: angular length
  */
@@ -1132,20 +1132,20 @@ var RadialTile = function (_Integer) {
         key: "add",
         value: function add(a) {
             var length = this.z || a.z;
-            var angle = this.y + a.y;
+            var angle = this.x + a.x;
             angle = angle % length;
             angle = (angle + length) % length;
-            return new RadialTile(this.x + a.x, angle, length);
+            return new RadialTile(angle, this.y + a.y, length);
         }
     }, {
         key: "scale",
         value: function scale(a) {
-            return new RadialTile(this.x * a, this.y, this.z);
+            return new RadialTile(this.x, this.y * a, this.z);
         }
     }, {
         key: "cubeLength",
         value: function cubeLength() {
-            return Math.floor(Math.abs(this.x));
+            return Math.floor(Math.abs(this.y));
         }
     }, {
         key: "neighbors",
@@ -1221,7 +1221,7 @@ var RadialGrid = function () {
         var results = [];
         for (var px = 0; px < x; px++) {
             for (var py = 0; py < y; py++) {
-                results.push(new tile(px, py, y));
+                results.push(new tile(px, py, x));
             }
         }
         this.tiles = results;
@@ -1236,7 +1236,7 @@ var RadialGrid = function () {
     createClass(RadialGrid, [{
         key: "bounds",
         value: function bounds() {
-            var r = this.scale * this.x;
+            var r = this.scale * this.y;
             return new Rectangle(-r, r, -r, r);
             // return bounds(this);
         }
@@ -1247,9 +1247,9 @@ var RadialGrid = function () {
             var points = [];
             var c = this.center(t);
             points.push(this.center(new Float3(t.x - 0.5, t.y - 0.5, t.z)));
-            points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z)));
-            points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z)));
             points.push(this.center(new Float3(t.x + 0.5, t.y - 0.5, t.z)));
+            points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z)));
+            points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z)));
             return points.map(function (p) {
                 return new Float2(p.x - c.x, p.y - c.y);
             });
@@ -1259,9 +1259,9 @@ var RadialGrid = function () {
         value: function path(tile) {
             var p = this.vertices(false, 0, 0, tile);
             var c = this.center(tile);
-            var r1 = this.scale * tile.x;
-            var r2 = this.scale * (tile.x + 1);
-            return "M " + p[0].x + " " + p[0].y + " A " + r1 + " " + r1 + " 0 0 0 " + p[1].x + " " + p[1].y + " " + ("L " + p[2].x + " " + p[2].y + " A " + r2 + " " + r2 + " 0 0 1 " + p[3].x + " " + p[3].y + " Z");
+            var r1 = this.scale * tile.y;
+            var r2 = this.scale * (tile.y + 1);
+            return "M " + p[0].x + " " + p[0].y + " A " + r1 + " " + r1 + " 0 0 1 " + p[1].x + " " + p[1].y + " " + ("L " + p[2].x + " " + p[2].y + " A " + r2 + " " + r2 + " 0 0 0 " + p[3].x + " " + p[3].y + " Z");
         }
     }, {
         key: "position",
@@ -1278,14 +1278,14 @@ var RadialGrid = function () {
         value: function center(tile) {
             var angle = void 0;
             if (this.orientation) {
-                angle = tile.y + 0.5;
+                angle = tile.x + 0.5;
                 angle = angle % tile.z;
                 angle = (angle + tile.z) % tile.z;
                 angle = angle * DEG_TO_RAD * (ANG / tile.z);
             } else {
-                angle = tile.y * DEG_TO_RAD * (ANG / tile.z);
+                angle = tile.x * DEG_TO_RAD * (ANG / tile.z);
             }
-            return new Float2((tile.x + 0.5) * this.scale * Math.sin(angle), (tile.x + 0.5) * this.scale * Math.cos(angle));
+            return new Float2((tile.y + 0.5) * this.scale * Math.cos(angle), (tile.y + 0.5) * this.scale * Math.sin(angle));
         }
     }]);
     return RadialGrid;
@@ -1457,8 +1457,8 @@ var RectangularGrid = function () {
 
 /**
  * ![](../../examples/output/radial-tile.svg)
- * x: radius position
- * y: angle position
+ * x: angle position
+ * y: radius position
  * z: angular length
  */
 var Radial8Tile = function (_Integer) {
@@ -1487,20 +1487,20 @@ var Radial8Tile = function (_Integer) {
         key: "add",
         value: function add(a) {
             var length = this.z || a.z;
-            var angle = this.y + a.y;
+            var angle = this.x + a.x;
             angle = angle % length;
             angle = (angle + length) % length;
-            return new Radial8Tile(this.x + a.x, angle, length);
+            return new Radial8Tile(angle, this.y + a.y, length);
         }
     }, {
         key: "scale",
         value: function scale(a) {
-            return new Radial8Tile(this.x * a, this.y, this.z);
+            return new Radial8Tile(this.x, this.y * a, this.z);
         }
     }, {
         key: "cubeLength",
         value: function cubeLength() {
-            return Math.floor(Math.abs(this.x));
+            return Math.floor(Math.abs(this.y));
         }
     }, {
         key: "neighbors",

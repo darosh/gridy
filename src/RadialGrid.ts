@@ -48,7 +48,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
 
     for (let px: Integer = 0; px < x; px++) {
       for (let py: Integer = 0; py < y; py++) {
-        results.push(new tile(px, py, y) as RadialTile);
+        results.push(new tile(px, py, x) as RadialTile);
       }
     }
 
@@ -58,7 +58,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   }
 
   public bounds(): Rectangle {
-    const r = this.scale * this.x;
+    const r = this.scale * this.y;
     return new Rectangle(-r, r, -r, r);
     // return bounds(this);
   }
@@ -70,9 +70,9 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     const c = this.center(t);
 
     points.push(this.center(new Float3(t.x - 0.5, t.y - 0.5, t.z) as any));
-    points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z) as any));
-    points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z) as any));
     points.push(this.center(new Float3(t.x + 0.5, t.y - 0.5, t.z) as any));
+    points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z) as any));
+    points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z) as any));
 
     return points.map((p) => new Float2(p.x - c.x, p.y - c.y));
   }
@@ -80,11 +80,11 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
   public path(tile: RadialTile): string {
     const p = this.vertices(false, 0, 0, tile);
     const c = this.center(tile);
-    const r1 = this.scale * tile.x;
-    const r2 = this.scale * (tile.x + 1);
+    const r1 = this.scale * tile.y;
+    const r2 = this.scale * (tile.y + 1);
 
-    return `M ${p[0].x} ${p[0].y} A ${r1} ${r1} 0 0 0 ${p[1].x} ${p[1].y} `
-      + `L ${p[2].x} ${p[2].y} A ${r2} ${r2} 0 0 1 ${p[3].x} ${p[3].y} Z`;
+    return `M ${p[0].x} ${p[0].y} A ${r1} ${r1} 0 0 1 ${p[1].x} ${p[1].y} `
+      + `L ${p[2].x} ${p[2].y} A ${r2} ${r2} 0 0 0 ${p[3].x} ${p[3].y} Z`;
   }
 
   public position(p: Float2): RadialTile | Radial8Tile {
@@ -99,17 +99,17 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
     let angle;
 
     if (this.orientation) {
-      angle = tile.y + 0.5;
+      angle = tile.x + 0.5;
       angle = angle % tile.z;
       angle = (angle + tile.z) % tile.z;
       angle = (angle * DEG_TO_RAD) * (ANG / tile.z);
     } else {
-      angle = (tile.y * DEG_TO_RAD) * (ANG / tile.z);
+      angle = (tile.x * DEG_TO_RAD) * (ANG / tile.z);
     }
 
     return new Float2(
-      (tile.x + 0.5) * this.scale * Math.sin(angle),
-      (tile.x + 0.5) * this.scale * Math.cos(angle),
+      (tile.y + 0.5) * this.scale * Math.cos(angle),
+      (tile.y + 0.5) * this.scale * Math.sin(angle),
     );
   }
 }

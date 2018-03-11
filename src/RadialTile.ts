@@ -8,8 +8,8 @@ import { toMap } from "./Utils";
 
 /**
  * ![](../../examples/output/radial-tile.svg)
- * x: radius position
- * y: angle position
+ * x: angle position
+ * y: radius position
  * z: radius width
  * w: angular length
  */
@@ -42,20 +42,20 @@ export class RadialTile extends Integer3 implements ITile<Integer3> {
   public add(a: RadialTile): RadialTile {
     const length = this.z || a.z;
 
-    let angle = this.y + a.y;
+    let angle = this.x + a.x;
 
     angle = angle % length;
     angle = (angle + length) % length;
 
-    return new RadialTile(this.x + a.x, angle, length);
+    return new RadialTile(angle, this.y + a.y, length);
   }
 
   public scale(a: Integer): RadialTile {
-    return new RadialTile(this.x * a, this.y, this.z);
+    return new RadialTile(this.x, this.y * a, this.z);
   }
 
   public cubeLength(): Integer {
-    return Math.floor(Math.abs(this.x));
+    return Math.floor(Math.abs(this.y));
   }
 
   public neighbors(): Directions<RadialTile> {

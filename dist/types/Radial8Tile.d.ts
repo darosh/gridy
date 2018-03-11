@@ -4,8 +4,8 @@ import { Integer3 } from "./Integer3";
 import { ITile } from "./ITile";
 /**
  * ![](../../examples/output/radial-tile.svg)
- * x: radius position
- * y: angle position
+ * x: angle position
+ * y: radius position
  * z: angular length
  */
 export declare class Radial8Tile extends Integer3 implements ITile<Integer3> {
