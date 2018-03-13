@@ -1,7 +1,7 @@
 {
   "name": "gridy",
   "description": "TypeScript grid library for server and browser",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Jan Forst <ensonador@gmail.com>",
   "dependencies": {},
   "devDependencies": {
