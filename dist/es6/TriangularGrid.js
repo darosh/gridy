@@ -67,7 +67,7 @@ export class TriangularGrid {
         return tile.s ? 0 : 1;
     }
     tile(x, y) {
-        return undefined;
+        return new TriangularTile(Math.floor(x / 2), y, !!(x % 2));
     }
     rhombus() {
         const results = [];

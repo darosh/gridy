@@ -1000,7 +1000,7 @@ var TriangularGrid = function () {
     }, {
         key: "tile",
         value: function tile(x, y) {
-            return undefined;
+            return new TriangularTile(Math.floor(x / 2), y, !!(x % 2));
         }
     }, {
         key: "rhombus",

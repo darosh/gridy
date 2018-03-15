@@ -97,7 +97,7 @@ export class TriangularGrid implements IGrid<TriangularTile> {
   }
 
   public tile(x: number, y: number) {
-    return undefined;
+    return new TriangularTile(Math.floor(x / 2), y, !!(x % 2));
   }
 
   private rhombus(): TriangularTile[] {
