@@ -22,11 +22,25 @@ function boundsOfPoints(points) {
     return rectangle;
 }
 export function bounds(grid) {
-    const centers = grid.tiles.map((tile) => {
-        return grid.center(tile);
-    });
-    // TODO use vertices(..,...,tileType) for TriangularGrid;
-    const b1 = boundsOfPoints(grid.vertices(grid.orientation));
-    const b2 = boundsOfPoints(centers);
-    return Rectangle.add(b1, b2);
+    if (grid.tileTypes === 2) {
+        let sum = [];
+        const centers = grid.tiles.reduce((r, tile) => {
+            r[grid.getTileType(tile)].push(grid.center(tile));
+            return r;
+        }, [[], []]);
+        for (let i = 0; i < 2; i++) {
+            const b1 = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
+            const b2 = boundsOfPoints(centers[i]);
+            sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+        }
+        return boundsOfPoints(sum);
+    }
+    else {
+        const centers = grid.tiles.map((tile) => {
+            return grid.center(tile);
+        });
+        const b1 = boundsOfPoints(grid.vertices(grid.orientation));
+        const b2 = boundsOfPoints(centers);
+        return Rectangle.add(b1, b2);
+    }
 }

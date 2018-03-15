@@ -33,14 +33,30 @@ function boundsOfPoints(points: Float2[]): Rectangle {
 }
 
 export function bounds(grid: IGrid<any>): Rectangle {
-  const centers: Float2[] = grid.tiles.map((tile: AnyTile): Float2 => {
-    return grid.center(tile);
-  });
+  if (grid.tileTypes === 2) {
+    let sum: any[] = [];
 
-  // TODO use vertices(..,...,tileType) for TriangularGrid;
+    const centers: Float2[] = grid.tiles.reduce((r, tile: AnyTile): any => {
+      r[(grid.getTileType as any)(tile)].push(grid.center(tile));
+      return r;
+    }, [[], []]);
 
-  const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation));
-  const b2: Rectangle = boundsOfPoints(centers);
+    for (let i = 0; i < 2; i++) {
+      const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
+      const b2: Rectangle = boundsOfPoints(centers[i] as any);
 
-  return Rectangle.add(b1, b2);
+      sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+    }
+
+    return boundsOfPoints(sum);
+  } else {
+    const centers: Float2[] = grid.tiles.map((tile: AnyTile): Float2 => {
+      return grid.center(tile);
+    });
+
+    const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation));
+    const b2: Rectangle = boundsOfPoints(centers);
+
+    return Rectangle.add(b1, b2);
+  }
 }

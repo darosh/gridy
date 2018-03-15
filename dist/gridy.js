@@ -263,6 +263,11 @@ var Rectangle = function () {
         value: function add(a, b) {
             return new Rectangle(a.minX + b.minX, a.maxX + b.maxX, a.minY + b.minY, a.maxY + b.maxY);
         }
+    }, {
+        key: "points",
+        value: function points(a) {
+            return [new Float2(a.minX, a.minY), new Float2(a.maxX, a.minY), new Float2(a.minX, a.maxY), new Float2(a.maxX, a.maxY)];
+        }
     }]);
     return Rectangle;
 }();
@@ -312,13 +317,26 @@ function boundsOfPoints(points) {
     return rectangle;
 }
 function bounds(grid) {
-    var centers = grid.tiles.map(function (tile) {
-        return grid.center(tile);
-    });
-    // TODO use vertices(..,...,tileType) for TriangularGrid;
-    var b1 = boundsOfPoints(grid.vertices(grid.orientation));
-    var b2 = boundsOfPoints(centers);
-    return Rectangle.add(b1, b2);
+    if (grid.tileTypes === 2) {
+        var sum = [];
+        var centers = grid.tiles.reduce(function (r, tile) {
+            r[grid.getTileType(tile)].push(grid.center(tile));
+            return r;
+        }, [[], []]);
+        for (var i = 0; i < 2; i++) {
+            var b1 = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
+            var b2 = boundsOfPoints(centers[i]);
+            sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+        }
+        return boundsOfPoints(sum);
+    } else {
+        var _centers = grid.tiles.map(function (tile) {
+            return grid.center(tile);
+        });
+        var _b = boundsOfPoints(grid.vertices(grid.orientation));
+        var _b2 = boundsOfPoints(_centers);
+        return Rectangle.add(_b, _b2);
+    }
 }
 
 var Axes4;
