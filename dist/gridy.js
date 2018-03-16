@@ -548,7 +548,7 @@ var HexagonalGrid = function () {
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
-        this.radius = SQRT_3_2 * scale / 2;
+        this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
         this.orientation = orientation;
         y = y || x;
         this.x = x;
@@ -597,6 +597,7 @@ var HexagonalGrid = function () {
         value: function vertices(orientation, scale) {
             var points = [];
             scale = scale === undefined ? this.scale : scale;
+            scale /= SQRT_3_2;
             orientation = orientation === undefined ? false : this.orientation;
             for (var i = 0; i < 6; i++) {
                 var angle = 2 * Math.PI * (2 * i - (orientation ? 1 : 0)) / 12;
@@ -608,7 +609,7 @@ var HexagonalGrid = function () {
         key: "center",
         value: function center(tile) {
             var s = void 0;
-            var size = this.scale / 2;
+            var size = this.scale / SQRT_3_2 / 2;
             if (this.orientation) {
                 s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
             } else {
@@ -943,7 +944,7 @@ var TriangularGrid = function () {
         this.angle = -60;
         this.tileTypes = TileType.Variable;
         this.scale = scale;
-        this.radius = SQRT_3_6 * scale;
+        this.radius = SQRT_3_6 * scale / SQRT_3_2;
         this.orientation = orientation;
         this.x = x;
         this.y = y;
@@ -973,7 +974,8 @@ var TriangularGrid = function () {
     }, {
         key: "center",
         value: function center(tile) {
-            return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2, this.scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
+            var scale = this.scale / SQRT_3_2;
+            return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2, scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
         }
     }, {
         key: "vertices",
@@ -981,6 +983,7 @@ var TriangularGrid = function () {
             var tileType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
             scale = scale === undefined ? this.scale : scale;
+            scale /= SQRT_3_2;
             if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
                 return [new Float2(0, -scale * SQRT_3_3), new Float2(-scale / 2, scale * SQRT_3_6), new Float2(scale / 2, scale * SQRT_3_6)];
             } else {

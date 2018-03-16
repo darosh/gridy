@@ -18,7 +18,7 @@ export class HexagonalGrid {
         this.angle = -30;
         this.tileTypes = TileType.Simple;
         this.scale = scale;
-        this.radius = SQRT_3_2 * scale / 2;
+        this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
         this.orientation = orientation;
         y = y || x;
         this.x = x;
@@ -182,6 +182,7 @@ export class HexagonalGrid {
     vertices(orientation, scale) {
         const points = [];
         scale = (scale === undefined) ? this.scale : scale;
+        scale /= SQRT_3_2;
         orientation = (orientation === undefined) ? false : this.orientation;
         for (let i = 0; i < 6; i++) {
             const angle = 2 * Math.PI * (2 * i - (orientation ? 1 : 0)) / 12;
@@ -191,7 +192,7 @@ export class HexagonalGrid {
     }
     center(tile) {
         let s;
-        const size = this.scale / 2;
+        const size = this.scale / SQRT_3_2 / 2;
         if (this.orientation) {
             s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
         }

@@ -34,7 +34,7 @@ export class TriangularGrid implements IGrid<TriangularTile> {
               x: Integer = 1,
               y: Integer = 1) {
     this.scale = scale;
-    this.radius = SQRT_3_6 * scale;
+    this.radius = SQRT_3_6 * scale / SQRT_3_2;
     this.orientation = orientation;
     this.x = x;
     this.y = y;
@@ -64,14 +64,17 @@ export class TriangularGrid implements IGrid<TriangularTile> {
   }
 
   public center(tile: TriangularTile): Float2 {
+    const scale = this.scale / SQRT_3_2;
+
     return new Float2(
-      (tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * this.scale / 2,
-      this.scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY,
+      (tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2,
+      scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY,
     );
   }
 
   public vertices(orientation?: boolean, scale?: Float, tileType: Integer = 0): Float2[] {
     scale = (scale === undefined) ? this.scale : scale;
+    scale /= SQRT_3_2;
 
     if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
       return [
