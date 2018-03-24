@@ -36,6 +36,16 @@ export class TriangularTile extends Integer2 {
         const r = super.scale(a);
         return new TriangularTile(r.x, r.y);
     }
+    multiNeighbors() {
+        const results = [];
+        for (let dir = 1; dir < 4; dir++) {
+            const d = TriangularTile.multiDirections[this.s.toString()][dir];
+            const t = this.s ? TriangularTile.directions2[d][1] : TriangularTile.directions1[d][1];
+            results.push([dir, this.add(t)]);
+            results.push([TriangularTile.multiOpposites[this.s.toString()][dir], this.add(t)]);
+        }
+        return results;
+    }
     neighbors() {
         const results = [];
         for (let dir = 0; dir < 3; dir++) {
@@ -64,6 +74,36 @@ TriangularTile.opposites = {
     true: {
         1: 2,
         2: 3,
+        3: 1,
+    },
+};
+TriangularTile.multiOpposites = {
+    false: {
+        "-1": 2,
+        "-2": 3,
+        "-3": 1,
+        "1": -3,
+        "2": -1,
+        "3": -2,
+    },
+    true: {
+        "-1": 3,
+        "-2": 1,
+        "-3": 2,
+        "1": -2,
+        "2": -3,
+        "3": -1,
+    },
+};
+TriangularTile.multiDirections = {
+    false: {
+        1: 0,
+        2: 2,
+        3: 1,
+    },
+    true: {
+        1: 0,
+        2: 2,
         3: 1,
     },
 };

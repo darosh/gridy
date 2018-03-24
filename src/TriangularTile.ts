@@ -32,6 +32,38 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
     },
   };
 
+  public static multiOpposites: {[index: string]: {[index: string]: number}} = {
+    false: {
+      "-1": 2,
+      "-2": 3,
+      "-3": 1,
+      "1": -3,
+      "2": -1,
+      "3": -2,
+    },
+    true: {
+      "-1": 3,
+      "-2": 1,
+      "-3": 2,
+      "1": -2,
+      "2": -3,
+      "3": -1,
+    },
+  };
+
+  public static multiDirections: {[index: string]: {[index: string]: number}} = {
+    false: {
+      1: 0,
+      2: 2,
+      3: 1,
+    },
+    true: {
+      1: 0,
+      2: 2,
+      3: 1,
+    },
+  };
+
   public s: boolean;
 
   public get key() {
@@ -75,6 +107,20 @@ export class TriangularTile extends Integer2 implements ITile<Integer2> {
   public scale(a: Integer): TriangularTile {
     const r: Integer2 = super.scale(a);
     return new TriangularTile(r.x, r.y);
+  }
+
+  public multiNeighbors(): Directions<TriangularTile> {
+    const results: Directions<any> = [];
+
+    for (let dir: Integer = 1; dir < 4; dir++) {
+      const d = TriangularTile.multiDirections[this.s.toString()][dir];
+      const t = this.s ? TriangularTile.directions2[d][1] : TriangularTile.directions1[d][1];
+
+      results.push([dir, this.add(t)]);
+      results.push([TriangularTile.multiOpposites[this.s.toString()][dir], this.add(t)]);
+    }
+
+    return results;
   }
 
   public neighbors(): Directions<TriangularTile> {

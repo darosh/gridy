@@ -26,7 +26,7 @@ export function toArray(m) {
 export function link(tilesMap) {
     for (const tile of tilesMap.values()) {
         tile.links = new Map();
-        for (const n of tile.neighbors()) {
+        for (const n of tile.multiNeighbors ? tile.multiNeighbors() : tile.neighbors()) {
             if (tilesMap.has(n[1].key)) {
                 tile.links.set(n[0], tilesMap.get(n[1].key));
             }

@@ -893,6 +893,18 @@ var TriangularTile = function (_Integer) {
             return new TriangularTile(r.x, r.y);
         }
     }, {
+        key: "multiNeighbors",
+        value: function multiNeighbors() {
+            var results = [];
+            for (var dir = 1; dir < 4; dir++) {
+                var d = TriangularTile.multiDirections[this.s.toString()][dir];
+                var t = this.s ? TriangularTile.directions2[d][1] : TriangularTile.directions1[d][1];
+                results.push([dir, this.add(t)]);
+                results.push([TriangularTile.multiOpposites[this.s.toString()][dir], this.add(t)]);
+            }
+            return results;
+        }
+    }, {
         key: "neighbors",
         value: function neighbors() {
             var results = [];
@@ -925,6 +937,36 @@ TriangularTile.opposites = {
     true: {
         1: 2,
         2: 3,
+        3: 1
+    }
+};
+TriangularTile.multiOpposites = {
+    false: {
+        "-1": 2,
+        "-2": 3,
+        "-3": 1,
+        "1": -3,
+        "2": -1,
+        "3": -2
+    },
+    true: {
+        "-1": 3,
+        "-2": 1,
+        "-3": 2,
+        "1": -2,
+        "2": -3,
+        "3": -1
+    }
+};
+TriangularTile.multiDirections = {
+    false: {
+        1: 0,
+        2: 2,
+        3: 1
+    },
+    true: {
+        1: 0,
+        2: 2,
         3: 1
     }
 };
@@ -1750,7 +1792,7 @@ function link(tilesMap) {
             var _iteratorError3 = undefined;
 
             try {
-                for (var _iterator3 = tile.neighbors()[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                for (var _iterator3 = (tile.multiNeighbors ? tile.multiNeighbors() : tile.neighbors())[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                     var n = _step3.value;
 
                     if (tilesMap.has(n[1].key)) {

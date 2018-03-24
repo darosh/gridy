@@ -5,6 +5,7 @@ export interface ITile<T> {
   key: string;
   value: any[];
   neighbors(): Directions<T>;
+  multiNeighbors?(): Directions<T>;
   directions(): Directions<T>;
   sides?(): Directions<T>;
   sideNeighbors?(): Directions<T>;
