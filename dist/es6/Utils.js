@@ -49,3 +49,4 @@ export function describeArc(x, y, radius, startAngle, endAngle) {
         "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
     ].join(" ");
 }
+//# sourceMappingURL=Utils.js.map

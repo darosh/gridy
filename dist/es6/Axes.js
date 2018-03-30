@@ -25,3 +25,4 @@ export var Axes6;
     Axes6[Axes6["NE"] = -3] = "NE";
     Axes6[Axes6["SW"] = 3] = "SW";
 })(Axes6 || (Axes6 = {}));
+//# sourceMappingURL=Axes.js.map

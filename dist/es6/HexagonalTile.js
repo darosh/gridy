@@ -59,3 +59,4 @@ HexagonalTile.directions = [
     [Axes6.SW, new HexagonalTile(-1, 0, 1)],
     [Axes6.S, new HexagonalTile(0, -1, 1)],
 ];
+//# sourceMappingURL=HexagonalTile.js.map

@@ -415,3 +415,4 @@ export default class Diagram {
             : selection);
     }
 }
+//# sourceMappingURL=Diagram.js.map

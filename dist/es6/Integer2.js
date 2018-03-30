@@ -25,3 +25,4 @@ export class Integer2 {
         return Math.floor((Math.abs(this.x) + Math.abs(this.y)) / 2);
     }
 }
+//# sourceMappingURL=Integer2.js.map

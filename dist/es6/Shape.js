@@ -6,3 +6,4 @@ export var Shape;
     Shape[Shape["Triangular"] = 3] = "Triangular";
     Shape[Shape["Rhombus"] = 4] = "Rhombus";
 })(Shape || (Shape = {}));
+//# sourceMappingURL=Shape.js.map

@@ -9,3 +9,4 @@ export const DEG_TO_RAD = Math.PI / 180.0;
 export const ANG = 360;
 export const ANG_2 = 180;
 export const ANG_4 = 90;
+//# sourceMappingURL=Constants.js.map

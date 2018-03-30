@@ -35,3 +35,4 @@ RectangularTile.directions = [
     [Axes4.S, new RectangularTile(0, 1)],
     [Axes4.W, new RectangularTile(-1, 0)],
 ];
+//# sourceMappingURL=RectangularTile.js.map

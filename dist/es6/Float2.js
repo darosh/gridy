@@ -33,3 +33,4 @@ export class Float2 {
         return this.value.toString();
     }
 }
+//# sourceMappingURL=Float2.js.map

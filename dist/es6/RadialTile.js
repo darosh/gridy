@@ -51,3 +51,4 @@ RadialTile.directions = [
     [Axes4.E, new RadialTile(1, 0, 0)],
     [Axes4.W, new RadialTile(-1, 0, 0)],
 ];
+//# sourceMappingURL=RadialTile.js.map

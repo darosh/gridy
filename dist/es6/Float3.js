@@ -47,3 +47,4 @@ export class Float3 {
         return Float3.round(this);
     }
 }
+//# sourceMappingURL=Float3.js.map

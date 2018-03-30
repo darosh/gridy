@@ -70,3 +70,4 @@ export class RectangularGrid {
         return this.toTile(new Position(x, y));
     }
 }
+//# sourceMappingURL=RectangularGrid.js.map

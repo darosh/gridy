@@ -22,3 +22,4 @@ export class Rectangle {
         ];
     }
 }
+//# sourceMappingURL=Rectangle.js.map

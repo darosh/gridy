@@ -56,3 +56,4 @@ Rectangular8Tile.sides = [
     Rectangular8Tile.directions[4],
     Rectangular8Tile.directions[5],
 ];
+//# sourceMappingURL=Rectangular8Tile.js.map

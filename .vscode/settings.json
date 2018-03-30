@@ -1,0 +1,14 @@
+{
+  "liveServer.settings.port": 5501,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#01579B"
+  },
+  "npm-scripts.showStartNotification": false,
+  "cSpell.words": [
+    "checkmark",
+    "constructible",
+    "gmail",
+    "gridy",
+    "redblobgames"
+  ]
+}

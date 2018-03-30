@@ -25,3 +25,4 @@ export function normalize(grid) {
     m.y = -m.y;
     grid.tiles = grid.tiles.map((t) => grid.toTile ? grid.toTile(grid.toPoint(t).add(m)) : []);
 }
+//# sourceMappingURL=Transform.js.map

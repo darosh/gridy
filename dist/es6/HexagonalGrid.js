@@ -56,7 +56,7 @@ export class HexagonalGrid {
             this.toPoint = HexagonalGrid.cubeToEvenQ;
             this.tiles = HexagonalGrid.triangularShape(x);
         }
-        else {
+        else /*if (shape === Shape.Rhombus)*/ {
             this.toTile = HexagonalGrid.twoAxisToCube;
             this.toPoint = HexagonalGrid.cubeToTwoAxis;
             this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
@@ -223,3 +223,4 @@ export class HexagonalGrid {
 }
 HexagonalGrid.shapes = [Shape.Hexagonal,
     Shape.Rhombus, Shape.Even, Shape.Odd, Shape.Triangular];
+//# sourceMappingURL=HexagonalGrid.js.map

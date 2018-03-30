@@ -44,3 +44,4 @@ export function bounds(grid) {
         return Rectangle.add(b1, b2);
     }
 }
+//# sourceMappingURL=Bounds.js.map

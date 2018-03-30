@@ -87,3 +87,4 @@ export function connections(tiles) {
     }
     return c;
 }
+//# sourceMappingURL=Path.js.map

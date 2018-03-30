@@ -2,11 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "strict": true,
-    "module": "es6",
+    "module": "es2015",
     "moduleResolution": "node",
     "lib": ["dom","es5","es6"],
     "removeComments": false,
-    "noLib": false
+    "noLib": false,
+    "sourceMap": true
   },
   "files": [
     "src/index.ts",

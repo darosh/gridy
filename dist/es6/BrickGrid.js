@@ -31,3 +31,4 @@ export class BrickGrid extends HexagonalGrid {
         return s.scale(size);
     }
 }
+//# sourceMappingURL=BrickGrid.js.map

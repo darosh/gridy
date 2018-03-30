@@ -19,3 +19,4 @@ export { Search } from "./Search";
 export { normalize, translate, rotate } from "./Transform";
 export { enumerate, instance, toMap, toArray, link } from "./Utils";
 export { axes, intersect, circle, spiral, border, outline, connections } from "./Path";
+//# sourceMappingURL=index.js.map

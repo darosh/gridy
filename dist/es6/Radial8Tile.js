@@ -54,3 +54,4 @@ Radial8Tile.directions = [
     [Axes8.SE, new Radial8Tile(1, 1, 0)],
     [Axes8.NE, new Radial8Tile(-1, 1, 0)],
 ];
+//# sourceMappingURL=Radial8Tile.js.map

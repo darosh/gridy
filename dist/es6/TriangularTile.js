@@ -107,3 +107,4 @@ TriangularTile.multiDirections = {
         3: 1,
     },
 };
+//# sourceMappingURL=TriangularTile.js.map

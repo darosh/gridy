@@ -109,3 +109,4 @@ export class TriangularGrid {
     }
 }
 TriangularGrid.shapes = [Shape.Hexagonal, Shape.Rhombus, Shape.Triangular];
+//# sourceMappingURL=TriangularGrid.js.map

@@ -75,3 +75,4 @@ export class RadialGrid {
         return new Float2((tile.y + 0.5) * this.scale * Math.sin(angle), (tile.y + 0.5) * this.scale * Math.cos(angle));
     }
 }
+//# sourceMappingURL=RadialGrid.js.map
