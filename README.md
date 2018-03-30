@@ -1,6 +1,10 @@
 # Gridy
 
-TypeScript grid library for server and browser
+[![Build Status](https://travis-ci.org/darosh/gridy.svg?branch=master)](https://travis-ci.org/darosh/gridy)
+[![Maintainability](https://api.codeclimate.com/v1/badges/de4219ef64ecd6a39039/maintainability)](https://codeclimate.com/github/darosh/gridy/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/de4219ef64ecd6a39039/test_coverage)](https://codeclimate.com/github/darosh/gridy/test_coverage)
+
+> TypeScript grid library for server and browser
 
 ![](https://darosh.github.io/gridy/examples/output/demo1.svg)![](https://darosh.github.io/gridy/examples/output/demo2.svg)![](https://darosh.github.io/gridy/examples/output/demo3.svg)
 
