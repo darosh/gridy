@@ -1,7 +1,7 @@
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { AnyTile, ITile } from "./ITile";
-import { toMap } from "./Utils";
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { AnyTile, ITile } from './ITile';
+import { toMap } from './Utils';
 
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
@@ -17,7 +17,7 @@ export class Search {
   constructor(start: AnyTile | AnyTile[], maxMovement: number, maxMagnitude: number,
               blocked?: AnyTile[], available?: AnyTile[]) {
 
-    const starts: AnyTile[] = (start as AnyTile).value ? [start as AnyTile] : (start as AnyTile[]);
+    const starts: AnyTile[] = (<AnyTile>start).value ? [<AnyTile>start] : (<AnyTile[]>start);
 
     this.start = starts[0];
 
@@ -58,7 +58,7 @@ export class Search {
   }
 
   public path(end: AnyTile | AnyTile[], max: boolean = false): AnyTile[] {
-    const ends: AnyTile[] = (end as AnyTile).value ? [end as AnyTile] : (end as AnyTile[]);
+    const ends: AnyTile[] = (<AnyTile>end).value ? [<AnyTile>end] : (<AnyTile[]>end);
     const min = (max ? Math.max : Math.min)
       .apply(null, ends.map((e) => this.cost[e.key]).filter((e) => e !== undefined));
     const path: AnyTile[] = [];

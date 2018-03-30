@@ -1,7 +1,7 @@
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { AnyTile, ITile } from "./ITile";
-import { instance, mapped, toMap } from "./Utils";
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { AnyTile, ITile } from './ITile';
+import { instance, mapped, toMap } from './Utils';
 
 export function circle(start: AnyTile, N: Integer): AnyTile[] {
   return spiral(start, N, false);
@@ -62,6 +62,7 @@ export function axes(a: AnyTile[], axe: Integer, odd: boolean = false): AnyTile[
 
 export function border(tiles: AnyTile[]): AnyTile[] {
   const tileMap = toMap(tiles);
+
   return tiles.filter((t) => mapped(tileMap, t.neighbors()).length < t.directions().length);
 }
 
@@ -80,7 +81,7 @@ export function outline(tiles: AnyTile[], available?: AnyTile[]): AnyTile[] {
           const w = t.add(v);
 
           if (availableMap) {
-            map.set(w.key, (availableMap as any).get(w.key));
+            map.set(w.key, (<any>availableMap).get(w.key));
           } else {
             map.set(w.key, w);
           }

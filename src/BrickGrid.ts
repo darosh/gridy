@@ -1,10 +1,10 @@
-import { SQRT_2, SQRT_2_2, SQRT_2_4 } from "./Constants";
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { HexagonalGrid } from "./HexagonalGrid";
-import { HexagonalTile } from "./HexagonalTile";
-import { Integer } from "./Integer";
-import { Shape } from "./Shape";
+import { SQRT_2, SQRT_2_2, SQRT_2_4 } from './Constants';
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { HexagonalGrid } from './HexagonalGrid';
+import { HexagonalTile } from './HexagonalTile';
+import { Integer } from './Integer';
+import { Shape } from './Shape';
 
 /**
  * ![](../../examples/output/brick-grid.svg)
@@ -12,19 +12,19 @@ import { Shape } from "./Shape";
 export class BrickGrid extends HexagonalGrid {
   public angle: Float = 0;
 
-  constructor(scale: Float, orientation: boolean, shape: Shape, x: Integer, y?: Integer) {
+  constructor(scale: Float, orientation: boolean = false, shape: Shape = Shape.Hexagonal, x: Integer = 1, y?: Integer) {
     super(scale, orientation, shape, x, y);
     this.radius = SQRT_2_4 * scale;
   }
 
   public vertices(orientation?: boolean, scale?: Float): Float2[] {
-    scale = (scale === undefined) ? this.scale : scale;
+    const s = (scale === undefined) ? this.scale : scale;
     const points: Float2[] = [];
 
     for (let i: Integer = 0; i < 4; i++) {
-      const angle: Float = 2 * Math.PI * (2 * i - 1) / 8;
+      const angle: Float = Math.PI * (i * 2 - 1) * 2 / 8;
 
-      points.push(new Float2(0.5 * scale * Math.cos(angle), 0.5 * scale * Math.sin(angle)));
+      points.push(new Float2(s * Math.cos(angle) * 0.5, s * Math.sin(angle) * 0.5));
     }
 
     return points;

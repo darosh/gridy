@@ -1,11 +1,30 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-microsoft-contrib"
+  ],
+  "jsRules": {},
+  "rules": {
+    "array-type": [
+      true,
+      "array"
     ],
-    "jsRules": {},
-    "rules": {
-      "array-type": [true, "array"]
-    },
-    "rulesDirectory": []
+    "align": [
+      true,
+      "parameters",
+      "statements"
+    ],
+    "no-relative-imports": false,
+    "missing-jsdoc": false,
+    "no-increment-decrement": false,
+    "typedef": false,
+    "no-unsafe-any": false,
+    "no-any": false,
+    "completed-docs": false,
+    "insecure-random": false,
+    "possible-timing-attack": false,
+    "strict-boolean-expressions": false
+  },
+  "rulesDirectory": []
 }

@@ -3,5 +3,5 @@ export enum Shape {
   Odd,
   Hexagonal,
   Triangular,
-  Rhombus,
+  Rhombus
 }

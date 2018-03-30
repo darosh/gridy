@@ -1,11 +1,11 @@
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { Integer } from "./Integer";
-import { AnyTile } from "./ITile";
-import { Position } from "./Position";
-import { Rectangle } from "./Rectangle";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { Integer } from './Integer';
+import { AnyTile } from './ITile';
+import { Position } from './Position';
+import { Rectangle } from './Rectangle';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 
 export interface IGrid<T> {
   tiles: T[];
@@ -15,12 +15,13 @@ export interface IGrid<T> {
   angle: Float;
   x: Integer;
   y: Integer;
-  toTile: (position: Position) => T;
-  toPoint: (tile: T) => Position;
   radius: Float;
   tileTypes?: TileType;
-  getTileType?: (tile: T) => Integer;
   irregular?: boolean;
+
+  toTile(position: Position): T;
+  toPoint(tile: T): Position;
+  getTileType?(tile: T): Integer;
 
   tile(x: number, y: number): T | undefined;
   bounds(): Rectangle;

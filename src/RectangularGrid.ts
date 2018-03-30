@@ -1,16 +1,16 @@
-import { bounds } from "./Bounds";
-import { SQRT_2 } from "./Constants";
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { AnyTile, ITile, ITileConstructible } from "./ITile";
-import { Position } from "./Position";
-import { Rectangle } from "./Rectangle";
-import { Rectangular8Tile } from "./Rectangular8Tile";
-import { RectangularTile } from "./RectangularTile";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { bounds } from './bounds';
+import { SQRT_2 } from './Constants';
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { AnyTile, ITile, ITileConstructible } from './ITile';
+import { Position } from './Position';
+import { Rectangle } from './Rectangle';
+import { Rectangular8Tile } from './Rectangular8Tile';
+import { RectangularTile } from './RectangularTile';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
@@ -53,7 +53,7 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
 
     for (let px: Integer = 0; px < x; px++) {
       for (let py: Integer = startY; py < y; py++) {
-        results.push(new tile(px, py) as RectangularTile);
+        results.push(new tile(px, py));
       }
     }
 
@@ -70,7 +70,7 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
     if (this.orientation) {
       return new Float2(
         tile.x * this.scale / SQRT_2 + tile.y * this.scale * this.scaleY / SQRT_2,
-        tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2,
+        tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2
       );
     } else {
       return new Float2(tile.x * this.scale, tile.y * this.scale * this.scaleY);
@@ -79,28 +79,28 @@ export class RectangularGrid implements IGrid<RectangularTile | Rectangular8Tile
 
   public vertices(orientation?: boolean, scale?: Float): Float2[] {
     const points: Float2[] = [];
-    scale = (scale === undefined) ? this.scale : scale;
-    orientation = (orientation === undefined) ? false : this.orientation;
+    let s = (scale === undefined) ? this.scale : scale;
+    const o = (orientation === undefined) ? false : this.orientation;
 
-    if (orientation) {
-      scale *= SQRT_2;
+    if (o) {
+      s *= SQRT_2;
 
-      points.push(new Float2(-scale / 2, 0));
-      points.push(new Float2(0, -scale / 2));
-      points.push(new Float2(scale / 2, 0));
-      points.push(new Float2(0, scale / 2));
+      points.push(new Float2(-s / 2, 0));
+      points.push(new Float2(0, -s / 2));
+      points.push(new Float2(s / 2, 0));
+      points.push(new Float2(0, s / 2));
     } else {
-      points.push(new Float2(-scale / 2, -scale / 2));
-      points.push(new Float2(-scale / 2, scale / 2));
-      points.push(new Float2(scale / 2, scale / 2));
-      points.push(new Float2(scale / 2, -scale / 2));
+      points.push(new Float2(-s / 2, -s / 2));
+      points.push(new Float2(-s / 2, s / 2));
+      points.push(new Float2(s / 2, s / 2));
+      points.push(new Float2(s / 2, -s / 2));
     }
 
     return points;
   }
 
   public position(p: Float2): RectangularTile | Rectangular8Tile {
-    return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY  ));
+    return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
   }
 
   public tile(x: number, y: number) {

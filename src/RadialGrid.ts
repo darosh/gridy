@@ -1,17 +1,17 @@
-import { bounds } from "./Bounds";
-import { ANG, ANG_2, ANG_4, DEG_TO_RAD, SQRT_2 } from "./Constants";
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { Float3 } from "./Float3";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { AnyTile, ITile, ITileConstructible } from "./ITile";
-import { Position } from "./Position";
-import { Radial8Tile } from "./Radial8Tile";
-import { RadialTile } from "./RadialTile";
-import { Rectangle } from "./Rectangle";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { bounds } from './bounds';
+import { ANG, ANG_2, ANG_4, DEG_TO_RAD, SQRT_2 } from './Constants';
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { Float3 } from './Float3';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { AnyTile, ITile, ITileConstructible } from './ITile';
+import { Position } from './Position';
+import { Radial8Tile } from './Radial8Tile';
+import { RadialTile } from './RadialTile';
+import { Rectangle } from './Rectangle';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 
 /**
  * ![](../../examples/output/Radial-grid.svg)
@@ -51,7 +51,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
 
     for (let px: Integer = 0; px < x; px++) {
       for (let py: Integer = startY; py < y; py++) {
-        results.push(new tile(px, py, x) as RadialTile);
+        results.push(<RadialTile>new tile(px, py, x));
       }
     }
 
@@ -62,20 +62,21 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
 
   public bounds(): Rectangle {
     const r = this.scale * this.y;
+
     return new Rectangle(-r, r, -r, r);
     // return bounds(this);
   }
 
   public vertices(orientation?: boolean, scale?: Float, tileType?: Integer, tile?: AnyTile): Float2[] {
-    const t: any = tile;
+    const t: RadialTile = <RadialTile>tile;
     const points: Float2[] = [];
 
     const c = this.center(t);
 
-    points.push(this.center(new Float3(t.x - 0.5, t.y - 0.5, t.z) as any));
-    points.push(this.center(new Float3(t.x + 0.5, t.y - 0.5, t.z) as any));
-    points.push(this.center(new Float3(t.x + 0.5, t.y + 0.5, t.z) as any));
-    points.push(this.center(new Float3(t.x - 0.5, t.y + 0.5, t.z) as any));
+    points.push(this.center(<any>new Float3(t.x - 0.5, t.y - 0.5, t.z)));
+    points.push(this.center(<any>new Float3(t.x + 0.5, t.y - 0.5, t.z)));
+    points.push(this.center(<any>new Float3(t.x + 0.5, t.y + 0.5, t.z)));
+    points.push(this.center(<any>new Float3(t.x - 0.5, t.y + 0.5, t.z)));
 
     return points.map((p) => new Float2(p.x - c.x, p.y - c.y));
   }
@@ -112,7 +113,7 @@ export class RadialGrid implements IGrid<RadialTile | Radial8Tile> {
 
     return new Float2(
       (tile.y + 0.5) * this.scale * Math.sin(angle),
-      (tile.y + 0.5) * this.scale * Math.cos(angle),
+      (tile.y + 0.5) * this.scale * Math.cos(angle)
     );
   }
 }

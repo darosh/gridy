@@ -1,10 +1,10 @@
-import { Axes8 } from "./Axes";
-import { ANG, ANG_2, ANG_4, DEG_TO_RAD } from "./Constants";
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { Integer3 } from "./Integer3";
-import { AnyTile, ITile } from "./ITile";
-import { toMap } from "./Utils";
+import { Axes8 } from './Axes';
+import { ANG, ANG_2, ANG_4, DEG_TO_RAD } from './Constants';
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { Integer3 } from './Integer3';
+import { AnyTile, ITile } from './ITile';
+import { toMap } from './Utils';
 
 /**
  * ![](../../examples/output/radial-tile.svg)
@@ -21,7 +21,7 @@ export class Radial8Tile extends Integer3 implements ITile<Integer3> {
     [Axes8.S, new Radial8Tile(0, 1, 0)],
     [Axes8.W, new Radial8Tile(-1, 0, 0)],
     [Axes8.SE, new Radial8Tile(1, 1, 0)],
-    [Axes8.NE, new Radial8Tile(-1, 1, 0)],
+    [Axes8.NE, new Radial8Tile(-1, 1, 0)]
   ];
 
   private tiles: AnyTile[] = [];

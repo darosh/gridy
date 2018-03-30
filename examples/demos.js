@@ -162,8 +162,8 @@
         const grid = new HexagonalGrid(60, true, Shape.Rhombus, 4, 4)
 
         rotate(grid)
-        grid.toPoint = HexagonalGrid.cubeToTwoAxisXY
-        grid.toTile = HexagonalGrid.twoAxisToCubeXY
+        grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_XY
+        grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_XY
         normalize(grid)
 
         new Diagram(svg, grid)
@@ -181,8 +181,8 @@
         const grid = new HexagonalGrid(60, false, Shape.Rhombus, 4, 4)
 
         rotate(grid, -1)
-        grid.toPoint = HexagonalGrid.cubeToTwoAxisYZ
-        grid.toTile = HexagonalGrid.twoAxisToCubeYZ
+        grid.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS_YZ
+        grid.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE_YZ
         normalize(grid)
 
         new Diagram(svg, grid)
@@ -373,7 +373,7 @@
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
-        const tiles = HexagonalGrid.region(0, 2, -5, 0, 0, 3)
+        const tiles = HexagonalGrid.REGION(0, 2, -5, 0, 0, 3)
 
         new Diagram(svg, grid)
           .coordinates()
@@ -479,7 +479,7 @@
 
         const grid = new HexagonalGrid(70, true, Shape.Rhombus, 4, 4)
 
-        const path = Float3.line(
+        const path = Float3.LINE(
           new Integer3(),
           new Integer3(3, -6, 3)
         )
@@ -499,7 +499,7 @@
 
         const grid = new RectangularGrid(35, false, Shape.Rhombus, 6, 6)
 
-        const path = Float2.line(
+        const path = Float2.LINE(
           new Position(),
           new Position(5, 5)
         )

@@ -1,8 +1,8 @@
-import { Float2 } from "./Float2";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { AnyTile, ITile } from "./ITile";
-import { Rectangle } from "./Rectangle";
+import {Float2} from './Float2';
+import {IGrid} from './IGrid';
+import {Integer} from './Integer';
+import {AnyTile, ITile} from './ITile';
+import {Rectangle} from './Rectangle';
 
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2012 Red Blob Games <redblobgames@gmail.com>
@@ -29,6 +29,7 @@ function boundsOfPoints(points: Float2[]): Rectangle {
       rectangle.maxY = p.y;
     }
   }
+
   return rectangle;
 }
 
@@ -37,15 +38,16 @@ export function bounds(grid: IGrid<any>): Rectangle {
     let sum: any[] = [];
 
     const centers: Float2[] = grid.tiles.reduce((r, tile: AnyTile): any => {
-      r[(grid.getTileType as any)(tile)].push(grid.center(tile));
+      r[(<any>grid.getTileType)(tile)].push(grid.center(tile));
+
       return r;
     }, [[], []]);
 
     for (let i = 0; i < 2; i++) {
       const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
-      const b2: Rectangle = boundsOfPoints(centers[i] as any);
+      const b2: Rectangle = boundsOfPoints(<any>centers[i]);
 
-      sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+      sum = sum.concat(Rectangle.POINTS(Rectangle.ADD(b1, b2)));
     }
 
     return boundsOfPoints(sum);
@@ -57,6 +59,6 @@ export function bounds(grid: IGrid<any>): Rectangle {
     const b1: Rectangle = boundsOfPoints(grid.vertices(grid.orientation));
     const b2: Rectangle = boundsOfPoints(centers);
 
-    return Rectangle.add(b1, b2);
+    return Rectangle.ADD(b1, b2);
   }
 }

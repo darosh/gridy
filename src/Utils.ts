@@ -1,11 +1,11 @@
-import { ANG_4, DEG_TO_RAD } from "./Constants";
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { AnyTile, ITile, TileMap } from "./ITile";
-import { Position } from "./Position";
+import { ANG_4, DEG_TO_RAD } from './Constants';
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { AnyTile, ITile, TileMap } from './ITile';
+import { Position } from './Position';
 
 export function instance<T>(obj: T): T {
-  return new (obj.constructor as any)();
+  return new (<any>obj.constructor)();
 }
 
 export function enumerate(obj: any): any {
@@ -25,8 +25,8 @@ export function enumerate(obj: any): any {
 }
 
 export function mapped(available: TileMap, selection: Directions<AnyTile>) {
-  return selection.filter((t) => available.has(t[1].key))
-    .map((t) => [t[0], available.get(t[1].key)]) as Directions<AnyTile>;
+  return <Directions<AnyTile>>selection.filter((t) => available.has(t[1].key))
+    .map((t) => [t[0], available.get(t[1].key)]);
 }
 
 export function toMap(tiles: AnyTile[]): Map<string, AnyTile> {
@@ -39,10 +39,10 @@ export function toArray(m: Map<any, AnyTile>): AnyTile[] {
 
 export function link(tilesMap: Map<any, AnyTile>): void {
   for (const tile of tilesMap.values()) {
-    (tile as any).links = new Map<number, AnyTile>();
+    (<any>tile).links = new Map<number, AnyTile>();
     for (const n of tile.multiNeighbors ? tile.multiNeighbors() : tile.neighbors()) {
       if (tilesMap.has(n[1].key)) {
-        (tile as any).links.set(n[0], tilesMap.get(n[1].key));
+        (<any>tile).links.set(n[0], tilesMap.get(n[1].key));
       }
     }
   }
@@ -53,7 +53,7 @@ export function polarToCartesian(centerX: number, centerY: number, radius: numbe
 
   return {
     x: centerX + (radius * Math.cos(angleInRadians)),
-    y: centerY + (radius * Math.sin(angleInRadians)),
+    y: centerY + (radius * Math.sin(angleInRadians))
   };
 }
 
@@ -62,10 +62,10 @@ export function describeArc(x: number, y: number, radius: number, startAngle: nu
   const start = polarToCartesian(x, y, radius, endAngle);
   const end = polarToCartesian(x, y, radius, startAngle);
 
-  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+  const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
 
   return [
-    "M", start.x, start.y,
-    "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
-  ].join(" ");
+    'M', start.x, start.y,
+    'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y
+  ].join(' ');
 }
