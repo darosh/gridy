@@ -1,12 +1,12 @@
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { Position } from "./Position";
-import { Rectangle } from "./Rectangle";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
-import { TriangularTile } from "./TriangularTile";
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { Position } from './Position';
+import { Rectangle } from './Rectangle';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
+import { TriangularTile } from './TriangularTile';
 /**
  * ![](../../examples/output/triangular-grid.svg)
  */

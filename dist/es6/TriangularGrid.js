@@ -1,10 +1,10 @@
-import { bounds } from "./Bounds";
-import { SQRT_3_2, SQRT_3_3, SQRT_3_6 } from "./Constants";
-import { Float2 } from "./Float2";
-import { Position } from "./Position";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
-import { TriangularTile } from "./TriangularTile";
+import { bounds } from './bounds';
+import { SQRT_3_2, SQRT_3_3, SQRT_3_6 } from './Constants';
+import { Float2 } from './Float2';
+import { Position } from './Position';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
+import { TriangularTile } from './TriangularTile';
 /**
  * ![](../../examples/output/triangular-grid.svg)
  */
@@ -45,20 +45,20 @@ export class TriangularGrid {
         return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2, scale * (tile.y * (SQRT_3_2) + (tile.s ? 0 : -(SQRT_3_6))) * this.scaleY);
     }
     vertices(orientation, scale, tileType = 0) {
-        scale = (scale === undefined) ? this.scale : scale;
-        scale /= SQRT_3_2;
+        let s = (scale === undefined) ? this.scale : scale;
+        s /= SQRT_3_2;
         if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
             return [
-                new Float2(0, -scale * SQRT_3_3),
-                new Float2(-scale / 2, scale * SQRT_3_6),
-                new Float2(scale / 2, scale * SQRT_3_6),
+                new Float2(0, -s * SQRT_3_3),
+                new Float2(-s / 2, s * SQRT_3_6),
+                new Float2(s / 2, s * SQRT_3_6)
             ];
         }
         else {
             return [
-                new Float2(0, scale * (SQRT_3_6 + (SQRT_3_6))),
-                new Float2(-scale / 2, -scale * (SQRT_3_3 - (SQRT_3_6))),
-                new Float2(scale / 2, -scale * (SQRT_3_3 - (SQRT_3_6))),
+                new Float2(0, s * (SQRT_3_6 + (SQRT_3_6))),
+                new Float2(-s / 2, -s * (SQRT_3_3 - (SQRT_3_6))),
+                new Float2(s / 2, -s * (SQRT_3_3 - (SQRT_3_6)))
             ];
         }
     }

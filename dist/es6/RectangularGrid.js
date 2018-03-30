@@ -1,10 +1,10 @@
-import { bounds } from "./Bounds";
-import { SQRT_2 } from "./Constants";
-import { Float2 } from "./Float2";
-import { Position } from "./Position";
-import { RectangularTile } from "./RectangularTile";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { bounds } from './bounds';
+import { SQRT_2 } from './Constants';
+import { Float2 } from './Float2';
+import { Position } from './Position';
+import { RectangularTile } from './RectangularTile';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 // TypeScript version of http://www.redblobgames.com/articles/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -46,20 +46,20 @@ export class RectangularGrid {
     }
     vertices(orientation, scale) {
         const points = [];
-        scale = (scale === undefined) ? this.scale : scale;
-        orientation = (orientation === undefined) ? false : this.orientation;
-        if (orientation) {
-            scale *= SQRT_2;
-            points.push(new Float2(-scale / 2, 0));
-            points.push(new Float2(0, -scale / 2));
-            points.push(new Float2(scale / 2, 0));
-            points.push(new Float2(0, scale / 2));
+        let s = (scale === undefined) ? this.scale : scale;
+        const o = (orientation === undefined) ? false : this.orientation;
+        if (o) {
+            s *= SQRT_2;
+            points.push(new Float2(-s / 2, 0));
+            points.push(new Float2(0, -s / 2));
+            points.push(new Float2(s / 2, 0));
+            points.push(new Float2(0, s / 2));
         }
         else {
-            points.push(new Float2(-scale / 2, -scale / 2));
-            points.push(new Float2(-scale / 2, scale / 2));
-            points.push(new Float2(scale / 2, scale / 2));
-            points.push(new Float2(scale / 2, -scale / 2));
+            points.push(new Float2(-s / 2, -s / 2));
+            points.push(new Float2(-s / 2, s / 2));
+            points.push(new Float2(s / 2, s / 2));
+            points.push(new Float2(s / 2, -s / 2));
         }
         return points;
     }

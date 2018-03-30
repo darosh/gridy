@@ -1,4 +1,4 @@
-import { Integer2 } from "./Integer2";
+import { Integer2 } from './Integer2';
 /**
  * ![](../../examples/output/triangular-tile.svg)
  */
@@ -58,53 +58,53 @@ export class TriangularTile extends Integer2 {
 TriangularTile.directions1 = [
     [1, new TriangularTile(0, 0, true)],
     [2, new TriangularTile(-1, 0, true)],
-    [3, new TriangularTile(0, -1, true)],
+    [3, new TriangularTile(0, -1, true)]
 ];
 TriangularTile.directions2 = [
     [1, new TriangularTile(0, 1, false)],
     [2, new TriangularTile(0, 0, false)],
-    [3, new TriangularTile(1, 0, false)],
+    [3, new TriangularTile(1, 0, false)]
 ];
 TriangularTile.opposites = {
     false: {
         1: 3,
         2: 1,
-        3: 2,
+        3: 2
     },
     true: {
         1: 2,
         2: 3,
-        3: 1,
-    },
+        3: 1
+    }
 };
 TriangularTile.multiOpposites = {
     false: {
-        "-1": 2,
-        "-2": 3,
-        "-3": 1,
-        "1": -3,
-        "2": -1,
-        "3": -2,
+        '-1': 2,
+        '-2': 3,
+        '-3': 1,
+        1: -3,
+        2: -1,
+        3: -2
     },
     true: {
-        "-1": 3,
-        "-2": 1,
-        "-3": 2,
-        "1": -2,
-        "2": -3,
-        "3": -1,
-    },
+        '-1': 3,
+        '-2': 1,
+        '-3': 2,
+        1: -2,
+        2: -3,
+        3: -1
+    }
 };
 TriangularTile.multiDirections = {
     false: {
         1: 0,
         2: 2,
-        3: 1,
+        3: 1
     },
     true: {
         1: 0,
         2: 2,
-        3: 1,
-    },
+        3: 1
+    }
 };
 //# sourceMappingURL=TriangularTile.js.map

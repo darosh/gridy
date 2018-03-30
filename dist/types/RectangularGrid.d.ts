@@ -1,14 +1,14 @@
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { ITileConstructible } from "./ITile";
-import { Position } from "./Position";
-import { Rectangle } from "./Rectangle";
-import { Rectangular8Tile } from "./Rectangular8Tile";
-import { RectangularTile } from "./RectangularTile";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { ITileConstructible } from './ITile';
+import { Position } from './Position';
+import { Rectangle } from './Rectangle';
+import { Rectangular8Tile } from './Rectangular8Tile';
+import { RectangularTile } from './RectangularTile';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 /**
  * ![](../../examples/output/rectangular-grid.svg)
  */

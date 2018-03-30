@@ -1,4 +1,4 @@
-import { Rectangle } from "./Rectangle";
+import { Rectangle } from './Rectangle';
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2012 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -31,7 +31,7 @@ export function bounds(grid) {
         for (let i = 0; i < 2; i++) {
             const b1 = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
             const b2 = boundsOfPoints(centers[i]);
-            sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+            sum = sum.concat(Rectangle.POINTS(Rectangle.ADD(b1, b2)));
         }
         return boundsOfPoints(sum);
     }
@@ -41,7 +41,7 @@ export function bounds(grid) {
         });
         const b1 = boundsOfPoints(grid.vertices(grid.orientation));
         const b2 = boundsOfPoints(centers);
-        return Rectangle.add(b1, b2);
+        return Rectangle.ADD(b1, b2);
     }
 }
-//# sourceMappingURL=Bounds.js.map
+//# sourceMappingURL=bounds.js.map

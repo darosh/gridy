@@ -1,4 +1,4 @@
-import { ANG_4, DEG_TO_RAD } from "./Constants";
+import { ANG_4, DEG_TO_RAD } from './Constants';
 export function instance(obj) {
     return new obj.constructor();
 }
@@ -37,16 +37,16 @@ export function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
     const angleInRadians = (angleInDegrees - ANG_4) * DEG_TO_RAD;
     return {
         x: centerX + (radius * Math.cos(angleInRadians)),
-        y: centerY + (radius * Math.sin(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
     };
 }
 export function describeArc(x, y, radius, startAngle, endAngle) {
     const start = polarToCartesian(x, y, radius, endAngle);
     const end = polarToCartesian(x, y, radius, startAngle);
-    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
     return [
-        "M", start.x, start.y,
-        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y,
-    ].join(" ");
+        'M', start.x, start.y,
+        'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y
+    ].join(' ');
 }
 //# sourceMappingURL=Utils.js.map

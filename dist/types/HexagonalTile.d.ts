@@ -1,7 +1,7 @@
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { Integer3 } from "./Integer3";
-import { ITile } from "./ITile";
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { Integer3 } from './Integer3';
+import { ITile } from './ITile';
 /**
  * ![](../../examples/output/hexagonal-tile.svg)
  */

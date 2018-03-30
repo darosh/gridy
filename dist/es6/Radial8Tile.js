@@ -1,5 +1,5 @@
-import { Axes8 } from "./Axes";
-import { Integer3 } from "./Integer3";
+import { Axes8 } from './Axes';
+import { Integer3 } from './Integer3';
 /**
  * ![](../../examples/output/radial-tile.svg)
  * x: angle position
@@ -52,6 +52,6 @@ Radial8Tile.directions = [
     [Axes8.S, new Radial8Tile(0, 1, 0)],
     [Axes8.W, new Radial8Tile(-1, 0, 0)],
     [Axes8.SE, new Radial8Tile(1, 1, 0)],
-    [Axes8.NE, new Radial8Tile(-1, 1, 0)],
+    [Axes8.NE, new Radial8Tile(-1, 1, 0)]
 ];
 //# sourceMappingURL=Radial8Tile.js.map

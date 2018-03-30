@@ -1,4 +1,4 @@
-import { Float } from "./Float";
+import { Float } from './Float';
 export declare const SQRT_3: Float;
 export declare const SQRT_3_2: Float;
 export declare const SQRT_3_3: Float;

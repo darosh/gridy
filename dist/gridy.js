@@ -19,7 +19,7 @@
     var SQRT_2 = Math.sqrt(2);
     var SQRT_2_2 = Math.sqrt(2) / 2;
     var SQRT_2_4 = Math.sqrt(2) / 4;
-    var DEG_TO_RAD = Math.PI / 180.0;
+    var DEG_TO_RAD = Math.PI / 180;
     var ANG = 360;
 
     var classCallCheck = function (instance, Constructor) {
@@ -183,30 +183,6 @@
     }();
 
     var Float2 = function () {
-        createClass(Float2, null, [{
-            key: "round",
-            value: function round(h) {
-                var rx = Math.round(h.x);
-                var ry = Math.round(h.y);
-                return new Integer2(rx, ry);
-            }
-        }, {
-            key: "lerp",
-            value: function lerp(a, b, t) {
-                return new Float2(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t);
-            }
-        }, {
-            key: "line",
-            value: function line(a, b) {
-                var N = a.distance(b);
-                var results = [];
-                for (var i = 0; i < N + 1; i++) {
-                    results.push(Float2.round(Float2.lerp(a, b, 1.0 / Math.max(1, N) * i)));
-                }
-                return results;
-            }
-        }]);
-
         function Float2() {
             var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
             var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -217,24 +193,46 @@
         }
 
         createClass(Float2, [{
-            key: "equals",
+            key: 'equals',
             value: function equals(p) {
                 return this.x === p.x && this.y === p.y;
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(k) {
                 return new Float2(this.x * k, this.y * k);
             }
         }, {
-            key: "toString",
+            key: 'toString',
             value: function toString() {
                 return this.value.toString();
             }
         }, {
-            key: "value",
+            key: 'value',
             get: function get$$1() {
                 return [this.x, this.y];
+            }
+        }], [{
+            key: 'ROUND',
+            value: function ROUND(h) {
+                var rx = Math.round(h.x);
+                var ry = Math.round(h.y);
+                return new Integer2(rx, ry);
+            }
+        }, {
+            key: 'LERP',
+            value: function LERP(a, b, t) {
+                return new Float2(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t);
+            }
+        }, {
+            key: 'LINE',
+            value: function LINE(a, b) {
+                var N = a.distance(b);
+                var results = [];
+                for (var i = 0; i < N + 1; i++) {
+                    results.push(Float2.ROUND(Float2.LERP(a, b, 1 / Math.max(1, N) * i)));
+                }
+                return results;
             }
         }]);
         return Float2;
@@ -259,13 +257,13 @@
         }
 
         createClass(Rectangle, null, [{
-            key: "add",
-            value: function add(a, b) {
+            key: 'ADD',
+            value: function ADD(a, b) {
                 return new Rectangle(a.minX + b.minX, a.maxX + b.maxX, a.minY + b.minY, a.maxY + b.maxY);
             }
         }, {
-            key: "points",
-            value: function points(a) {
+            key: 'POINTS',
+            value: function POINTS(a) {
                 return [new Float2(a.minX, a.minY), new Float2(a.maxX, a.minY), new Float2(a.minX, a.maxY), new Float2(a.maxX, a.maxY)];
             }
         }]);
@@ -326,7 +324,7 @@
             for (var i = 0; i < 2; i++) {
                 var b1 = boundsOfPoints(grid.vertices(grid.orientation, undefined, i));
                 var b2 = boundsOfPoints(centers[i]);
-                sum = sum.concat(Rectangle.points(Rectangle.add(b1, b2)));
+                sum = sum.concat(Rectangle.POINTS(Rectangle.ADD(b1, b2)));
             }
             return boundsOfPoints(sum);
         } else {
@@ -335,7 +333,7 @@
             });
             var _b = boundsOfPoints(grid.vertices(grid.orientation));
             var _b2 = boundsOfPoints(_centers);
-            return Rectangle.add(_b, _b2);
+            return Rectangle.ADD(_b, _b2);
         }
     }
 
@@ -443,29 +441,29 @@
         }
 
         createClass(HexagonalTile, [{
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return HexagonalTile.directions[4][1];
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return HexagonalTile.directions;
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
-                var r = get(HexagonalTile.prototype.__proto__ || Object.getPrototypeOf(HexagonalTile.prototype), "add", this).call(this, a);
+                var r = get(HexagonalTile.prototype.__proto__ || Object.getPrototypeOf(HexagonalTile.prototype), 'add', this).call(this, a);
                 return new HexagonalTile(r.x, r.y, r.z);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
-                var r = get(HexagonalTile.prototype.__proto__ || Object.getPrototypeOf(HexagonalTile.prototype), "scale", this).call(this, a);
+                var r = get(HexagonalTile.prototype.__proto__ || Object.getPrototypeOf(HexagonalTile.prototype), 'scale', this).call(this, a);
                 return new HexagonalTile(r.x, r.y, r.z);
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 var _iteratorNormalCompletion = true;
@@ -496,7 +494,7 @@
                 return results;
             }
         }, {
-            key: "right",
+            key: 'right',
             value: function right() {
                 var x = this.x;
                 this.x = -this.z;
@@ -505,7 +503,7 @@
                 return this;
             }
         }, {
-            key: "left",
+            key: 'left',
             value: function left() {
                 var z = this.z;
                 this.z = -this.x;
@@ -514,7 +512,7 @@
                 return this;
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
@@ -550,128 +548,129 @@
             this.scale = scale;
             this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
             this.orientation = orientation;
-            y = y || x;
+            var yy = y || x;
             this.x = x;
-            this.y = y;
+            this.y = yy;
             this.shape = shape;
             if (shape === exports.Shape.Even && orientation === false) {
-                this.toTile = HexagonalGrid.evenQToCube;
-                this.toPoint = HexagonalGrid.cubeToEvenQ;
-                this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+                this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+                this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
             } else if (shape === exports.Shape.Even && orientation === true) {
-                this.toTile = HexagonalGrid.evenRToCube;
-                this.toPoint = HexagonalGrid.cubeToEvenR;
-                this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+                this.toTile = HexagonalGrid.EVEN_R_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_EVEN_R;
+                this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
             } else if (shape === exports.Shape.Odd && orientation === false) {
-                this.toTile = HexagonalGrid.oddQToCube;
-                this.toPoint = HexagonalGrid.cubeToOddQ;
-                this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+                this.toTile = HexagonalGrid.ODD_Q_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_ODD_Q;
+                this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
             } else if (shape === exports.Shape.Odd && orientation === true) {
-                this.toTile = HexagonalGrid.oddRToCube;
-                this.toPoint = HexagonalGrid.cubeToOddR;
-                this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+                this.toTile = HexagonalGrid.ODD_R_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_ODD_R;
+                this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
             } else if (shape === exports.Shape.Hexagonal) {
-                // this.toTile = HexagonalGrid.evenQToCube;
-                // this.toPoint = HexagonalGrid.cubeToEvenQ;
-                this.toTile = HexagonalGrid.twoAxisToCube;
-                this.toPoint = HexagonalGrid.cubeToTwoAxis;
-                this.tiles = HexagonalGrid.hexagonalShape(x);
+                // this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+                // this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+                this.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS;
+                this.tiles = HexagonalGrid.HEXAGONAL_SHAPE(x);
             } else if (shape === exports.Shape.Triangular) {
-                this.toTile = HexagonalGrid.evenQToCube;
-                this.toPoint = HexagonalGrid.cubeToEvenQ;
-                this.tiles = HexagonalGrid.triangularShape(x);
-            } else /*if (shape === Shape.Rhombus)*/{
-                    this.toTile = HexagonalGrid.twoAxisToCube;
-                    this.toPoint = HexagonalGrid.cubeToTwoAxis;
-                    this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
-                }
+                this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+                this.tiles = HexagonalGrid.TRIANGULAR_SHAPE(x);
+            } else {
+                // if (shape === Shape.Rhombus)
+                this.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE;
+                this.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS;
+                this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
+            }
         }
 
         createClass(HexagonalGrid, [{
-            key: "bounds",
+            key: 'bounds',
             value: function bounds$$1() {
                 return bounds(this);
             }
         }, {
-            key: "vertices",
+            key: 'vertices',
             value: function vertices(orientation, scale) {
                 var points = [];
-                scale = scale === undefined ? this.scale : scale;
-                scale /= SQRT_3_2;
-                orientation = orientation === undefined ? false : this.orientation;
+                var s = scale === undefined ? this.scale : scale;
+                s /= SQRT_3_2;
+                var o = orientation === undefined ? false : this.orientation;
                 for (var i = 0; i < 6; i++) {
-                    var angle = 2 * Math.PI * (2 * i - (orientation ? 1 : 0)) / 12;
-                    points.push(new Float2(0.5 * scale * Math.cos(angle), 0.5 * scale * Math.sin(angle)));
+                    var angle = Math.PI * (i * 2 - (o ? 1 : 0)) * 2 / 12;
+                    points.push(new Float2(s * Math.cos(angle) * 0.5, s * Math.sin(angle) * 0.5));
                 }
                 return points;
             }
         }, {
-            key: "center",
+            key: 'center',
             value: function center(tile) {
                 var s = void 0;
                 var size = this.scale / SQRT_3_2 / 2;
                 if (this.orientation) {
-                    s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
+                    s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, tile.z * this.scaleY * 1.5);
                 } else {
-                    s = new Float2(1.5 * tile.x, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
+                    s = new Float2(tile.x * 1.5, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
                 }
                 return s.scale(size);
             }
         }, {
-            key: "position",
+            key: 'position',
             value: function position(p) {
                 var size = this.scale / 2;
-                p = p.scale(1 / size);
-                p.y *= this.scaleY;
+                var pp = p.scale(1 / size);
+                pp.y *= this.scaleY;
                 var q = void 0;
                 var r = void 0;
                 if (this.orientation) {
-                    q = SQRT_3_3 * p.x + -1 / 3 * p.y;
-                    r = 2 / 3 * p.y;
+                    q = SQRT_3_3 * pp.x + -1 / 3 * pp.y;
+                    r = 2 / 3 * pp.y;
                 } else {
-                    q = 2 / 3 * p.x;
-                    r = -1 / 3 * p.x + SQRT_3_3 * p.y;
+                    q = 2 / 3 * pp.x;
+                    r = -1 / 3 * pp.x + SQRT_3_3 * pp.y;
                 }
                 return new HexagonalTile(Math.round(q), Math.round(-q - r), Math.round(r));
             }
         }, {
-            key: "tile",
+            key: 'tile',
             value: function tile(x, y) {
                 return this.toTile ? this.toTile(new Integer2(x, y)) : undefined;
             }
         }], [{
-            key: "twoAxisToCube",
-            value: function twoAxisToCube(position) {
+            key: 'TWO_AXIS_TO_CUBE',
+            value: function TWO_AXIS_TO_CUBE(position) {
                 return new HexagonalTile(position.x, -position.y - position.x, position.y);
             }
         }, {
-            key: "cubeToTwoAxis",
-            value: function cubeToTwoAxis(tile) {
+            key: 'CUBE_TO_TWO_AXIS',
+            value: function CUBE_TO_TWO_AXIS(tile) {
                 return new Integer2(tile.x, tile.z);
             }
         }, {
-            key: "twoAxisToCubeXY",
-            value: function twoAxisToCubeXY(position) {
+            key: 'TWO_AXIS_TO_CUBE_XY',
+            value: function TWO_AXIS_TO_CUBE_XY(position) {
                 return new HexagonalTile(position.x, position.y, -position.x - position.y);
             }
         }, {
-            key: "cubeToTwoAxisXY",
-            value: function cubeToTwoAxisXY(tile) {
+            key: 'CUBE_TO_TWO_AXIS_XY',
+            value: function CUBE_TO_TWO_AXIS_XY(tile) {
                 return new Integer2(tile.x, tile.y);
             }
         }, {
-            key: "twoAxisToCubeYZ",
-            value: function twoAxisToCubeYZ(position) {
+            key: 'TWO_AXIS_TO_CUBE_YZ',
+            value: function TWO_AXIS_TO_CUBE_YZ(position) {
                 return new HexagonalTile(-position.x - position.y, position.x, position.y);
             }
         }, {
-            key: "cubeToTwoAxisYZ",
-            value: function cubeToTwoAxisYZ(tile) {
+            key: 'CUBE_TO_TWO_AXIS_YZ',
+            value: function CUBE_TO_TWO_AXIS_YZ(tile) {
                 return new Integer2(tile.y, tile.z);
             }
         }, {
-            key: "oddQToCube",
-            value: function oddQToCube(position) {
+            key: 'ODD_Q_TO_CUBE',
+            value: function ODD_Q_TO_CUBE(position) {
                 /* tslint:disable:no-bitwise */
                 var x = position.x;
                 var z = position.y - (position.x - (position.x & 1) >> 1);
@@ -679,8 +678,8 @@
                 return new HexagonalTile(x, -x - z, z);
             }
         }, {
-            key: "cubeToOddQ",
-            value: function cubeToOddQ(tile) {
+            key: 'CUBE_TO_ODD_Q',
+            value: function CUBE_TO_ODD_Q(tile) {
                 var x = tile.x;
                 var z = tile.z;
                 /* tslint:disable:no-bitwise */
@@ -688,8 +687,8 @@
                 /* tslint:enable:no-bitwise */
             }
         }, {
-            key: "evenQToCube",
-            value: function evenQToCube(position) {
+            key: 'EVEN_Q_TO_CUBE',
+            value: function EVEN_Q_TO_CUBE(position) {
                 /* tslint:disable:no-bitwise */
                 var x = position.x;
                 var z = position.y - (position.x + (position.x & 1) >> 1);
@@ -697,8 +696,8 @@
                 return new HexagonalTile(x, -x - z, z);
             }
         }, {
-            key: "cubeToEvenQ",
-            value: function cubeToEvenQ(tile) {
+            key: 'CUBE_TO_EVEN_Q',
+            value: function CUBE_TO_EVEN_Q(tile) {
                 var x = tile.x;
                 var z = tile.z;
                 /* tslint:disable:no-bitwise */
@@ -706,8 +705,8 @@
                 /* tslint:enable:no-bitwise */
             }
         }, {
-            key: "oddRToCube",
-            value: function oddRToCube(position) {
+            key: 'ODD_R_TO_CUBE',
+            value: function ODD_R_TO_CUBE(position) {
                 /* tslint:disable:no-bitwise */
                 var z = position.y;
                 var x = position.x - (position.y - (position.y & 1) >> 1);
@@ -715,8 +714,8 @@
                 return new HexagonalTile(x, -x - z, z);
             }
         }, {
-            key: "cubeToOddR",
-            value: function cubeToOddR(tile) {
+            key: 'CUBE_TO_ODD_R',
+            value: function CUBE_TO_ODD_R(tile) {
                 var x = tile.x;
                 var z = tile.z;
                 /* tslint:disable:no-bitwise */
@@ -724,8 +723,8 @@
                 /* tslint:enable:no-bitwise */
             }
         }, {
-            key: "evenRToCube",
-            value: function evenRToCube(position) {
+            key: 'EVEN_R_TO_CUBE',
+            value: function EVEN_R_TO_CUBE(position) {
                 /* tslint:disable:no-bitwise */
                 var z = position.y;
                 var x = position.x - (position.y + (position.y & 1) >> 1);
@@ -733,8 +732,8 @@
                 return new HexagonalTile(x, -x - z, z);
             }
         }, {
-            key: "cubeToEvenR",
-            value: function cubeToEvenR(tile) {
+            key: 'CUBE_TO_EVEN_R',
+            value: function CUBE_TO_EVEN_R(tile) {
                 var x = tile.x;
                 var z = tile.z;
                 /* tslint:disable:no-bitwise */
@@ -742,8 +741,8 @@
                 /* tslint:enable:no-bitwise */
             }
         }, {
-            key: "trapezoidalShape",
-            value: function trapezoidalShape(minQ, maxQ, minR, maxR, toCube) {
+            key: 'TRAPEZOIDAL_SHAPE',
+            value: function TRAPEZOIDAL_SHAPE(minQ, maxQ, minR, maxR, toCube) {
                 var hexes = [];
                 for (var q = minQ; q < maxQ; q++) {
                     for (var r = minR; r < maxR; r++) {
@@ -753,8 +752,8 @@
                 return hexes;
             }
         }, {
-            key: "triangularShape",
-            value: function triangularShape(size) {
+            key: 'TRIANGULAR_SHAPE',
+            value: function TRIANGULAR_SHAPE(size) {
                 var hexes = [];
                 for (var k = 0; k < size; k++) {
                     for (var i = 0; i < k + 1; i++) {
@@ -764,8 +763,8 @@
                 return hexes;
             }
         }, {
-            key: "hexagonalShape",
-            value: function hexagonalShape(size) {
+            key: 'HEXAGONAL_SHAPE',
+            value: function HEXAGONAL_SHAPE(size) {
                 var hexes = [];
                 for (var x = -size; x < size; x++) {
                     for (var y = -size; y < size; y++) {
@@ -778,8 +777,8 @@
                 return hexes;
             }
         }, {
-            key: "region",
-            value: function region(xmin, xmax, ymin, ymax, zmin, zmax) {
+            key: 'REGION',
+            value: function REGION(xmin, xmax, ymin, ymax, zmin, zmax) {
                 var results = [];
                 for (var x = xmin; x <= xmax; x++) {
                     for (var y = Math.max(ymin, -x - zmax); y <= Math.min(ymax, -x - zmin); y++) {
@@ -800,7 +799,11 @@
     var BrickGrid = function (_HexagonalGrid) {
         inherits(BrickGrid, _HexagonalGrid);
 
-        function BrickGrid(scale, orientation, shape, x, y) {
+        function BrickGrid(scale) {
+            var orientation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+            var shape = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : exports.Shape.Hexagonal;
+            var x = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+            var y = arguments[4];
             classCallCheck(this, BrickGrid);
 
             var _this = possibleConstructorReturn(this, (BrickGrid.__proto__ || Object.getPrototypeOf(BrickGrid)).call(this, scale, orientation, shape, x, y));
@@ -811,18 +814,18 @@
         }
 
         createClass(BrickGrid, [{
-            key: "vertices",
+            key: 'vertices',
             value: function vertices(orientation, scale) {
-                scale = scale === undefined ? this.scale : scale;
+                var s = scale === undefined ? this.scale : scale;
                 var points = [];
                 for (var i = 0; i < 4; i++) {
-                    var angle = 2 * Math.PI * (2 * i - 1) / 8;
-                    points.push(new Float2(0.5 * scale * Math.cos(angle), 0.5 * scale * Math.sin(angle)));
+                    var angle = Math.PI * (i * 2 - 1) * 2 / 8;
+                    points.push(new Float2(s * Math.cos(angle) * 0.5, s * Math.sin(angle) * 0.5));
                 }
                 return points;
             }
         }, {
-            key: "center",
+            key: 'center',
             value: function center(cube) {
                 var s = void 0;
                 var size = this.scale / 2;
@@ -856,44 +859,44 @@
         }
 
         createClass(TriangularTile, [{
-            key: "toString",
+            key: 'toString',
             value: function toString() {
                 return this.value.toString();
             }
         }, {
-            key: "equals",
+            key: 'equals',
             value: function equals(p) {
-                return this.s === p.s && get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), "equals", this).call(this, p);
+                return this.s === p.s && get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), 'equals', this).call(this, p);
             }
         }, {
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return TriangularTile.directions1[0][1];
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return this.s ? TriangularTile.directions2 : TriangularTile.directions1;
             }
         }, {
-            key: "opposite",
+            key: 'opposite',
             value: function opposite(n) {
                 return TriangularTile.opposites[this.s.toString()][n];
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
-                var r = get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), "add", this).call(this, a);
+                var r = get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), 'add', this).call(this, a);
                 return new TriangularTile(r.x, r.y, a.s);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
-                var r = get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), "scale", this).call(this, a);
+                var r = get(TriangularTile.prototype.__proto__ || Object.getPrototypeOf(TriangularTile.prototype), 'scale', this).call(this, a);
                 return new TriangularTile(r.x, r.y);
             }
         }, {
-            key: "multiNeighbors",
+            key: 'multiNeighbors',
             value: function multiNeighbors() {
                 var results = [];
                 for (var dir = 1; dir < 4; dir++) {
@@ -905,7 +908,7 @@
                 return results;
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 for (var dir = 0; dir < 3; dir++) {
@@ -914,12 +917,12 @@
                 return results;
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
         }, {
-            key: "value",
+            key: 'value',
             get: function get$$1() {
                 return [this.x, this.y, this.s];
             }
@@ -942,20 +945,20 @@
     };
     TriangularTile.multiOpposites = {
         false: {
-            "-1": 2,
-            "-2": 3,
-            "-3": 1,
-            "1": -3,
-            "2": -1,
-            "3": -2
+            '-1': 2,
+            '-2': 3,
+            '-3': 1,
+            1: -3,
+            2: -1,
+            3: -2
         },
         true: {
-            "-1": 3,
-            "-2": 1,
-            "-3": 2,
-            "1": -2,
-            "2": -3,
-            "3": -1
+            '-1': 3,
+            '-2': 1,
+            '-3': 2,
+            1: -2,
+            2: -3,
+            3: -1
         }
     };
     TriangularTile.multiDirections = {
@@ -1009,46 +1012,46 @@
         }
 
         createClass(TriangularGrid, [{
-            key: "bounds",
+            key: 'bounds',
             value: function bounds$$1() {
                 return bounds(this);
             }
         }, {
-            key: "center",
+            key: 'center',
             value: function center(tile) {
                 var scale = this.scale / SQRT_3_2;
                 return new Float2((tile.x * 2 + (tile.s ? 1 : 0) + tile.y) * scale / 2, scale * (tile.y * SQRT_3_2 + (tile.s ? 0 : -SQRT_3_6)) * this.scaleY);
             }
         }, {
-            key: "vertices",
+            key: 'vertices',
             value: function vertices(orientation, scale) {
                 var tileType = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
-                scale = scale === undefined ? this.scale : scale;
-                scale /= SQRT_3_2;
+                var s = scale === undefined ? this.scale : scale;
+                s /= SQRT_3_2;
                 if (this.scaleY > 0 ? tileType === 0 : tileType !== 0) {
-                    return [new Float2(0, -scale * SQRT_3_3), new Float2(-scale / 2, scale * SQRT_3_6), new Float2(scale / 2, scale * SQRT_3_6)];
+                    return [new Float2(0, -s * SQRT_3_3), new Float2(-s / 2, s * SQRT_3_6), new Float2(s / 2, s * SQRT_3_6)];
                 } else {
-                    return [new Float2(0, scale * (SQRT_3_6 + SQRT_3_6)), new Float2(-scale / 2, -scale * (SQRT_3_3 - SQRT_3_6)), new Float2(scale / 2, -scale * (SQRT_3_3 - SQRT_3_6))];
+                    return [new Float2(0, s * (SQRT_3_6 + SQRT_3_6)), new Float2(-s / 2, -s * (SQRT_3_3 - SQRT_3_6)), new Float2(s / 2, -s * (SQRT_3_3 - SQRT_3_6))];
                 }
             }
         }, {
-            key: "position",
+            key: 'position',
             value: function position(p) {
                 return new TriangularTile(Math.round(p.x), Math.round(p.y), false);
             }
         }, {
-            key: "getTileType",
+            key: 'getTileType',
             value: function getTileType(tile) {
                 return tile.s ? 0 : 1;
             }
         }, {
-            key: "tile",
+            key: 'tile',
             value: function tile(x, y) {
                 return new TriangularTile(Math.floor(x / 2), y, !!(x % 2));
             }
         }, {
-            key: "rhombus",
+            key: 'rhombus',
             value: function rhombus() {
                 var results = [];
                 for (var px = 0; px < this.x; px++) {
@@ -1060,7 +1063,7 @@
                 return results;
             }
         }, {
-            key: "triangle",
+            key: 'triangle',
             value: function triangle() {
                 var results = [];
                 for (var py = 0; py < this.x; py++) {
@@ -1074,7 +1077,7 @@
                 return results;
             }
         }, {
-            key: "hexagonalShape",
+            key: 'hexagonalShape',
             value: function hexagonalShape(size) {
                 var results = [];
                 for (var x = -size; x < size; x++) {
@@ -1095,9 +1098,37 @@
     TriangularGrid.shapes = [exports.Shape.Hexagonal, exports.Shape.Rhombus, exports.Shape.Triangular];
 
     var Float3 = function () {
-        createClass(Float3, null, [{
-            key: "round",
-            value: function round(h) {
+        function Float3(x, y, z) {
+            classCallCheck(this, Float3);
+
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        createClass(Float3, [{
+            key: 'equals',
+            value: function equals(other) {
+                return this.x === other.x && this.y === other.y && this.z === other.z;
+            }
+        }, {
+            key: 'toString',
+            value: function toString() {
+                return this.value.toString();
+            }
+        }, {
+            key: 'round',
+            value: function round() {
+                return Float3.ROUND(this);
+            }
+        }, {
+            key: 'value',
+            get: function get$$1() {
+                return [this.x, this.y, this.z];
+            }
+        }], [{
+            key: 'ROUND',
+            value: function ROUND(h) {
                 var rx = Math.round(h.x);
                 var ry = Math.round(h.y);
                 var rz = Math.round(h.z);
@@ -1114,49 +1145,19 @@
                 return new Integer3(rx, ry, rz);
             }
         }, {
-            key: "lerp",
-            value: function lerp(a, b, t) {
+            key: 'LERP',
+            value: function LERP(a, b, t) {
                 return new Float3(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, a.z + (b.z - a.z) * t);
             }
         }, {
-            key: "line",
-            value: function line(a, b) {
+            key: 'LINE',
+            value: function LINE(a, b) {
                 var N = a.distance(b);
                 var results = [];
                 for (var i = 0; i < N + 1; i++) {
-                    results.push(Float3.round(Float3.lerp(a, b, 1.0 / Math.max(1, N) * i)));
+                    results.push(Float3.ROUND(Float3.LERP(a, b, 1 / Math.max(1, N) * i)));
                 }
                 return results;
-            }
-        }]);
-
-        function Float3(x, y, z) {
-            classCallCheck(this, Float3);
-
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        createClass(Float3, [{
-            key: "equals",
-            value: function equals(other) {
-                return this.x === other.x && this.y === other.y && this.z === other.z;
-            }
-        }, {
-            key: "toString",
-            value: function toString() {
-                return this.value.toString();
-            }
-        }, {
-            key: "round",
-            value: function round() {
-                return Float3.round(this);
-            }
-        }, {
-            key: "value",
-            get: function get$$1() {
-                return [this.x, this.y, this.z];
             }
         }]);
         return Float3;
@@ -1182,17 +1183,17 @@
         }
 
         createClass(RadialTile, [{
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return new RadialTile(-1, 1, 0);
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return RadialTile.directions;
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
                 var length = this.z || a.z;
                 var angle = this.x + a.x;
@@ -1201,17 +1202,17 @@
                 return new RadialTile(angle, this.y + a.y, length);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
                 return new RadialTile(this.x, this.y * a, this.z);
             }
         }, {
-            key: "cubeLength",
+            key: 'cubeLength',
             value: function cubeLength() {
                 return Math.floor(Math.abs(this.y));
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 var _iteratorNormalCompletion = true;
@@ -1242,12 +1243,12 @@
                 return results;
             }
         }, {
-            key: "value",
+            key: 'value',
             get: function get$$1() {
                 return [this.x, this.y];
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
@@ -1299,14 +1300,14 @@
         }
 
         createClass(RadialGrid, [{
-            key: "bounds",
+            key: 'bounds',
             value: function bounds() {
                 var r = this.scale * this.y;
                 return new Rectangle(-r, r, -r, r);
                 // return bounds(this);
             }
         }, {
-            key: "vertices",
+            key: 'vertices',
             value: function vertices(orientation, scale, tileType, tile) {
                 var t = tile;
                 var points = [];
@@ -1320,26 +1321,26 @@
                 });
             }
         }, {
-            key: "path",
+            key: 'path',
             value: function path(tile) {
                 var p = this.vertices(false, 0, 0, tile);
                 var c = this.center(tile);
                 var r1 = this.scale * tile.y;
                 var r2 = this.scale * (tile.y + 1);
-                return "M " + p[0].x + " " + p[0].y + " A " + r1 + " " + r1 + " 0 0 0 " + p[1].x + " " + p[1].y + " " + ("L " + p[2].x + " " + p[2].y + " A " + r2 + " " + r2 + " 0 0 1 " + p[3].x + " " + p[3].y + " Z");
+                return 'M ' + p[0].x + ' ' + p[0].y + ' A ' + r1 + ' ' + r1 + ' 0 0 0 ' + p[1].x + ' ' + p[1].y + ' ' + ('L ' + p[2].x + ' ' + p[2].y + ' A ' + r2 + ' ' + r2 + ' 0 0 1 ' + p[3].x + ' ' + p[3].y + ' Z');
             }
         }, {
-            key: "position",
+            key: 'position',
             value: function position(p) {
                 return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
             }
         }, {
-            key: "tile",
+            key: 'tile',
             value: function tile(x, y) {
                 return this.toTile(new Integer2(x, y));
             }
         }, {
-            key: "center",
+            key: 'center',
             value: function center(tile) {
                 var angle = void 0;
                 if (this.orientation) {
@@ -1368,29 +1369,29 @@
         }
 
         createClass(RectangularTile, [{
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return new RectangularTile(-1, 1);
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return RectangularTile.directions;
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
-                var r = get(RectangularTile.prototype.__proto__ || Object.getPrototypeOf(RectangularTile.prototype), "add", this).call(this, a);
+                var r = get(RectangularTile.prototype.__proto__ || Object.getPrototypeOf(RectangularTile.prototype), 'add', this).call(this, a);
                 return new RectangularTile(r.x, r.y);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
-                var r = get(RectangularTile.prototype.__proto__ || Object.getPrototypeOf(RectangularTile.prototype), "scale", this).call(this, a);
+                var r = get(RectangularTile.prototype.__proto__ || Object.getPrototypeOf(RectangularTile.prototype), 'scale', this).call(this, a);
                 return new RectangularTile(r.x, r.y);
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 var _iteratorNormalCompletion = true;
@@ -1421,7 +1422,7 @@
                 return results;
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
@@ -1475,12 +1476,12 @@
         }
 
         createClass(RectangularGrid, [{
-            key: "bounds",
+            key: 'bounds',
             value: function bounds$$1() {
                 return bounds(this);
             }
         }, {
-            key: "center",
+            key: 'center',
             value: function center(tile) {
                 if (this.orientation) {
                     return new Float2(tile.x * this.scale / SQRT_2 + tile.y * this.scale * this.scaleY / SQRT_2, tile.y * this.scale * this.scaleY / SQRT_2 - tile.x * this.scale / SQRT_2);
@@ -1489,32 +1490,32 @@
                 }
             }
         }, {
-            key: "vertices",
+            key: 'vertices',
             value: function vertices(orientation, scale) {
                 var points = [];
-                scale = scale === undefined ? this.scale : scale;
-                orientation = orientation === undefined ? false : this.orientation;
-                if (orientation) {
-                    scale *= SQRT_2;
-                    points.push(new Float2(-scale / 2, 0));
-                    points.push(new Float2(0, -scale / 2));
-                    points.push(new Float2(scale / 2, 0));
-                    points.push(new Float2(0, scale / 2));
+                var s = scale === undefined ? this.scale : scale;
+                var o = orientation === undefined ? false : this.orientation;
+                if (o) {
+                    s *= SQRT_2;
+                    points.push(new Float2(-s / 2, 0));
+                    points.push(new Float2(0, -s / 2));
+                    points.push(new Float2(s / 2, 0));
+                    points.push(new Float2(0, s / 2));
                 } else {
-                    points.push(new Float2(-scale / 2, -scale / 2));
-                    points.push(new Float2(-scale / 2, scale / 2));
-                    points.push(new Float2(scale / 2, scale / 2));
-                    points.push(new Float2(scale / 2, -scale / 2));
+                    points.push(new Float2(-s / 2, -s / 2));
+                    points.push(new Float2(-s / 2, s / 2));
+                    points.push(new Float2(s / 2, s / 2));
+                    points.push(new Float2(s / 2, -s / 2));
                 }
                 return points;
             }
         }, {
-            key: "position",
+            key: 'position',
             value: function position(p) {
                 return new this.tileCtor(Math.round(p.x / this.scale), Math.round(p.y / this.scale * this.scaleY));
             }
         }, {
-            key: "tile",
+            key: 'tile',
             value: function tile(x, y) {
                 return this.toTile(new Integer2(x, y));
             }
@@ -1541,17 +1542,17 @@
         }
 
         createClass(Radial8Tile, [{
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return new Radial8Tile(-1, 1, 0);
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return Radial8Tile.directions;
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
                 var length = this.z || a.z;
                 var angle = this.x + a.x;
@@ -1560,17 +1561,17 @@
                 return new Radial8Tile(angle, this.y + a.y, length);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
                 return new Radial8Tile(this.x, this.y * a, this.z);
             }
         }, {
-            key: "cubeLength",
+            key: 'cubeLength',
             value: function cubeLength() {
                 return Math.floor(Math.abs(this.y));
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 var _iteratorNormalCompletion = true;
@@ -1601,12 +1602,12 @@
                 return results;
             }
         }, {
-            key: "value",
+            key: 'value',
             get: function get$$1() {
                 return [this.x, this.y];
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
@@ -1627,34 +1628,34 @@
         }
 
         createClass(Rectangular8Tile, [{
-            key: "shift",
+            key: 'shift',
             value: function shift() {
                 return new Rectangular8Tile(-1, 1);
             }
         }, {
-            key: "directions",
+            key: 'directions',
             value: function directions() {
                 return Rectangular8Tile.directions;
             }
         }, {
-            key: "sides",
+            key: 'sides',
             value: function sides() {
                 return Rectangular8Tile.sides;
             }
         }, {
-            key: "add",
+            key: 'add',
             value: function add(a) {
-                var r = get(Rectangular8Tile.prototype.__proto__ || Object.getPrototypeOf(Rectangular8Tile.prototype), "add", this).call(this, a);
+                var r = get(Rectangular8Tile.prototype.__proto__ || Object.getPrototypeOf(Rectangular8Tile.prototype), 'add', this).call(this, a);
                 return new Rectangular8Tile(r.x, r.y);
             }
         }, {
-            key: "scale",
+            key: 'scale',
             value: function scale(a) {
-                var r = get(Rectangular8Tile.prototype.__proto__ || Object.getPrototypeOf(Rectangular8Tile.prototype), "scale", this).call(this, a);
+                var r = get(Rectangular8Tile.prototype.__proto__ || Object.getPrototypeOf(Rectangular8Tile.prototype), 'scale', this).call(this, a);
                 return new Rectangular8Tile(r.x, r.y);
             }
         }, {
-            key: "neighbors",
+            key: 'neighbors',
             value: function neighbors() {
                 var results = [];
                 var _iteratorNormalCompletion = true;
@@ -1685,7 +1686,7 @@
                 return results;
             }
         }, {
-            key: "sideNeighbors",
+            key: 'sideNeighbors',
             value: function sideNeighbors() {
                 var results = [];
                 var _iteratorNormalCompletion2 = true;
@@ -1716,7 +1717,7 @@
                 return results;
             }
         }, {
-            key: "key",
+            key: 'key',
             get: function get$$1() {
                 return this.toString();
             }
@@ -1935,7 +1936,7 @@
         }
 
         createClass(Search, [{
-            key: "path",
+            key: 'path',
             value: function path(end) {
                 var _this = this;
 
@@ -2270,3 +2271,4 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
+//# sourceMappingURL=gridy.js.map

@@ -1,4 +1,4 @@
-import { Position } from "./Position";
+import { Position } from './Position';
 export function rotate(grid, direction = 1) {
     grid.tiles.forEach((t) => {
         let d = direction;

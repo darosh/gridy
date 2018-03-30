@@ -1,21 +1,22 @@
-import { SQRT_2, SQRT_2_2, SQRT_2_4 } from "./Constants";
-import { Float2 } from "./Float2";
-import { HexagonalGrid } from "./HexagonalGrid";
+import { SQRT_2, SQRT_2_2, SQRT_2_4 } from './Constants';
+import { Float2 } from './Float2';
+import { HexagonalGrid } from './HexagonalGrid';
+import { Shape } from './Shape';
 /**
  * ![](../../examples/output/brick-grid.svg)
  */
 export class BrickGrid extends HexagonalGrid {
-    constructor(scale, orientation, shape, x, y) {
+    constructor(scale, orientation = false, shape = Shape.Hexagonal, x = 1, y) {
         super(scale, orientation, shape, x, y);
         this.angle = 0;
         this.radius = SQRT_2_4 * scale;
     }
     vertices(orientation, scale) {
-        scale = (scale === undefined) ? this.scale : scale;
+        const s = (scale === undefined) ? this.scale : scale;
         const points = [];
         for (let i = 0; i < 4; i++) {
-            const angle = 2 * Math.PI * (2 * i - 1) / 8;
-            points.push(new Float2(0.5 * scale * Math.cos(angle), 0.5 * scale * Math.sin(angle)));
+            const angle = Math.PI * (i * 2 - 1) * 2 / 8;
+            points.push(new Float2(s * Math.cos(angle) * 0.5, s * Math.sin(angle) * 0.5));
         }
         return points;
     }

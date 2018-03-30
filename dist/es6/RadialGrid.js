@@ -1,11 +1,11 @@
-import { ANG, DEG_TO_RAD } from "./Constants";
-import { Float2 } from "./Float2";
-import { Float3 } from "./Float3";
-import { Position } from "./Position";
-import { RadialTile } from "./RadialTile";
-import { Rectangle } from "./Rectangle";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { ANG, DEG_TO_RAD } from './Constants';
+import { Float2 } from './Float2';
+import { Float3 } from './Float3';
+import { Position } from './Position';
+import { RadialTile } from './RadialTile';
+import { Rectangle } from './Rectangle';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 /**
  * ![](../../examples/output/Radial-grid.svg)
  */

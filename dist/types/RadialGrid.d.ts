@@ -1,14 +1,14 @@
-import { Float } from "./Float";
-import { Float2 } from "./Float2";
-import { IGrid } from "./IGrid";
-import { Integer } from "./Integer";
-import { AnyTile, ITileConstructible } from "./ITile";
-import { Position } from "./Position";
-import { Radial8Tile } from "./Radial8Tile";
-import { RadialTile } from "./RadialTile";
-import { Rectangle } from "./Rectangle";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { Float } from './Float';
+import { Float2 } from './Float2';
+import { IGrid } from './IGrid';
+import { Integer } from './Integer';
+import { AnyTile, ITileConstructible } from './ITile';
+import { Position } from './Position';
+import { Radial8Tile } from './Radial8Tile';
+import { RadialTile } from './RadialTile';
+import { Rectangle } from './Rectangle';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 /**
  * ![](../../examples/output/Radial-grid.svg)
  */

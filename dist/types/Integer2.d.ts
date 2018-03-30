@@ -1,5 +1,5 @@
-import { Integer } from "./Integer";
-import { IVector } from "./IVector";
+import { Integer } from './Integer';
+import { IVector } from './IVector';
 export declare class Integer2 implements IVector<Integer> {
     x: Integer;
     y: Integer;

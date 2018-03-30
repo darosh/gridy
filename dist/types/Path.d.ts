@@ -1,5 +1,5 @@
-import { Integer } from "./Integer";
-import { AnyTile } from "./ITile";
+import { Integer } from './Integer';
+import { AnyTile } from './ITile';
 export declare function circle(start: AnyTile, N: Integer): AnyTile[];
 export declare function spiral(start: AnyTile, N: Integer, isSpiral?: boolean): AnyTile[];
 export declare function intersect(a: AnyTile[], b: AnyTile[]): AnyTile[];

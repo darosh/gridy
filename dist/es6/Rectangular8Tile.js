@@ -1,6 +1,6 @@
-import { Axes8 } from "./Axes";
-import { Integer2 } from "./Integer2";
-import { RectangularTile } from "./RectangularTile";
+import { Axes8 } from './Axes';
+import { Integer2 } from './Integer2';
+import { RectangularTile } from './RectangularTile';
 /**
  * ![](../../examples/output/rectangular-tile.svg)
  */
@@ -48,12 +48,12 @@ Rectangular8Tile.directions = [
     [Axes8.S, new Rectangular8Tile(0, 1)],
     [Axes8.W, new Rectangular8Tile(-1, 0)],
     [Axes8.SE, new Rectangular8Tile(1, 1)],
-    [Axes8.NE, new Rectangular8Tile(-1, 1)],
+    [Axes8.NE, new Rectangular8Tile(-1, 1)]
 ];
 Rectangular8Tile.sides = [
     Rectangular8Tile.directions[0],
     Rectangular8Tile.directions[1],
     Rectangular8Tile.directions[4],
-    Rectangular8Tile.directions[5],
+    Rectangular8Tile.directions[5]
 ];
 //# sourceMappingURL=Rectangular8Tile.js.map

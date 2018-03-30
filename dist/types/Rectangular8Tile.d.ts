@@ -1,8 +1,8 @@
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
-import { Integer2 } from "./Integer2";
-import { ITile } from "./ITile";
-import { RectangularTile } from "./RectangularTile";
+import { Directions } from './Directions';
+import { Integer } from './Integer';
+import { Integer2 } from './Integer2';
+import { ITile } from './ITile';
+import { RectangularTile } from './RectangularTile';
 /**
  * ![](../../examples/output/rectangular-tile.svg)
  */

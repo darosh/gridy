@@ -1,4 +1,4 @@
-import { instance, mapped, toMap } from "./Utils";
+import { instance, mapped, toMap } from './Utils';
 export function circle(start, N) {
     return spiral(start, N, false);
 }

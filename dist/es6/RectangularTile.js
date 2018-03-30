@@ -1,5 +1,5 @@
-import { Axes4 } from "./Axes";
-import { Integer2 } from "./Integer2";
+import { Axes4 } from './Axes';
+import { Integer2 } from './Integer2';
 /**
  * ![](../../examples/output/rectangular-tile.svg)
  */
@@ -33,6 +33,6 @@ RectangularTile.directions = [
     [Axes4.N, new RectangularTile(0, -1)],
     [Axes4.E, new RectangularTile(1, 0)],
     [Axes4.S, new RectangularTile(0, 1)],
-    [Axes4.W, new RectangularTile(-1, 0)],
+    [Axes4.W, new RectangularTile(-1, 0)]
 ];
 //# sourceMappingURL=RectangularTile.js.map

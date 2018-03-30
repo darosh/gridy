@@ -1,5 +1,5 @@
-import { Integer } from "./Integer";
-import { AnyTile } from "./ITile";
+import { Integer } from './Integer';
+import { AnyTile } from './ITile';
 export declare class Search {
     cost: {
         [key: string]: Integer;

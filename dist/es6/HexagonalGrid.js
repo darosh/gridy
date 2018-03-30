@@ -1,10 +1,10 @@
-import { bounds } from "./Bounds";
-import { SQRT_3, SQRT_3_2, SQRT_3_3 } from "./Constants";
-import { Float2 } from "./Float2";
-import { HexagonalTile } from "./HexagonalTile";
-import { Position } from "./Position";
-import { Shape } from "./Shape";
-import { TileType } from "./TileType";
+import { bounds } from './bounds';
+import { SQRT_3, SQRT_3_2, SQRT_3_3 } from './Constants';
+import { Float2 } from './Float2';
+import { HexagonalTile } from './HexagonalTile';
+import { Position } from './Position';
+import { Shape } from './Shape';
+import { TileType } from './TileType';
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2012 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -20,123 +20,123 @@ export class HexagonalGrid {
         this.scale = scale;
         this.radius = SQRT_3_2 * scale / SQRT_3_2 / 2;
         this.orientation = orientation;
-        y = y || x;
+        const yy = y || x;
         this.x = x;
-        this.y = y;
+        this.y = yy;
         this.shape = shape;
         if (shape === Shape.Even && orientation === false) {
-            this.toTile = HexagonalGrid.evenQToCube;
-            this.toPoint = HexagonalGrid.cubeToEvenQ;
-            this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+            this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+            this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
         }
         else if (shape === Shape.Even && orientation === true) {
-            this.toTile = HexagonalGrid.evenRToCube;
-            this.toPoint = HexagonalGrid.cubeToEvenR;
-            this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+            this.toTile = HexagonalGrid.EVEN_R_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_EVEN_R;
+            this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
         }
         else if (shape === Shape.Odd && orientation === false) {
-            this.toTile = HexagonalGrid.oddQToCube;
-            this.toPoint = HexagonalGrid.cubeToOddQ;
-            this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+            this.toTile = HexagonalGrid.ODD_Q_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_ODD_Q;
+            this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
         }
         else if (shape === Shape.Odd && orientation === true) {
-            this.toTile = HexagonalGrid.oddRToCube;
-            this.toPoint = HexagonalGrid.cubeToOddR;
-            this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+            this.toTile = HexagonalGrid.ODD_R_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_ODD_R;
+            this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
         }
         else if (shape === Shape.Hexagonal) {
-            // this.toTile = HexagonalGrid.evenQToCube;
-            // this.toPoint = HexagonalGrid.cubeToEvenQ;
-            this.toTile = HexagonalGrid.twoAxisToCube;
-            this.toPoint = HexagonalGrid.cubeToTwoAxis;
-            this.tiles = HexagonalGrid.hexagonalShape(x);
+            // this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+            // this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+            this.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS;
+            this.tiles = HexagonalGrid.HEXAGONAL_SHAPE(x);
         }
         else if (shape === Shape.Triangular) {
-            this.toTile = HexagonalGrid.evenQToCube;
-            this.toPoint = HexagonalGrid.cubeToEvenQ;
-            this.tiles = HexagonalGrid.triangularShape(x);
+            this.toTile = HexagonalGrid.EVEN_Q_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_EVEN_Q;
+            this.tiles = HexagonalGrid.TRIANGULAR_SHAPE(x);
         }
-        else /*if (shape === Shape.Rhombus)*/ {
-            this.toTile = HexagonalGrid.twoAxisToCube;
-            this.toPoint = HexagonalGrid.cubeToTwoAxis;
-            this.tiles = HexagonalGrid.trapezoidalShape(0, x, 0, y, this.toTile);
+        else { // if (shape === Shape.Rhombus)
+            this.toTile = HexagonalGrid.TWO_AXIS_TO_CUBE;
+            this.toPoint = HexagonalGrid.CUBE_TO_TWO_AXIS;
+            this.tiles = HexagonalGrid.TRAPEZOIDAL_SHAPE(0, x, 0, yy, this.toTile);
         }
     }
-    static twoAxisToCube(position) {
+    static TWO_AXIS_TO_CUBE(position) {
         return new HexagonalTile(position.x, -position.y - position.x, position.y);
     }
-    static cubeToTwoAxis(tile) {
+    static CUBE_TO_TWO_AXIS(tile) {
         return new Position(tile.x, tile.z);
     }
-    static twoAxisToCubeXY(position) {
+    static TWO_AXIS_TO_CUBE_XY(position) {
         return new HexagonalTile(position.x, position.y, -position.x - position.y);
     }
-    static cubeToTwoAxisXY(tile) {
+    static CUBE_TO_TWO_AXIS_XY(tile) {
         return new Position(tile.x, tile.y);
     }
-    static twoAxisToCubeYZ(position) {
+    static TWO_AXIS_TO_CUBE_YZ(position) {
         return new HexagonalTile(-position.x - position.y, position.x, position.y);
     }
-    static cubeToTwoAxisYZ(tile) {
+    static CUBE_TO_TWO_AXIS_YZ(tile) {
         return new Position(tile.y, tile.z);
     }
-    static oddQToCube(position) {
+    static ODD_Q_TO_CUBE(position) {
         /* tslint:disable:no-bitwise */
         const x = position.x;
         const z = position.y - ((position.x - (position.x & 1)) >> 1);
         /* tslint:enable:no-bitwise */
         return new HexagonalTile(x, -x - z, z);
     }
-    static cubeToOddQ(tile) {
+    static CUBE_TO_ODD_Q(tile) {
         const x = tile.x;
         const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x, z + ((x - (x & 1)) >> 1));
         /* tslint:enable:no-bitwise */
     }
-    static evenQToCube(position) {
+    static EVEN_Q_TO_CUBE(position) {
         /* tslint:disable:no-bitwise */
         const x = position.x;
         const z = position.y - ((position.x + (position.x & 1)) >> 1);
         /* tslint:enable:no-bitwise */
         return new HexagonalTile(x, -x - z, z);
     }
-    static cubeToEvenQ(tile) {
+    static CUBE_TO_EVEN_Q(tile) {
         const x = tile.x;
         const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x, z + ((x + (x & 1)) >> 1));
         /* tslint:enable:no-bitwise */
     }
-    static oddRToCube(position) {
+    static ODD_R_TO_CUBE(position) {
         /* tslint:disable:no-bitwise */
         const z = position.y;
         const x = position.x - ((position.y - (position.y & 1)) >> 1);
         /* tslint:enable:no-bitwise */
         return new HexagonalTile(x, -x - z, z);
     }
-    static cubeToOddR(tile) {
+    static CUBE_TO_ODD_R(tile) {
         const x = tile.x;
         const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x + ((z - (z & 1)) >> 1), z);
         /* tslint:enable:no-bitwise */
     }
-    static evenRToCube(position) {
+    static EVEN_R_TO_CUBE(position) {
         /* tslint:disable:no-bitwise */
         const z = position.y;
         const x = position.x - ((position.y + (position.y & 1)) >> 1);
         /* tslint:enable:no-bitwise */
         return new HexagonalTile(x, -x - z, z);
     }
-    static cubeToEvenR(tile) {
+    static CUBE_TO_EVEN_R(tile) {
         const x = tile.x;
         const z = tile.z;
         /* tslint:disable:no-bitwise */
         return new Position(x + ((z + (z & 1)) >> 1), z);
         /* tslint:enable:no-bitwise */
     }
-    static trapezoidalShape(minQ, maxQ, minR, maxR, toCube) {
+    static TRAPEZOIDAL_SHAPE(minQ, maxQ, minR, maxR, toCube) {
         const hexes = [];
         for (let q = minQ; q < maxQ; q++) {
             for (let r = minR; r < maxR; r++) {
@@ -145,7 +145,7 @@ export class HexagonalGrid {
         }
         return hexes;
     }
-    static triangularShape(size) {
+    static TRIANGULAR_SHAPE(size) {
         const hexes = [];
         for (let k = 0; k < size; k++) {
             for (let i = 0; i < (k + 1); i++) {
@@ -154,7 +154,7 @@ export class HexagonalGrid {
         }
         return hexes;
     }
-    static hexagonalShape(size) {
+    static HEXAGONAL_SHAPE(size) {
         const hexes = [];
         for (let x = -size; x < size; x++) {
             for (let y = -size; y < size; y++) {
@@ -166,7 +166,7 @@ export class HexagonalGrid {
         }
         return hexes;
     }
-    static region(xmin, xmax, ymin, ymax, zmin, zmax) {
+    static REGION(xmin, xmax, ymin, ymax, zmin, zmax) {
         const results = [];
         for (let x = xmin; x <= xmax; x++) {
             for (let y = Math.max(ymin, -x - zmax); y <= Math.min(ymax, -x - zmin); y++) {
@@ -181,12 +181,12 @@ export class HexagonalGrid {
     }
     vertices(orientation, scale) {
         const points = [];
-        scale = (scale === undefined) ? this.scale : scale;
-        scale /= SQRT_3_2;
-        orientation = (orientation === undefined) ? false : this.orientation;
+        let s = (scale === undefined) ? this.scale : scale;
+        s /= SQRT_3_2;
+        const o = (orientation === undefined) ? false : this.orientation;
         for (let i = 0; i < 6; i++) {
-            const angle = 2 * Math.PI * (2 * i - (orientation ? 1 : 0)) / 12;
-            points.push(new Float2(0.5 * scale * Math.cos(angle), 0.5 * scale * Math.sin(angle)));
+            const angle = Math.PI * (i * 2 - (o ? 1 : 0)) * 2 / 12;
+            points.push(new Float2(s * Math.cos(angle) * 0.5, s * Math.sin(angle) * 0.5));
         }
         return points;
     }
@@ -194,26 +194,26 @@ export class HexagonalGrid {
         let s;
         const size = this.scale / SQRT_3_2 / 2;
         if (this.orientation) {
-            s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, 1.5 * tile.z * this.scaleY);
+            s = new Float2(SQRT_3 * tile.x + SQRT_3_2 * tile.z, tile.z * this.scaleY * 1.5);
         }
         else {
-            s = new Float2(1.5 * tile.x, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
+            s = new Float2(tile.x * 1.5, (SQRT_3_2 * tile.x + SQRT_3 * tile.z) * this.scaleY);
         }
         return s.scale(size);
     }
     position(p) {
         const size = this.scale / 2;
-        p = p.scale(1 / size);
-        p.y *= this.scaleY;
+        const pp = p.scale(1 / size);
+        pp.y *= this.scaleY;
         let q;
         let r;
         if (this.orientation) {
-            q = SQRT_3_3 * p.x + -1 / 3 * p.y;
-            r = 2 / 3 * p.y;
+            q = SQRT_3_3 * pp.x + -1 / 3 * pp.y;
+            r = 2 / 3 * pp.y;
         }
         else {
-            q = 2 / 3 * p.x;
-            r = -1 / 3 * p.x + SQRT_3_3 * p.y;
+            q = 2 / 3 * pp.x;
+            r = -1 / 3 * pp.x + SQRT_3_3 * pp.y;
         }
         return new HexagonalTile(Math.round(q), Math.round(-q - r), Math.round(r));
     }

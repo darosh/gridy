@@ -1,5 +1,5 @@
-import { Axes4 } from "./Axes";
-import { Integer3 } from "./Integer3";
+import { Axes4 } from './Axes';
+import { Integer3 } from './Integer3';
 /**
  * ![](../../examples/output/radial-tile.svg)
  * x: angle position
@@ -49,6 +49,6 @@ RadialTile.directions = [
     [Axes4.N, new RadialTile(0, -1, 0)],
     [Axes4.S, new RadialTile(0, 1, 0)],
     [Axes4.E, new RadialTile(1, 0, 0)],
-    [Axes4.W, new RadialTile(-1, 0, 0)],
+    [Axes4.W, new RadialTile(-1, 0, 0)]
 ];
 //# sourceMappingURL=RadialTile.js.map

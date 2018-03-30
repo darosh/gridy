@@ -1,7 +1,9 @@
-import { IGrid } from "./IGrid";
-import { AnyTile } from "./ITile";
-import { Search } from "./Search";
-/** @external */
+import { IGrid } from './IGrid';
+import { AnyTile } from './ITile';
+import { Search } from './Search';
+/**
+ * @external
+ */
 export default class Diagram {
     grid: IGrid<any>;
     private nodes?;
@@ -29,7 +31,7 @@ export default class Diagram {
     polygons(show?: boolean | any): Diagram;
     polygonPaths(show?: boolean | any): void;
     /**
-     * Show/hide tile center points
+     * Show/hide tile center POINTS
      * @param show
      * @returns {Diagram}
      */
@@ -50,7 +52,7 @@ export default class Diagram {
     highlight(tiles: AnyTile[], classed?: string): Diagram;
     path(tiles: AnyTile[], color?: string, width?: number): Diagram;
     lines(tiles: AnyTile[][], color?: string, width?: number): Diagram;
-    search(search?: Search, from?: string, to?: string): Diagram;
+    search(search?: Search, fromTile?: string, to?: string): Diagram;
     point(xy: number[]): Diagram;
     mousePoint(): Diagram;
     private initRoot();

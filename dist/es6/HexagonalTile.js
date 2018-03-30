@@ -1,5 +1,5 @@
-import { Axes6 } from "./Axes";
-import { Integer3 } from "./Integer3";
+import { Axes6 } from './Axes';
+import { Integer3 } from './Integer3';
 // From http://www.redblobgames.com/grids/hexagons/
 // Copyright 2013 Red Blob Games <redblobgames@gmail.com>
 // License: Apache v2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
@@ -57,6 +57,6 @@ HexagonalTile.directions = [
     [Axes6.N, new HexagonalTile(0, 1, -1)],
     [Axes6.SE, new HexagonalTile(-1, 1, 0)],
     [Axes6.SW, new HexagonalTile(-1, 0, 1)],
-    [Axes6.S, new HexagonalTile(0, -1, 1)],
+    [Axes6.S, new HexagonalTile(0, -1, 1)]
 ];
 //# sourceMappingURL=HexagonalTile.js.map

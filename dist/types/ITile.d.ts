@@ -1,5 +1,5 @@
-import { Directions } from "./Directions";
-import { Integer } from "./Integer";
+import { Directions } from './Directions';
+import { Integer } from './Integer';
 export interface ITile<T> {
     key: string;
     value: any[];
