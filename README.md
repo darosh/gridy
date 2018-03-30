@@ -10,6 +10,8 @@
 
 Based on [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/)  and [Amit’s Thoughts on Grids](http://www-cs-students.stanford.edu/~amitp/game-programming/grids/) articles.
 
+Used in [gridy-games](https://github.com/darosh/gridy-games) and [gridy-games-lib](https://github.com/darosh/gridy-games-lib)
+
 Current version has unstable API and unfinished implementation of features.
 
 ## Demo
