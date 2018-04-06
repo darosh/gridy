@@ -1,8 +1,6 @@
 import { ANG_4, DEG_TO_RAD } from './Constants';
 import { Directions } from './Directions';
-import { Integer } from './Integer';
 import { AnyTile, ITile, TileMap } from './ITile';
-import { Position } from './Position';
 
 export function instance<T>(obj: T): T {
   return new (<any>obj.constructor)();

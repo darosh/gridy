@@ -1,6 +1,6 @@
 import { Directions } from './Directions';
 import { Integer } from './Integer';
-import { AnyTile, ITile } from './ITile';
+import { AnyTile } from './ITile';
 import { toMap } from './Utils';
 
 // From http://www.redblobgames.com/grids/hexagons/

@@ -1,11 +1,10 @@
-import { bounds } from './bounds';
-import { ANG, ANG_2, ANG_4, DEG_TO_RAD, SQRT_2 } from './Constants';
+import { ANG, DEG_TO_RAD } from './Constants';
 import { Float } from './Float';
 import { Float2 } from './Float2';
 import { Float3 } from './Float3';
 import { IGrid } from './IGrid';
 import { Integer } from './Integer';
-import { AnyTile, ITile, ITileConstructible } from './ITile';
+import { AnyTile, ITileConstructible } from './ITile';
 import { Position } from './Position';
 import { Radial8Tile } from './Radial8Tile';
 import { RadialTile } from './RadialTile';

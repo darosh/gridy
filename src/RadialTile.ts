@@ -1,10 +1,8 @@
 import { Axes4 } from './Axes';
-import { ANG, ANG_2, ANG_4, DEG_TO_RAD } from './Constants';
 import { Directions } from './Directions';
 import { Integer } from './Integer';
 import { Integer3 } from './Integer3';
 import { AnyTile, ITile } from './ITile';
-import { toMap } from './Utils';
 
 /**
  * ![](../../examples/output/radial-tile.svg)

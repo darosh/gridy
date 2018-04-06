@@ -4,7 +4,7 @@ import { Float } from './Float';
 import { Float2 } from './Float2';
 import { IGrid } from './IGrid';
 import { Integer } from './Integer';
-import { AnyTile, ITile, ITileConstructible } from './ITile';
+import { ITileConstructible } from './ITile';
 import { Position } from './Position';
 import { Rectangle } from './Rectangle';
 import { Rectangular8Tile } from './Rectangular8Tile';
