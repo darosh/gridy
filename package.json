@@ -56,8 +56,8 @@
     "lint:ts": "tslint -p tsconfig.json --fix -t stylish",
     "test": "jest --coverage",
     "start": "concurrently \"npm run watch:ts\" \"npm run watch:gridy\" \"npm run watch:diagram\"",
-    "watch:diagram": "rollup dist/es6/Diagram.js -m -w --o dist/diagram.js --f umd --name Diagram",
-    "watch:gridy": "rollup dist/es6/index.js -m -w --o dist/gridy.js --f umd --name Gridy",
+    "watch:diagram": "rollup dist/es6/Diagram.js -c rollup.config.js -m -w --o dist/diagram.js --f umd --name Diagram",
+    "watch:gridy": "rollup dist/es6/index.js -c rollup.config.js -m -w --o dist/gridy.js --f umd --name Gridy",
     "watch:ts": "tsc --watch -d --declarationDir dist/types -p tsconfig.json --outDir dist/es6"
   },
   "types": "dist/types/index.js"
